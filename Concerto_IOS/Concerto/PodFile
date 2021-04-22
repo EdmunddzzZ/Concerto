@@ -1,0 +1,12 @@
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+project ‘/Users/edmunddzzz/Desktop/ConcertoTeam/Concerto_IOS/Concerto/Concerto.xcodeproj’
+platform :ios, '11.0'
+
+target 'Concerto' do
+
+pod 'AFNetworking'
+pod 'WHToast'
+pod 'ZXCountDownView'
+pod 'FSScrollContentView'
+
+end

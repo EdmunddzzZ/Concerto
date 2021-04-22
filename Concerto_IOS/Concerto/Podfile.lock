@@ -1,0 +1,42 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - FSScrollContentView (1.0.9)
+  - WHToast (0.0.8)
+  - ZXCountDownView (1.0.6)
+
+DEPENDENCIES:
+  - AFNetworking
+  - FSScrollContentView
+  - WHToast
+  - ZXCountDownView
+
+SPEC REPOS:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - AFNetworking
+    - FSScrollContentView
+    - WHToast
+    - ZXCountDownView
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  FSScrollContentView: 2fdda268eb8f1a1d4aefd470bf70702dbc346d50
+  WHToast: 5da5bb80bdd1fea9455d4215577d9c5be2c506b8
+  ZXCountDownView: 486d888558551210c6790855ec24e82853a31d9e
+
+PODFILE CHECKSUM: 0c5a37b05e6c55b9426907fd5e3957c5ef28d9c9
+
+COCOAPODS: 1.10.0
