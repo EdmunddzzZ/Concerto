@@ -7,7 +7,7 @@
 //
 
 #import "CreateBase.h"
-#import "YXJInterfaceConnection.h"
+
 @implementation CreateBase
 +(UIButton *)createButton:(CGRect)frame image:(UIImage *)image target:(SEL)seletor
 {

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A60C67EC6EA67140E418F4 /* libPods-Concerto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */; };
+		BAA397772631BEDD000C0A34 /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA397752631BEDD000C0A34 /* ViewManager.m */; };
+		BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA3977E2631BFC4000C0A34 /* LoginViewController.m */; };
 		BAF619ED2631230A004804DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619EC2631230A004804DA /* AppDelegate.m */; };
-		BAF619F02631230A004804DA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619EF2631230A004804DA /* SceneDelegate.m */; };
 		BAF619F32631230A004804DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619F22631230A004804DA /* ViewController.m */; };
 		BAF619F62631230A004804DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F42631230A004804DA /* Main.storyboard */; };
 		BAF619F82631230B004804DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F72631230B004804DA /* Assets.xcassets */; };
@@ -20,7 +22,6 @@
 		BAF61A352631232E004804DA /* AppData.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A282631232E004804DA /* AppData.m */; };
 		BAF61A362631232E004804DA /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = BAF61A292631232E004804DA /* Readme */; };
 		BAF61A372631232E004804DA /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2B2631232E004804DA /* NullSafe.m */; };
-		BAF61A382631232E004804DA /* identities.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2D2631232E004804DA /* identities.m */; };
 		BAF61A392631232E004804DA /* ApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2F2631232E004804DA /* ApiManager.m */; };
 		BAF61A3A2631232E004804DA /* UnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A302631232E004804DA /* UnitCell.m */; };
 		BAF61A3B2631232E004804DA /* CreateBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A332631232E004804DA /* CreateBase.m */; };
@@ -44,11 +45,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		402A4073F2CAC24ED88DA8F9 /* Pods-Concerto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concerto.debug.xcconfig"; path = "Target Support Files/Pods-Concerto/Pods-Concerto.debug.xcconfig"; sourceTree = "<group>"; };
+		BAA397752631BEDD000C0A34 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
+		BAA397762631BEDD000C0A34 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
+		BAA3977D2631BFC4000C0A34 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		BAA3977E2631BFC4000C0A34 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BAF619E82631230A004804DA /* Concerto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concerto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF619EB2631230A004804DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BAF619EC2631230A004804DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BAF619EE2631230A004804DA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		BAF619EF2631230A004804DA /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		BAF619F12631230A004804DA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		BAF619F22631230A004804DA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		BAF619F52631230A004804DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,13 +74,13 @@
 		BAF61A292631232E004804DA /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		BAF61A2A2631232E004804DA /* WSHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSHPickerView.h; sourceTree = "<group>"; };
 		BAF61A2B2631232E004804DA /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
-		BAF61A2D2631232E004804DA /* identities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = identities.m; sourceTree = "<group>"; };
-		BAF61A2E2631232E004804DA /* identities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = identities.h; sourceTree = "<group>"; };
 		BAF61A2F2631232E004804DA /* ApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiManager.m; sourceTree = "<group>"; };
 		BAF61A302631232E004804DA /* UnitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitCell.m; sourceTree = "<group>"; };
 		BAF61A312631232E004804DA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BAF61A322631232E004804DA /* AppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppData.h; sourceTree = "<group>"; };
 		BAF61A332631232E004804DA /* CreateBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBase.m; sourceTree = "<group>"; };
+		BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Concerto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5DDFF519C94FB76A5717B29 /* Pods-Concerto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concerto.release.xcconfig"; path = "Target Support Files/Pods-Concerto/Pods-Concerto.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A60C67EC6EA67140E418F4 /* libPods-Concerto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +109,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A7860D353C49C202A7308DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				402A4073F2CAC24ED88DA8F9 /* Pods-Concerto.debug.xcconfig */,
+				E5DDFF519C94FB76A5717B29 /* Pods-Concerto.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AD3B9711EFB906FC384408E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAA3977B2631BFAB000C0A34 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				BAA3977C2631BFB4000C0A34 /* ViewController */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		BAA3977C2631BFB4000C0A34 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BAA3977D2631BFC4000C0A34 /* LoginViewController.h */,
+				BAA3977E2631BFC4000C0A34 /* LoginViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		BAF619DF2631230A004804DA = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +151,8 @@
 				BAF61A062631230B004804DA /* ConcertoTests */,
 				BAF61A112631230B004804DA /* ConcertoUITests */,
 				BAF619E92631230A004804DA /* Products */,
+				3A7860D353C49C202A7308DC /* Pods */,
+				AD3B9711EFB906FC384408E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,11 +169,10 @@
 		BAF619EA2631230A004804DA /* Concerto */ = {
 			isa = PBXGroup;
 			children = (
+				BAA3977B2631BFAB000C0A34 /* LoginView */,
 				BAF61A232631232E004804DA /* WSH */,
 				BAF619EB2631230A004804DA /* AppDelegate.h */,
 				BAF619EC2631230A004804DA /* AppDelegate.m */,
-				BAF619EE2631230A004804DA /* SceneDelegate.h */,
-				BAF619EF2631230A004804DA /* SceneDelegate.m */,
 				BAF619F12631230A004804DA /* ViewController.h */,
 				BAF619F22631230A004804DA /* ViewController.m */,
 				BAF619F42631230A004804DA /* Main.storyboard */,
@@ -164,6 +205,8 @@
 		BAF61A232631232E004804DA /* WSH */ = {
 			isa = PBXGroup;
 			children = (
+				BAA397762631BEDD000C0A34 /* ViewManager.h */,
+				BAA397752631BEDD000C0A34 /* ViewManager.m */,
 				BAF61A242631232E004804DA /* WSHPickerView.m */,
 				BAF61A252631232E004804DA /* UnitCell.h */,
 				BAF61A262631232E004804DA /* ApiManager.h */,
@@ -172,7 +215,6 @@
 				BAF61A292631232E004804DA /* Readme */,
 				BAF61A2A2631232E004804DA /* WSHPickerView.h */,
 				BAF61A2B2631232E004804DA /* NullSafe.m */,
-				BAF61A2C2631232E004804DA /* Model */,
 				BAF61A2F2631232E004804DA /* ApiManager.m */,
 				BAF61A302631232E004804DA /* UnitCell.m */,
 				BAF61A312631232E004804DA /* PrefixHeader.pch */,
@@ -182,15 +224,6 @@
 			path = WSH;
 			sourceTree = "<group>";
 		};
-		BAF61A2C2631232E004804DA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BAF61A2D2631232E004804DA /* identities.m */,
-				BAF61A2E2631232E004804DA /* identities.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF61A172631230B004804DA /* Build configuration list for PBXNativeTarget "Concerto" */;
 			buildPhases = (
+				64FFC362E97AB152D75FCA7F /* [CP] Check Pods Manifest.lock */,
 				BAF619E42631230A004804DA /* Sources */,
 				BAF619E52631230A004804DA /* Frameworks */,
 				BAF619E62631230A004804DA /* Resources */,
+				A426BCB134186BBF330EC25E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -316,6 +351,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64FFC362E97AB152D75FCA7F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Concerto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A426BCB134186BBF330EC25E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Concerto/Pods-Concerto-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Concerto/Pods-Concerto-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Concerto/Pods-Concerto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BAF619E42631230A004804DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -323,15 +400,15 @@
 			files = (
 				BAF61A3B2631232E004804DA /* CreateBase.m in Sources */,
 				BAF619F32631230A004804DA /* ViewController.m in Sources */,
-				BAF61A382631232E004804DA /* identities.m in Sources */,
 				BAF61A392631232E004804DA /* ApiManager.m in Sources */,
 				BAF619ED2631230A004804DA /* AppDelegate.m in Sources */,
 				BAF619FE2631230B004804DA /* main.m in Sources */,
 				BAF61A3A2631232E004804DA /* UnitCell.m in Sources */,
+				BAA397772631BEDD000C0A34 /* ViewManager.m in Sources */,
 				BAF61A352631232E004804DA /* AppData.m in Sources */,
 				BAF61A342631232E004804DA /* WSHPickerView.m in Sources */,
+				BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */,
 				BAF61A372631232E004804DA /* NullSafe.m in Sources */,
-				BAF619F02631230A004804DA /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,12 +577,14 @@
 		};
 		BAF61A182631230B004804DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 402A4073F2CAC24ED88DA8F9 /* Pods-Concerto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HPL26N6NM;
 				INFOPLIST_FILE = Concerto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,12 +597,14 @@
 		};
 		BAF61A192631230B004804DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5DDFF519C94FB76A5717B29 /* Pods-Concerto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HPL26N6NM;
 				INFOPLIST_FILE = Concerto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
