@@ -1,0 +1,655 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BAF619ED2631230A004804DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619EC2631230A004804DA /* AppDelegate.m */; };
+		BAF619F02631230A004804DA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619EF2631230A004804DA /* SceneDelegate.m */; };
+		BAF619F32631230A004804DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619F22631230A004804DA /* ViewController.m */; };
+		BAF619F62631230A004804DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F42631230A004804DA /* Main.storyboard */; };
+		BAF619F82631230B004804DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F72631230B004804DA /* Assets.xcassets */; };
+		BAF619FB2631230B004804DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F92631230B004804DA /* LaunchScreen.storyboard */; };
+		BAF619FE2631230B004804DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619FD2631230B004804DA /* main.m */; };
+		BAF61A082631230B004804DA /* ConcertoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A072631230B004804DA /* ConcertoTests.m */; };
+		BAF61A132631230B004804DA /* ConcertoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A122631230B004804DA /* ConcertoUITests.m */; };
+		BAF61A342631232E004804DA /* WSHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A242631232E004804DA /* WSHPickerView.m */; };
+		BAF61A352631232E004804DA /* AppData.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A282631232E004804DA /* AppData.m */; };
+		BAF61A362631232E004804DA /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = BAF61A292631232E004804DA /* Readme */; };
+		BAF61A372631232E004804DA /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2B2631232E004804DA /* NullSafe.m */; };
+		BAF61A382631232E004804DA /* identities.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2D2631232E004804DA /* identities.m */; };
+		BAF61A392631232E004804DA /* ApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2F2631232E004804DA /* ApiManager.m */; };
+		BAF61A3A2631232E004804DA /* UnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A302631232E004804DA /* UnitCell.m */; };
+		BAF61A3B2631232E004804DA /* CreateBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A332631232E004804DA /* CreateBase.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BAF61A042631230B004804DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAF619E02631230A004804DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BAF619E72631230A004804DA;
+			remoteInfo = Concerto;
+		};
+		BAF61A0F2631230B004804DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAF619E02631230A004804DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BAF619E72631230A004804DA;
+			remoteInfo = Concerto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BAF619E82631230A004804DA /* Concerto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concerto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF619EB2631230A004804DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BAF619EC2631230A004804DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BAF619EE2631230A004804DA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		BAF619EF2631230A004804DA /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		BAF619F12631230A004804DA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BAF619F22631230A004804DA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BAF619F52631230A004804DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BAF619F72631230B004804DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BAF619FA2631230B004804DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BAF619FC2631230B004804DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAF619FD2631230B004804DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BAF61A032631230B004804DA /* ConcertoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcertoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF61A072631230B004804DA /* ConcertoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConcertoTests.m; sourceTree = "<group>"; };
+		BAF61A092631230B004804DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAF61A0E2631230B004804DA /* ConcertoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcertoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF61A122631230B004804DA /* ConcertoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConcertoUITests.m; sourceTree = "<group>"; };
+		BAF61A142631230B004804DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAF61A242631232E004804DA /* WSHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSHPickerView.m; sourceTree = "<group>"; };
+		BAF61A252631232E004804DA /* UnitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitCell.h; sourceTree = "<group>"; };
+		BAF61A262631232E004804DA /* ApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiManager.h; sourceTree = "<group>"; };
+		BAF61A272631232E004804DA /* CreateBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateBase.h; sourceTree = "<group>"; };
+		BAF61A282631232E004804DA /* AppData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppData.m; sourceTree = "<group>"; };
+		BAF61A292631232E004804DA /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
+		BAF61A2A2631232E004804DA /* WSHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSHPickerView.h; sourceTree = "<group>"; };
+		BAF61A2B2631232E004804DA /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		BAF61A2D2631232E004804DA /* identities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = identities.m; sourceTree = "<group>"; };
+		BAF61A2E2631232E004804DA /* identities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = identities.h; sourceTree = "<group>"; };
+		BAF61A2F2631232E004804DA /* ApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiManager.m; sourceTree = "<group>"; };
+		BAF61A302631232E004804DA /* UnitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitCell.m; sourceTree = "<group>"; };
+		BAF61A312631232E004804DA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		BAF61A322631232E004804DA /* AppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppData.h; sourceTree = "<group>"; };
+		BAF61A332631232E004804DA /* CreateBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBase.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BAF619E52631230A004804DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAF61A002631230B004804DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAF61A0B2631230B004804DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BAF619DF2631230A004804DA = {
+			isa = PBXGroup;
+			children = (
+				BAF619EA2631230A004804DA /* Concerto */,
+				BAF61A062631230B004804DA /* ConcertoTests */,
+				BAF61A112631230B004804DA /* ConcertoUITests */,
+				BAF619E92631230A004804DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BAF619E92631230A004804DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BAF619E82631230A004804DA /* Concerto.app */,
+				BAF61A032631230B004804DA /* ConcertoTests.xctest */,
+				BAF61A0E2631230B004804DA /* ConcertoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BAF619EA2631230A004804DA /* Concerto */ = {
+			isa = PBXGroup;
+			children = (
+				BAF61A232631232E004804DA /* WSH */,
+				BAF619EB2631230A004804DA /* AppDelegate.h */,
+				BAF619EC2631230A004804DA /* AppDelegate.m */,
+				BAF619EE2631230A004804DA /* SceneDelegate.h */,
+				BAF619EF2631230A004804DA /* SceneDelegate.m */,
+				BAF619F12631230A004804DA /* ViewController.h */,
+				BAF619F22631230A004804DA /* ViewController.m */,
+				BAF619F42631230A004804DA /* Main.storyboard */,
+				BAF619F72631230B004804DA /* Assets.xcassets */,
+				BAF619F92631230B004804DA /* LaunchScreen.storyboard */,
+				BAF619FC2631230B004804DA /* Info.plist */,
+				BAF619FD2631230B004804DA /* main.m */,
+			);
+			path = Concerto;
+			sourceTree = "<group>";
+		};
+		BAF61A062631230B004804DA /* ConcertoTests */ = {
+			isa = PBXGroup;
+			children = (
+				BAF61A072631230B004804DA /* ConcertoTests.m */,
+				BAF61A092631230B004804DA /* Info.plist */,
+			);
+			path = ConcertoTests;
+			sourceTree = "<group>";
+		};
+		BAF61A112631230B004804DA /* ConcertoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BAF61A122631230B004804DA /* ConcertoUITests.m */,
+				BAF61A142631230B004804DA /* Info.plist */,
+			);
+			path = ConcertoUITests;
+			sourceTree = "<group>";
+		};
+		BAF61A232631232E004804DA /* WSH */ = {
+			isa = PBXGroup;
+			children = (
+				BAF61A242631232E004804DA /* WSHPickerView.m */,
+				BAF61A252631232E004804DA /* UnitCell.h */,
+				BAF61A262631232E004804DA /* ApiManager.h */,
+				BAF61A272631232E004804DA /* CreateBase.h */,
+				BAF61A282631232E004804DA /* AppData.m */,
+				BAF61A292631232E004804DA /* Readme */,
+				BAF61A2A2631232E004804DA /* WSHPickerView.h */,
+				BAF61A2B2631232E004804DA /* NullSafe.m */,
+				BAF61A2C2631232E004804DA /* Model */,
+				BAF61A2F2631232E004804DA /* ApiManager.m */,
+				BAF61A302631232E004804DA /* UnitCell.m */,
+				BAF61A312631232E004804DA /* PrefixHeader.pch */,
+				BAF61A322631232E004804DA /* AppData.h */,
+				BAF61A332631232E004804DA /* CreateBase.m */,
+			);
+			path = WSH;
+			sourceTree = "<group>";
+		};
+		BAF61A2C2631232E004804DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BAF61A2D2631232E004804DA /* identities.m */,
+				BAF61A2E2631232E004804DA /* identities.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BAF619E72631230A004804DA /* Concerto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAF61A172631230B004804DA /* Build configuration list for PBXNativeTarget "Concerto" */;
+			buildPhases = (
+				BAF619E42631230A004804DA /* Sources */,
+				BAF619E52631230A004804DA /* Frameworks */,
+				BAF619E62631230A004804DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Concerto;
+			productName = Concerto;
+			productReference = BAF619E82631230A004804DA /* Concerto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BAF61A022631230B004804DA /* ConcertoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAF61A1A2631230B004804DA /* Build configuration list for PBXNativeTarget "ConcertoTests" */;
+			buildPhases = (
+				BAF619FF2631230B004804DA /* Sources */,
+				BAF61A002631230B004804DA /* Frameworks */,
+				BAF61A012631230B004804DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BAF61A052631230B004804DA /* PBXTargetDependency */,
+			);
+			name = ConcertoTests;
+			productName = ConcertoTests;
+			productReference = BAF61A032631230B004804DA /* ConcertoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BAF61A0D2631230B004804DA /* ConcertoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAF61A1D2631230B004804DA /* Build configuration list for PBXNativeTarget "ConcertoUITests" */;
+			buildPhases = (
+				BAF61A0A2631230B004804DA /* Sources */,
+				BAF61A0B2631230B004804DA /* Frameworks */,
+				BAF61A0C2631230B004804DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BAF61A102631230B004804DA /* PBXTargetDependency */,
+			);
+			name = ConcertoUITests;
+			productName = ConcertoUITests;
+			productReference = BAF61A0E2631230B004804DA /* ConcertoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BAF619E02631230A004804DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					BAF619E72631230A004804DA = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					BAF61A022631230B004804DA = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = BAF619E72631230A004804DA;
+					};
+					BAF61A0D2631230B004804DA = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = BAF619E72631230A004804DA;
+					};
+				};
+			};
+			buildConfigurationList = BAF619E32631230A004804DA /* Build configuration list for PBXProject "Concerto" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BAF619DF2631230A004804DA;
+			productRefGroup = BAF619E92631230A004804DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BAF619E72631230A004804DA /* Concerto */,
+				BAF61A022631230B004804DA /* ConcertoTests */,
+				BAF61A0D2631230B004804DA /* ConcertoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BAF619E62631230A004804DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF61A362631232E004804DA /* Readme in Resources */,
+				BAF619FB2631230B004804DA /* LaunchScreen.storyboard in Resources */,
+				BAF619F82631230B004804DA /* Assets.xcassets in Resources */,
+				BAF619F62631230A004804DA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAF61A012631230B004804DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAF61A0C2631230B004804DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BAF619E42631230A004804DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF61A3B2631232E004804DA /* CreateBase.m in Sources */,
+				BAF619F32631230A004804DA /* ViewController.m in Sources */,
+				BAF61A382631232E004804DA /* identities.m in Sources */,
+				BAF61A392631232E004804DA /* ApiManager.m in Sources */,
+				BAF619ED2631230A004804DA /* AppDelegate.m in Sources */,
+				BAF619FE2631230B004804DA /* main.m in Sources */,
+				BAF61A3A2631232E004804DA /* UnitCell.m in Sources */,
+				BAF61A352631232E004804DA /* AppData.m in Sources */,
+				BAF61A342631232E004804DA /* WSHPickerView.m in Sources */,
+				BAF61A372631232E004804DA /* NullSafe.m in Sources */,
+				BAF619F02631230A004804DA /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAF619FF2631230B004804DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF61A082631230B004804DA /* ConcertoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAF61A0A2631230B004804DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF61A132631230B004804DA /* ConcertoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BAF61A052631230B004804DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BAF619E72631230A004804DA /* Concerto */;
+			targetProxy = BAF61A042631230B004804DA /* PBXContainerItemProxy */;
+		};
+		BAF61A102631230B004804DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BAF619E72631230A004804DA /* Concerto */;
+			targetProxy = BAF61A0F2631230B004804DA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BAF619F42631230A004804DA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAF619F52631230A004804DA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BAF619F92631230B004804DA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAF619FA2631230B004804DA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BAF61A152631230B004804DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BAF61A162631230B004804DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAF61A182631230B004804DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				INFOPLIST_FILE = Concerto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.Concerto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BAF61A192631230B004804DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				INFOPLIST_FILE = Concerto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.Concerto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BAF61A1B2631230B004804DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				INFOPLIST_FILE = ConcertoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Concerto.app/Concerto";
+			};
+			name = Debug;
+		};
+		BAF61A1C2631230B004804DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				INFOPLIST_FILE = ConcertoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Concerto.app/Concerto";
+			};
+			name = Release;
+		};
+		BAF61A1E2631230B004804DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				INFOPLIST_FILE = ConcertoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Concerto;
+			};
+			name = Debug;
+		};
+		BAF61A1F2631230B004804DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				INFOPLIST_FILE = ConcertoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Concerto;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BAF619E32631230A004804DA /* Build configuration list for PBXProject "Concerto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAF61A152631230B004804DA /* Debug */,
+				BAF61A162631230B004804DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAF61A172631230B004804DA /* Build configuration list for PBXNativeTarget "Concerto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAF61A182631230B004804DA /* Debug */,
+				BAF61A192631230B004804DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAF61A1A2631230B004804DA /* Build configuration list for PBXNativeTarget "ConcertoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAF61A1B2631230B004804DA /* Debug */,
+				BAF61A1C2631230B004804DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAF61A1D2631230B004804DA /* Build configuration list for PBXNativeTarget "ConcertoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAF61A1E2631230B004804DA /* Debug */,
+				BAF61A1F2631230B004804DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BAF619E02631230A004804DA /* Project object */;
+}
