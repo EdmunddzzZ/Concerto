@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppData : NSObject
 + (AppData*)shareInstance;
-@property(nonatomic,strong)UserInfo *userinfo;
+
 @property(nonatomic,strong)NSMutableArray *identities;
 @end
 

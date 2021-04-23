@@ -8,5 +8,6 @@ pod 'AFNetworking'
 pod 'WHToast'
 pod 'ZXCountDownView'
 pod 'FSScrollContentView'
+pod 'JSONModel'
 
 end

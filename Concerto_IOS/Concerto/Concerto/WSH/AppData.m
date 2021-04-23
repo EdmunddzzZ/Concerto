@@ -26,8 +26,7 @@ static AppData* mInstance;
     self = [super init];
     if(self != nil)
     {
-        self.userinfo = [UserInfo new];
-        [CreateBase updateUserInfo];
+       
     }
     
     return self;

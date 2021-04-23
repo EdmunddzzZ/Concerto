@@ -9,7 +9,7 @@
 #import "ViewManager.h"
 
 #import "LoginViewController.h"
-
+#import "RegisteViewController.h"
 
 
 static ViewManager *_myInstance;
@@ -37,7 +37,7 @@ static ViewManager *_myInstance;
     {
 //        DutyViewController *vc = [DutyViewController new];
         
-        _navigationController = [[UINavigationController alloc]initWithRootViewController:[LoginViewController new]];
+        _navigationController = [[UINavigationController alloc]initWithRootViewController:[RegisteViewController new]];
         [[UINavigationBar appearance]setBarStyle:UIBarStyleBlack];//电池条，白色
     }
     _navigationController.navigationBar.hidden = YES;

@@ -12,6 +12,8 @@
 #define screenheight [UIScreen mainScreen].bounds.size.height
 #define sw_(a) a/414.0*screenwith
 #define sh_(a) a/736.0*screenheight
+#define area ([UIApplication sharedApplication].delegate.window.safeAreaInsets.top >20 ?400:300)
+#define Safearea ([UIApplication sharedApplication].delegate.window.safeAreaInsets.top >20 ?30:0)
 
 @interface CreateBase : NSObject
 
@@ -33,5 +35,6 @@
 +(UIColor *)createColor:(float)a;
 +(void)updateUserInfo;
 + (BOOL)judgePhoneNumber:(NSString *)phoneNum;
++(void)backToPreView;
 @end
 

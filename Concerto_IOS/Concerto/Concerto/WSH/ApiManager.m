@@ -9,7 +9,7 @@
 #import "ApiManager.h"
 #import "AFNetworking.h"
 #import "UIKit+AFNetworking.h"
-#import "UserInfo.h"
+
 //#import "SizeHeader.h"
 
 //正式环境
@@ -27,8 +27,8 @@ static NSString *TOKEN;
         
     }
     NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
-    UserInfo * userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
-    TOKEN = userInfo.access_token;
+//    UserInfo * userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
+//    TOKEN = userInfo.access_token;
     return mInstance;
 }
 - (void)requestPUTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject))finish enError:(void(^)( id error))enError{

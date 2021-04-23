@@ -7,8 +7,13 @@
 //
 
 #import "CreateBase.h"
-
+#import "ViewManager.h"
+#import "WHToast.h"
 @implementation CreateBase
++(void)backToPreView
+{
+    [[ViewManager shareInstance].NavigationController popViewControllerAnimated:YES];
+}
 +(UIButton *)createButton:(CGRect)frame image:(UIImage *)image target:(SEL)seletor
 {
     UIButton *btn = [[UIButton alloc]initWithFrame:frame];
@@ -157,27 +162,6 @@
     
     return NO;
     
-}
-+ (void)updateUserInfo {
-    YXJInterfaceConnection *connect = [[YXJInterfaceConnection alloc] init];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [connect connetNetWithGetMethod:@"users/info" parms:dic type:0 block:^(int fail,NSString *dataMessage,NSDictionary *dictionary){
-        if(fail == 0) {
-            UserInfo *userInfo = [[UserInfo alloc] initWithNSDictionary:[dictionary objectForKey:@"data"]];
-            NSMutableArray *idens  = [NSMutableArray new];
-            for (NSDictionary *dic in userInfo.identities)
-            {
-                
-                identities *iden = [[identities alloc]initWithDictionary:dic error:nil];
-                [idens addObject:iden];
-            }
-            [AppData shareInstance].identities = idens;
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userInfo"];
-            [[NSUserDefaults standardUserDefaults] setObject:userInfo.access_token forKey:@"access_token"];
-            [AppData shareInstance].userinfo = userInfo;
-        }
-    }];
 }
 
 

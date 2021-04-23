@@ -50,7 +50,7 @@
     _confirmbtn = [[UIButton alloc]initWithFrame:CGRectMake(sw-50, 20, 40, 20)];
     [_confirmbtn setTitle:@"确定" forState:UIControlStateNormal];
     [_confirmbtn setTitleColor:[UIColor colorWithRed:0 green:149/255.0 blue:247/255.0 alpha:1] forState:UIControlStateNormal];
-    [_confirmbtn setTitleColor:[CreateBase createColor:211 blue:58 green:64] forState:UIControlStateNormal];
+//    [_confirmbtn setTitleColor:[CreateBase createColor:211 blue:58 green:64] forState:UIControlStateNormal];
     //[_confirmbtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [self.background addSubview:_confirmbtn];
     [self addSubview:self.background];
