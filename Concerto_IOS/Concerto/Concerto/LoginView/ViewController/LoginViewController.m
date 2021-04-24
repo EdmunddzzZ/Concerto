@@ -9,6 +9,7 @@
 #import "CreateBase.h"
 #import "ViewManager.h"
 #import "RegisteViewController.h"
+#import "MainTabViewController.h"
 @interface LoginViewController ()
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)UIImageView * icon;
@@ -66,6 +67,7 @@
         [_login setBackgroundColor:[CreateBase createColor:101 blue:206 green:185]];
         _login.layer.cornerRadius = 5;
         _login.layer.masksToBounds = YES;
+        [_login addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
         [_login setTitle:@"登录" forState:UIControlStateNormal];
     }
         return _login;
@@ -137,6 +139,11 @@
 -(void)RegisteClick
 {
     [[ViewManager shareInstance].NavigationController pushViewController:[RegisteViewController new] animated:YES];
+}
+-(void)loginClick
+{
+    [[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
+    
 }
 /*
 #pragma mark - Navigation

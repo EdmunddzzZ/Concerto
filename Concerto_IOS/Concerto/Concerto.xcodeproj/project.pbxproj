@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		04A60C67EC6EA67140E418F4 /* libPods-Concerto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */; };
+		BA1843E226343619009ACFC8 /* myProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843E126343619009ACFC8 /* myProjectViewController.m */; };
+		BA1843EC2634362C009ACFC8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843EB2634362C009ACFC8 /* MainViewController.m */; };
+		BA1843F62634363D009ACFC8 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843F52634363D009ACFC8 /* MyViewController.m */; };
+		BA1843FF263437E2009ACFC8 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843FE263437E2009ACFC8 /* MainTabViewController.m */; };
+		BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA184404263443D2009ACFC8 /* ChildViewController.m */; };
 		BAA397772631BEDD000C0A34 /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA397752631BEDD000C0A34 /* ViewManager.m */; };
 		BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA3977E2631BFC4000C0A34 /* LoginViewController.m */; };
 		BAA76AFB26329C3C005DC327 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BAA76AD526329C3C005DC327 /* LICENSE */; };
@@ -63,6 +68,16 @@
 
 /* Begin PBXFileReference section */
 		402A4073F2CAC24ED88DA8F9 /* Pods-Concerto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concerto.debug.xcconfig"; path = "Target Support Files/Pods-Concerto/Pods-Concerto.debug.xcconfig"; sourceTree = "<group>"; };
+		BA1843E026343619009ACFC8 /* myProjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myProjectViewController.h; sourceTree = "<group>"; };
+		BA1843E126343619009ACFC8 /* myProjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myProjectViewController.m; sourceTree = "<group>"; };
+		BA1843EA2634362C009ACFC8 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		BA1843EB2634362C009ACFC8 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		BA1843F42634363D009ACFC8 /* MyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		BA1843F52634363D009ACFC8 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		BA1843FD263437E2009ACFC8 /* MainTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
+		BA1843FE263437E2009ACFC8 /* MainTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
+		BA184403263443D2009ACFC8 /* ChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
+		BA184404263443D2009ACFC8 /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		BAA397752631BEDD000C0A34 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
 		BAA397762631BEDD000C0A34 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
 		BAA3977D2631BFC4000C0A34 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -177,6 +192,44 @@
 				BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA1843D52634331B009ACFC8 /* AllTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				BA1843FD263437E2009ACFC8 /* MainTabViewController.h */,
+				BA1843FE263437E2009ACFC8 /* MainTabViewController.m */,
+			);
+			path = AllTabbar;
+			sourceTree = "<group>";
+		};
+		BA1843DF26343602009ACFC8 /* myProjectView */ = {
+			isa = PBXGroup;
+			children = (
+				BA1843E026343619009ACFC8 /* myProjectViewController.h */,
+				BA1843E126343619009ACFC8 /* myProjectViewController.m */,
+			);
+			path = myProjectView;
+			sourceTree = "<group>";
+		};
+		BA1843E92634361E009ACFC8 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				BA1843EA2634362C009ACFC8 /* MainViewController.h */,
+				BA1843EB2634362C009ACFC8 /* MainViewController.m */,
+				BA184403263443D2009ACFC8 /* ChildViewController.h */,
+				BA184404263443D2009ACFC8 /* ChildViewController.m */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		BA1843F326343634009ACFC8 /* MyView */ = {
+			isa = PBXGroup;
+			children = (
+				BA1843F42634363D009ACFC8 /* MyViewController.h */,
+				BA1843F52634363D009ACFC8 /* MyViewController.m */,
+			);
+			path = MyView;
 			sourceTree = "<group>";
 		};
 		BAA3977B2631BFAB000C0A34 /* LoginView */ = {
@@ -305,6 +358,10 @@
 		BAF619EA2631230A004804DA /* Concerto */ = {
 			isa = PBXGroup;
 			children = (
+				BA1843F326343634009ACFC8 /* MyView */,
+				BA1843E92634361E009ACFC8 /* MainView */,
+				BA1843DF26343602009ACFC8 /* myProjectView */,
+				BA1843D52634331B009ACFC8 /* AllTabbar */,
 				BAA76B182632B4B3005DC327 /* RegisteView */,
 				BAA3978B2631C8E8000C0A34 /* ThirdLib */,
 				BAA3977B2631BFAB000C0A34 /* LoginView */,
@@ -537,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF61A3B2631232E004804DA /* CreateBase.m in Sources */,
+				BA1843FF263437E2009ACFC8 /* MainTabViewController.m in Sources */,
 				BAF619F32631230A004804DA /* ViewController.m in Sources */,
 				BAA76AFE26329C3C005DC327 /* UIRefreshControl+AFNetworking.m in Sources */,
 				BAA76AFD26329C3C005DC327 /* UIProgressView+AFNetworking.m in Sources */,
@@ -550,15 +608,19 @@
 				BAA76B0326329C3C005DC327 /* UIWebView+AFNetworking.m in Sources */,
 				BAA76AFF26329C3C005DC327 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				BAA76B0726329C3C005DC327 /* AFHTTPSessionManager.m in Sources */,
+				BA1843EC2634362C009ACFC8 /* MainViewController.m in Sources */,
 				BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */,
 				BAA76B0526329C3C005DC327 /* AFImageDownloader.m in Sources */,
 				BAA76B0126329C3C005DC327 /* UIButton+AFNetworking.m in Sources */,
+				BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */,
 				BAA76B0826329C3C005DC327 /* AFURLSessionManager.m in Sources */,
 				BAA76B0626329C3C005DC327 /* AFURLResponseSerialization.m in Sources */,
 				BAF61A352631232E004804DA /* AppData.m in Sources */,
 				BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */,
 				BAA76B0426329C3C005DC327 /* AFAutoPurgingImageCache.m in Sources */,
+				BA1843F62634363D009ACFC8 /* MyViewController.m in Sources */,
 				BAA76B0926329C3C005DC327 /* AFURLRequestSerialization.m in Sources */,
+				BA1843E226343619009ACFC8 /* myProjectViewController.m in Sources */,
 				BAA76B0226329C3C005DC327 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				BAA76B0A26329C3C005DC327 /* AFNetworkReachabilityManager.m in Sources */,
 				BAF61A372631232E004804DA /* NullSafe.m in Sources */,

@@ -14,6 +14,8 @@
 #define sh_(a) a/736.0*screenheight
 #define area ([UIApplication sharedApplication].delegate.window.safeAreaInsets.top >20 ?400:300)
 #define Safearea ([UIApplication sharedApplication].delegate.window.safeAreaInsets.top >20 ?30:0)
+#define mainColor [CreateBase createColor:101 blue:206 green:185]
+#define mainBackGroundColor [CreateBase createColor:252 blue:247 green:234]
 
 @interface CreateBase : NSObject
 

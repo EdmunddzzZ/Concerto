@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - FSScrollContentView (1.0.9)
   - JSONModel (1.8.0)
+  - MJRefresh (3.5.0)
   - WHToast (0.0.8)
   - ZXCountDownView (1.0.6)
 
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - AFNetworking
   - FSScrollContentView
   - JSONModel
+  - MJRefresh
   - WHToast
   - ZXCountDownView
 
@@ -31,6 +33,7 @@ SPEC REPOS:
     - AFNetworking
     - FSScrollContentView
     - JSONModel
+    - MJRefresh
     - WHToast
     - ZXCountDownView
 
@@ -38,9 +41,10 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FSScrollContentView: 2fdda268eb8f1a1d4aefd470bf70702dbc346d50
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   WHToast: 5da5bb80bdd1fea9455d4215577d9c5be2c506b8
   ZXCountDownView: 486d888558551210c6790855ec24e82853a31d9e
 
-PODFILE CHECKSUM: 24fec7dacaa85699db6a646f88023f7ff4c57342
+PODFILE CHECKSUM: 0ffec4f14c9566d5749a0dd813d44158247ba69a
 
 COCOAPODS: 1.10.0

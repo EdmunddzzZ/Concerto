@@ -9,5 +9,6 @@ pod 'WHToast'
 pod 'ZXCountDownView'
 pod 'FSScrollContentView'
 pod 'JSONModel'
+pod 'MJRefresh'
 
 end
