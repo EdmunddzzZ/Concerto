@@ -13,6 +13,7 @@
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)FSSegmentTitleView *titleView;
 @property(nonatomic,strong)FSPageContentView *pageContentView;
+@property(nonatomic,strong)UIButton *sortBtn;
 @end
 
 @implementation MainViewController
@@ -26,6 +27,7 @@
     [self.view addSubview:self.pageContentView];
     // Do any additional setup after loading the view.
 }
+
 -(FSPageContentView *)pageContentView
 {
     if(!_pageContentView)
@@ -67,6 +69,7 @@
     {
         _topBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenwith, 50+Safearea)];
         _topBar.backgroundColor = [UIColor whiteColor];
+        
         UILabel *login = [[UILabel alloc]initWithFrame:CGRectMake(35,_topBar.frame.size.height-25, screenwith, 20)];
         login.text = @"个人日程";
         login.font = [UIFont systemFontOfSize:20 weight:1.0];
@@ -76,6 +79,9 @@
         //line.backgroundColor = [CreateBase createColor:228];
         //[_topBar addSubview:line];
         [_topBar addSubview:login];
+        _sortBtn = [[UIButton alloc]initWithFrame:CGRectMake(screenwith-50, login.frame.origin.y, 25, 20)];
+        [_sortBtn setImage:[UIImage imageNamed:@"sort"] forState:UIControlStateNormal];
+        [_topBar addSubview:_sortBtn];
         
     }
     return _topBar;

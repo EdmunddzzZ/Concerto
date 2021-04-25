@@ -223,7 +223,7 @@
 -(void)refreshData
 {
     [self.tableView.mj_header beginRefreshing];
-    [self.tableView.mj_header endRefreshing];
+    //[self.tableView.mj_header endRefreshing];
 }
 /*
  
