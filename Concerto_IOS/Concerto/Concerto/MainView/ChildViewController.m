@@ -47,7 +47,7 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 1, screenwith,    MAX(130*_planArrays.count, screenheight)) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 1, screenwith,    MAX(130*_planArrays.count, screenheight-self.tabBarController.tabBar.frame.size.height)) style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = mainBackGroundColor;
         _tableView.delegate = self;
@@ -124,7 +124,7 @@
         title.text = @"标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题";
         title.font = [UIFont systemFontOfSize:15 weight:0.5];
         [contentView addSubview:title];
-        UIView *sonComplete = [[UIView alloc]initWithFrame:CGRectMake(25, CGRectGetMaxY(complete.frame)+20, 50, 20)];
+        UIView *sonComplete = [[UIView alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(complete.frame)+20, 50, 20)];
         [sonComplete setBackgroundColor:[CreateBase createColor:247]];
         sonComplete.layer.cornerRadius = 10;
         sonComplete.layer.masksToBounds = YES;
@@ -183,7 +183,7 @@
         [tag3 addSubview:taglab3];
         [contentView addSubview:tag3];
         
-        UIView *dayline = [[UIView alloc]initWithFrame:CGRectMake(sonComplete.frame.origin.x, CGRectGetMaxY(sonComplete.frame)+15, 2, 20)];
+        UIView *dayline = [[UIView alloc]initWithFrame:CGRectMake(sonComplete.frame.origin.x+20, CGRectGetMaxY(sonComplete.frame)+15, 2, 20)];
         dayline.tag = 40001;
         [dayline setBackgroundColor:mainColor];
         [contentView addSubview:dayline];
@@ -223,7 +223,7 @@
 -(void)refreshData
 {
     [self.tableView.mj_header beginRefreshing];
-    //[self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 }
 /*
  

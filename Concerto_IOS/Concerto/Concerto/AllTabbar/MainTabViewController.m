@@ -30,11 +30,11 @@
     mp.tabBarItem.image = [[UIImage imageNamed:@"myProject"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     mp.tabBarItem.selectedImage = [[UIImage imageNamed:@"myProject"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     mw.tabBarItem.image = [[UIImage imageNamed:@"my"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    mw.tabBarItem.selectedImage = [[UIImage imageNamed:@"used_my"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    mw.tabBarItem.selectedImage = [[UIImage imageNamed:@"my"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : mainColor} forState:UIControlStateSelected];
     UIEdgeInsets edge;
-    if(Safearea >0 )
+    if(Safearea >10 )
     {
         edge = UIEdgeInsetsMake(20, 0, 0, 0);
     }

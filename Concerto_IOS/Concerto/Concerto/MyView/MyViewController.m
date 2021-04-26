@@ -8,6 +8,7 @@
 #import "MyViewController.h"
 
 @interface MyViewController ()
+@property(nonatomic,strong)UIView *topBar;
 
 @end
 
@@ -15,9 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view setBackgroundColor:[UIColor blackColor]];
+    [self.view addSubview:self.topBar];
+    [self.view setBackgroundColor:mainBackGroundColor];
     // Do any additional setup after loading the view.
+}
+-(UIView *)topBar
+{
+    if(!_topBar)
+    {
+        _topBar = [[UIView alloc]initWithFrame:CGRectMake(0,0,screenwith,Safearea)];
+        [_topBar setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _topBar;
 }
 
 /*

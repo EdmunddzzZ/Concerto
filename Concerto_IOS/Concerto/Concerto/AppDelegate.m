@@ -20,6 +20,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [ViewManager shareInstance].NavigationController;
     [self.window makeKeyAndVisible];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     return YES;
 }
 

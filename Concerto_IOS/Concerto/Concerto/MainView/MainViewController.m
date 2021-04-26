@@ -69,7 +69,7 @@
     {
         _topBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenwith, 50+Safearea)];
         _topBar.backgroundColor = [UIColor whiteColor];
-        
+       
         UILabel *login = [[UILabel alloc]initWithFrame:CGRectMake(35,_topBar.frame.size.height-25, screenwith, 20)];
         login.text = @"个人日程";
         login.font = [UIFont systemFontOfSize:20 weight:1.0];

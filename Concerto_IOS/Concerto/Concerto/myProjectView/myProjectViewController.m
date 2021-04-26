@@ -26,7 +26,7 @@
 {
     if(!_table)
     {
-        _table = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_topBar.frame)+1, screenwith, screenheight)];
+        _table = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_topBar.frame)+1, screenwith, screenheight-self.tabBarController.tabBar.frame.size.height)];
         [_table setBackgroundColor:mainBackGroundColor];
         _table.separatorStyle = UITableViewCellSelectionStyleNone;
         _table.delegate = self;
@@ -67,10 +67,11 @@
     if(!cell1)
     {
         cell1 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid1"];
+        cell1.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell1 setBackgroundColor:mainBackGroundColor];
        // [cell1 setBackgroundColor:[UIColor whiteColor]];
         //cell1.frame = CGRectMake(0, 0, screenwith, 340);
-        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(40, 20, 150, 150)];
+        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(30, 20, 150, 150)];
         view1.layer.cornerRadius = 20;
         view1.layer.masksToBounds = YES;
         view1.tag = 10001;
@@ -83,7 +84,7 @@
         title1.tag = 20001;
         [view1 addSubview:title1];
         [cell1 addSubview:view1];
-        UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(screenwith-40-150, view1.frame.origin.y, view1.frame.size.width, view1.frame.size.height)];
+        UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(screenwith-view1.frame.size.width-view1.frame.origin.x, view1.frame.origin.y, view1.frame.size.width, view1.frame.size.height)];
         view2.backgroundColor = [UIColor whiteColor];
         view2.layer.cornerRadius = view1.layer.cornerRadius;
         view2.layer.masksToBounds = YES;
@@ -98,7 +99,7 @@
         [view2 addSubview:title2];
         
         [cell1 addSubview:view2];
-        UIView *view3 = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(view1.frame)+20, view1.frame.size.width, view1.frame.size.height)];
+        UIView *view3 = [[UIView alloc]initWithFrame:CGRectMake(view1.frame.origin.x, CGRectGetMaxY(view1.frame)+20, view1.frame.size.width, view1.frame.size.height)];
         view3.layer.cornerRadius = view1.layer.cornerRadius;
         view3.layer.masksToBounds = YES;
         view3.backgroundColor = [UIColor whiteColor];
@@ -137,9 +138,42 @@
     else
     {
         cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid2"];
-        [cell2 setBackgroundColor:[UIColor whiteColor]];
-       // cell2.frame = CGRectMake(0, 0, screenwith, 340);
+        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell2 setBackgroundColor:mainBackGroundColor];
+        UIView *contenView = [[UIView alloc]initWithFrame:CGRectMake(35, 0, screenwith-70, 175)];
+        [contenView setBackgroundColor:[UIColor whiteColor]];
+        contenView.layer.cornerRadius = 10;
+        contenView.layer.masksToBounds = YES;
         
+        UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenwith, (57*1.0/136) * 175)];
+        [titleView setBackgroundColor:[CreateBase createColor:255 blue:232 green:206]];
+        [contenView addSubview:titleView];
+        [cell2 addSubview:contenView];
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, screenwith-70, titleView.frame.size.height)];
+        title.textColor = [CreateBase createColor:139 blue:120 green:85];
+        title.textAlignment = NSTextAlignmentCenter;
+        title.font = [UIFont systemFontOfSize:30 weight:0.5];
+        title.text = @"Concerto";
+        title.tag = 20001;
+        [contenView addSubview:title];
+        UILabel *dec = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(titleView.frame)+5, screenwith-70-40, contenView.frame.size.height-CGRectGetMaxY(titleView.frame)-30)];
+        dec.numberOfLines = 0;
+        dec.tag = 20002;
+        dec.text = @"11234567890987654321`1234567890987654321`234567890987654312345676543567544567654321`";
+        dec.textAlignment = NSTextAlignmentLeft;
+        [contenView addSubview:dec];
+        UILabel *publicer = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(dec.frame)+5, screenwith, 15)];
+        publicer.text = @"发布人：sarise";
+        publicer.tag = 20003;
+        publicer.font = [UIFont systemFontOfSize:14 weight:0.3];
+        publicer.textColor = [UIColor grayColor];
+        [contenView addSubview:publicer];
+        UILabel *time = [[UILabel alloc]initWithFrame:CGRectMake(20, publicer.frame.origin.y,contenView.frame.size.width-40, 15)];
+        time.textAlignment = NSTextAlignmentRight;
+        time.text = @"2000.1.1";
+        time.textColor = [UIColor grayColor];
+        time.font = [UIFont systemFontOfSize:14 weight:0.3];
+        [contenView addSubview:time];
     }
     return cell2;
     return cell1;
@@ -150,7 +184,7 @@
     {
         return 340;
     }
-    return 60;
+    return 195;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -188,7 +222,26 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(section == 0)
     return 1;
+    else
+        return 10;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 1)
+    {
+        NSLog(@"点击了%@",indexPath);
+    }
+}
+//固定头部视图
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+CGFloat sectionHeaderHeight = 40;
+if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+    scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+} else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+    scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+}
 }
 /*
 #pragma mark - Navigation
