@@ -12,8 +12,10 @@
 #import "ApiManager.h"
 #import "WHToast.h"
 #import "CreateBase.h"
-
+#import "JSONModel.h"
 #import "AppData.h"
+#import "ViewManager.h"
+#import "RespondObject.h"
 #endif
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

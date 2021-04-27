@@ -13,7 +13,7 @@
 //#import "SizeHeader.h"
 
 //正式环境
-static NSString * const BaseURLString = @"http://xyt.fzu.edu.cn/v1";
+static NSString * const BaseURLString = @"http://81.69.253.27:7777";
 //测试环境
 static NSString * const BaseURLString1 = @"http://xyt.fzu.edu.cn:54321/v1";
 
@@ -82,7 +82,7 @@ static NSString *TOKEN;
     
     NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:fullUrl parameters:nil error:nil];
     
-    [req setTimeoutInterval:10];
+    [req setTimeoutInterval:5];
     
     [req setValue:str forHTTPHeaderField:@"Authorization"];//添加token
     
@@ -142,7 +142,7 @@ static NSString *TOKEN;
     
     NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:fullUrl parameters:nil error:nil];
     
-    [req setTimeoutInterval:10];
+    [req setTimeoutInterval:5];
     
     [req setValue:str forHTTPHeaderField:@"Authorization"];//添加token
     

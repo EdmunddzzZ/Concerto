@@ -38,5 +38,10 @@
 +(void)updateUserInfo;
 + (BOOL)judgePhoneNumber:(NSString *)phoneNum;
 +(void)backToPreView;
++ (BOOL)validateEmail:(NSString*)email;
++ (NSString *) md5:(NSString *) input;
++ (BOOL) validateUserName:(NSString *)name;
+
+
 @end
 

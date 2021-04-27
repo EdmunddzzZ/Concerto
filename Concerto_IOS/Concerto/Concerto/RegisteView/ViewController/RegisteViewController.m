@@ -22,6 +22,7 @@
 @property(nonatomic,strong)UIButton *agree;
 @property(nonatomic,strong)UIButton *registe;
 @property(nonatomic,strong)UIButton *backToLogin;
+@property(nonatomic,strong)UITextField *name;
 
 @end
 
@@ -31,7 +32,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [CreateBase createColor:252 blue:247 green:234];
     [self.view addSubview:self.topBar];
-    [self.view addSubview:self.icon];
+    //[self.view addSubview:self.icon];
     [self.view addSubview:self.inputView];
     [self.view addSubview:self.agreeView];
     [self.view addSubview:self.registe];
@@ -72,6 +73,7 @@
         _registe = [[UIButton alloc]initWithFrame:CGRectMake(self.inputView.frame.origin.x, CGRectGetMaxY(self.agreeView.frame)+25, self.inputView.frame.size.width, 55)];
         [_registe setBackgroundColor:[CreateBase createColor:101 blue:206 green:185]];
         [_registe setTitle:@"注册" forState:UIControlStateNormal];
+        [_registe addTarget:self action:@selector(registeClick) forControlEvents:UIControlEventTouchUpInside];
         [_registe.layer setCornerRadius:5];
         [_registe.layer setMasksToBounds:YES];
     }
@@ -111,35 +113,45 @@
 {
     if(!_inputView)
     {
-        _inputView = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(self.icon.frame)+50, screenwith-80, 65*4)];
+        _inputView = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(self.topBar.frame)+50, screenwith-80, 65*5)];
         _inputView.backgroundColor = [UIColor whiteColor];
         _inputView.layer.cornerRadius = 5;
         _inputView.layer.masksToBounds = YES;
-        _email = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, 15, _inputView.frame.size.width*0.8, 35)];
-        _email.placeholder = @"请输入邮箱地址";
-        _email.font = [UIFont systemFontOfSize:14];
-        [_inputView addSubview:_email];
-        _inputView.layer.borderWidth = 1;
-        _inputView.layer.borderColor = [CreateBase createColor:228].CGColor
-        ;
         UILabel *line1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 65, screenwith, 1)];
         line1.backgroundColor = [CreateBase createColor:228];
         
         UILabel *line2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, screenwith, 1)];
         line2.backgroundColor = [CreateBase createColor:228];
         UILabel *line3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 195, screenwith, 1)];
+        UILabel *line4 = [[UILabel alloc]initWithFrame:CGRectMake(0, 195+65, screenwith, 1)];
+        line4.backgroundColor = [CreateBase createColor:228];
+        [_inputView addSubview:line4];
+        _name = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, 15, _inputView.frame.size.width*0.8, 35)];
+        
+        _name.placeholder = @"请输入用户名（至少6位）";
+        _name.font = [UIFont systemFontOfSize:14];
+        [_inputView addSubview:_name];
+        _email = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line1.frame)+15, _inputView.frame.size.width*0.8, 35)];
+        _email.placeholder = @"请输入邮箱地址";
+        _email.font = [UIFont systemFontOfSize:14];
+        [_inputView addSubview:_email];
+        _inputView.layer.borderWidth = 1;
+        _inputView.layer.borderColor = [CreateBase createColor:228].CGColor
+        ;
+        
         line3.backgroundColor = [CreateBase createColor:228];
         [_inputView addSubview:line1];
         [_inputView addSubview:line2];
         [_inputView addSubview:line3];
-        _code = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line1.frame)+15, _inputView.frame.size.width*0.4, 35)];
+        _code = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line2.frame)+15, _inputView.frame.size.width*0.4, 35)];
         _code.placeholder = @"请输入邮箱验证码";
         _code.font = [UIFont systemFontOfSize:14];
-        _psw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line2.frame)+15, _inputView.frame.size.width*0.8, 35)];
+        _psw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line3.frame)+15, _inputView.frame.size.width*0.8, 35)];
         _psw.font = [UIFont systemFontOfSize:14];
         _psw.placeholder = @"请设置6-20位登录密码";
         _psw.secureTextEntry = YES;
-        _repsw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line3.frame)+15, _inputView.frame.size.width*0.8, 35)];
+        
+        _repsw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line4.frame)+15, _inputView.frame.size.width*0.8, 35)];
         _repsw.secureTextEntry = YES;
         _repsw.placeholder = @"请再次确认密码";
         _repsw.font = [UIFont systemFontOfSize:14];
@@ -213,8 +225,108 @@
 }
 -(void)sendmsg
 {
+    if(![CreateBase validateEmail:self.email.text])
+    {
+        [WHToast showMessage:@"请输入正确的邮箱地址" originY:screenheight- 200 duration:1 finishHandler:^{
+                    
+        }];
+        return;
+    }
+   // [self.view endEditing:YES];
+   // [self.sendMsg setEnabled:NO];
+    
+    NSDictionary *dic = @{@"email":self.email.text};
+    NSString *url = [NSString stringWithFormat:@"/User/Captcha/%@",self.email.text];
+    NSMutableDictionary *test = [NSMutableDictionary new];
+    [test setObject:@"111" forKey:@"status"];
+    [test setObject:@"222" forKey:@"message"];
+    [test setObject:[NSDictionary new] forKey:@"data"];
+    [test removeObjectForKey:@"status"];
+    RespondObject *obj1 = [[RespondObject alloc]initWithDictionary:test error:nil];
+    NSLog(@"%@",obj1);
+    [[ApiManager shareInstance]GET:url parameters:nil needsToken:NO Success:^(id responseObject)
+        {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
+        NSString *data = (NSString *)[dic objectForKey:@"data"];
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            [CreateBase showMessage:@"发送成功"];
+            [self.sendMsg setEnabled:YES];
+            [self.sendMsg startCountDown];
+
+        }
+       //     NSLog(@"%@",(NSDictionary *)responseObject);
+        } Failure:^(id error) {
+            [CreateBase showMessage:@"发送失败"];
+            [self.sendMsg setEnabled:YES];
+        }];
+    
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     [self.view endEditing:YES];
-    [self.sendMsg startCountDown];
+}
+-(void)registeClick
+{
+    if(self.name.text.length <= 6 && ![CreateBase validateUserName:self.name.text])
+    {
+        [CreateBase showMessage:@"请输入正确的用户名"];
+    }
+    else if(self.email.text.length == 0)
+    {
+        [CreateBase showMessage:@"请输入正确的邮箱地址"];
+    }
+    else if(self.code.text.length != 4)
+    {
+        [CreateBase showMessage:@"请输入正确的验证码"];
+    }
+    else if(self.psw.text.length == 0)
+    {
+        [CreateBase showMessage:@"请输入密码"];
+    }
+    else if(![self.psw.text isEqual:self.repsw.text])
+    {
+        [CreateBase showMessage:@"两次输入密码不一致"];
+    }
+    else if(!self.isAgree)
+    {
+        [CreateBase showMessage:@"请同意《用户服务协议》"];
+    }
+    else
+    {
+        NSMutableDictionary *dic = [NSMutableDictionary new];
+        [dic setObject:self.email.text forKey:@"email"];
+        [dic setObject:[CreateBase md5:self.psw.text] forKey:@"password"];
+        [dic setObject:self.name.text forKey:@"name"];
+        [dic setObject:self.code.text forKey:@"captcha"];
+        NSLog(@"%@",dic);
+        [[ApiManager shareInstance]POST:@"/User/Register" parameters:dic needsToken:NO Success:^(id responseObject) {
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
+            NSString *data = (NSString *)[dic objectForKey:@"data"];
+            if(data.length == 0)
+            {
+                [dictionary setObject:[NSDictionary new] forKey:@"data"];
+            }
+            RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+            if([obj isSuccessful])
+            {
+                [CreateBase showMessage:@"注册成功"];
+                [[ViewManager shareInstance].NavigationController popViewControllerAnimated:YES];
+                //[self.sendMsg startCountDown];
+            }
+            else
+            {
+                [CreateBase showMessage:obj.message];
+            }
+                } Failure:^(id error) {
+                    
+                }];
+    }
 }
 /*
 #pragma mark - Navigation

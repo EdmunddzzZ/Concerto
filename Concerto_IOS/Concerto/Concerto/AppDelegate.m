@@ -21,6 +21,7 @@
     self.window.rootViewController = [ViewManager shareInstance].NavigationController;
     [self.window makeKeyAndVisible];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [WHToast setShowMask:NO];
     return YES;
 }
 

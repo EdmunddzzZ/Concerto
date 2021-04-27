@@ -37,7 +37,7 @@ static ViewManager *_myInstance;
     {
 //        DutyViewController *vc = [DutyViewController new];
         
-        _navigationController = [[UINavigationController alloc]initWithRootViewController:[MainTabViewController new]];
+        _navigationController = [[UINavigationController alloc]initWithRootViewController:[LoginViewController new]];
         [[UINavigationBar appearance]setBarStyle:UIBarStyleBlack];//电池条，白色
     }
     _navigationController.navigationBar.hidden = YES;

@@ -132,6 +132,13 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenwith, 30)];
     return view ;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 2)//退出登录
+    {
+        [[ViewManager shareInstance].NavigationController popViewControllerAnimated:YES];
+    }
+}
 /*
 #pragma mark - Navigation
 

@@ -142,8 +142,13 @@
 }
 -(void)loginClick
 {
+    
     [[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
     
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 /*
 #pragma mark - Navigation
