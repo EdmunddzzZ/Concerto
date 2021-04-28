@@ -10,5 +10,5 @@ pod 'ZXCountDownView'
 pod 'FSScrollContentView'
 pod 'JSONModel'
 pod 'MJRefresh'
-
+pod 'SVProgressHUD'
 end

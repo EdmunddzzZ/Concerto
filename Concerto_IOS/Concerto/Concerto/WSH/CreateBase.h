@@ -41,7 +41,7 @@
 + (BOOL)validateEmail:(NSString*)email;
 + (NSString *) md5:(NSString *) input;
 + (BOOL) validateUserName:(NSString *)name;
-
++ (BOOL) validatePassword:(NSString *)passWord;
 
 @end
 

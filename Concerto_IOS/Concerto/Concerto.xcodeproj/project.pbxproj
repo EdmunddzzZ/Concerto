@@ -16,6 +16,7 @@
 		BA90523326384E82005CAD03 /* RespondObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA90523226384E82005CAD03 /* RespondObject.m */; };
 		BAA397772631BEDD000C0A34 /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA397752631BEDD000C0A34 /* ViewManager.m */; };
 		BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA3977E2631BFC4000C0A34 /* LoginViewController.m */; };
+		BAA6E2E52638FF4400A63F83 /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA6E2E42638FF4400A63F83 /* userInfo.m */; };
 		BAA76AFB26329C3C005DC327 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BAA76AD526329C3C005DC327 /* LICENSE */; };
 		BAA76AFC26329C3C005DC327 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BAA76AD626329C3C005DC327 /* README.md */; };
 		BAA76AFD26329C3C005DC327 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76AD826329C3C005DC327 /* UIProgressView+AFNetworking.m */; };
@@ -85,6 +86,8 @@
 		BAA397762631BEDD000C0A34 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
 		BAA3977D2631BFC4000C0A34 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BAA3977E2631BFC4000C0A34 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		BAA6E2E32638FF4400A63F83 /* userInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
+		BAA6E2E42638FF4400A63F83 /* userInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userInfo.m; sourceTree = "<group>"; };
 		BAA76AD526329C3C005DC327 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BAA76AD626329C3C005DC327 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BAA76AD826329C3C005DC327 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 			children = (
 				BA90523126384E82005CAD03 /* RespondObject.h */,
 				BA90523226384E82005CAD03 /* RespondObject.m */,
+				BAA6E2E32638FF4400A63F83 /* userInfo.h */,
+				BAA6E2E42638FF4400A63F83 /* userInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -625,6 +630,7 @@
 				BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */,
 				BAA76B0526329C3C005DC327 /* AFImageDownloader.m in Sources */,
 				BAA76B0126329C3C005DC327 /* UIButton+AFNetworking.m in Sources */,
+				BAA6E2E52638FF4400A63F83 /* userInfo.m in Sources */,
 				BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */,
 				BAA76B0826329C3C005DC327 /* AFURLSessionManager.m in Sources */,
 				BAA76B0626329C3C005DC327 /* AFURLResponseSerialization.m in Sources */,

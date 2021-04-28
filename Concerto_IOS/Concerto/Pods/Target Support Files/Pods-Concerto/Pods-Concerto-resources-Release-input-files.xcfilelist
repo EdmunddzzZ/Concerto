@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Concerto/Pods-Concerto-resources.sh
 ${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
+${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle
 ${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error.png
 ${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error@2x.png
 ${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error@3x.png

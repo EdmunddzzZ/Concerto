@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self LoadData];
     [self.view setBackgroundColor:mainBackGroundColor];
     [self.view addSubview:self.topBar];
     //[self.view addSubview:self.plan];
@@ -27,7 +28,10 @@
     [self.view addSubview:self.pageContentView];
     // Do any additional setup after loading the view.
 }
-
+-(void)LoadData
+{
+    [CreateBase updateUserInfo];
+}
 -(FSPageContentView *)pageContentView
 {
     if(!_pageContentView)
@@ -108,6 +112,7 @@
 {
     self.titleView.selectIndex = endIndex;
 }
+
 /*
 #pragma mark - Navigation
 

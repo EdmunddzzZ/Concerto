@@ -148,7 +148,7 @@
         _code.font = [UIFont systemFontOfSize:14];
         _psw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line3.frame)+15, _inputView.frame.size.width*0.8, 35)];
         _psw.font = [UIFont systemFontOfSize:14];
-        _psw.placeholder = @"请设置6-20位登录密码";
+        _psw.placeholder = @"请设置6-20位登录密码(数字、字母)";
         _psw.secureTextEntry = YES;
         
         _repsw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line4.frame)+15, _inputView.frame.size.width*0.8, 35)];
@@ -289,6 +289,10 @@
     {
         [CreateBase showMessage:@"请输入密码"];
     }
+    else if(![CreateBase validatePassword:self.psw.text])
+    {
+        [CreateBase showMessage:@"密码不符合规范"];
+    }
     else if(![self.psw.text isEqual:self.repsw.text])
     {
         [CreateBase showMessage:@"两次输入密码不一致"];
@@ -307,7 +311,7 @@
         NSLog(@"%@",dic);
         [[ApiManager shareInstance]POST:@"/User/Register" parameters:dic needsToken:NO Success:^(id responseObject) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
-            NSString *data = (NSString *)[dic objectForKey:@"data"];
+            NSString *data = (NSString *)[dictionary objectForKey:@"data"];
             if(data.length == 0)
             {
                 [dictionary setObject:[NSDictionary new] forKey:@"data"];

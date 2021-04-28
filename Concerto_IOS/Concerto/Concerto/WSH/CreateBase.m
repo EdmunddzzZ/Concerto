@@ -212,6 +212,42 @@ BOOL B = [userNamePredicate evaluateWithObject:name];
 return B;
 
 }
++ (BOOL) validatePassword:(NSString *)passWord
+
+{
+
+NSString *passWordRegex = @"^[a-zA-Z0-9]{6,20}+$";
+
+NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
+
+return [passWordPredicate evaluateWithObject:passWord];
+
+}
++(void)updateUserInfo
+{
+    [[ApiManager shareInstance]GET:@"/User/info" parameters:nil needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
+        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            [AppData shareInstance].user_info = [[userInfo alloc]initWithDictionary:dictionary error:nil];
+        }
+        else
+        {
+            //[SVProgressHUD dismiss];
+            [CreateBase showMessage:obj.message];
+        }
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+        }];
+    
+}
+
 
 
 

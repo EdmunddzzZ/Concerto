@@ -27,6 +27,7 @@ static NSString *TOKEN;
         
     }
     NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    
 //    UserInfo * userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
 //    TOKEN = userInfo.access_token;
     return mInstance;
@@ -84,7 +85,7 @@ static NSString *TOKEN;
     
     [req setTimeoutInterval:5];
     
-    [req setValue:str forHTTPHeaderField:@"Authorization"];//添加token
+    [req setValue:str forHTTPHeaderField:@"token"];//添加token
     
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
@@ -144,7 +145,7 @@ static NSString *TOKEN;
     
     [req setTimeoutInterval:5];
     
-    [req setValue:str forHTTPHeaderField:@"Authorization"];//添加token
+    [req setValue:str forHTTPHeaderField:@"token"];//添加token
     
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
@@ -211,7 +212,7 @@ static NSString *TOKEN;
     //req.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
     [req setTimeoutInterval:10];
 
-    [req setValue:str forHTTPHeaderField:@"Authorization"];//添加token
+    [req setValue:str forHTTPHeaderField:@"token"];//添加token
     
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
@@ -256,7 +257,7 @@ static NSString *TOKEN;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"token"];
     manager.requestSerializer.timeoutInterval = 30;
     manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     //签名结束

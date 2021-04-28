@@ -98,6 +98,7 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error.png"
   install_resource "${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error@2x.png"
   install_resource "${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error@3x.png"
@@ -107,6 +108,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error.png"
   install_resource "${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error@2x.png"
   install_resource "${PODS_ROOT}/WHToast/WHToast/wtoast_icon/whtoast_error@3x.png"

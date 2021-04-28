@@ -142,8 +142,43 @@
 }
 -(void)loginClick
 {
-    
-    [[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
+    if(![CreateBase validateUserName:self.account.text])
+    {
+        [CreateBase showMessage:@"请输入正确的用户名"];
+    }
+    else if(![CreateBase validatePassword:self.psw.text])
+    {
+        [CreateBase showMessage:@"请输入正确的密码"];
+    }
+    [SVProgressHUD showWithStatus:@""];
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:self.account.text forKey:@"email"];
+    [dic setObject:[CreateBase md5:self.psw.text] forKey:@"password"];
+    [[ApiManager shareInstance]POST:@"/User/Login" parameters:dic needsToken:NO Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
+        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
+            //[self.sendMsg startCountDown];
+        }
+        else
+        {
+            [SVProgressHUD dismiss];
+            [CreateBase showMessage:obj.message];
+        }
+        } Failure:^(id error) {
+            [SVProgressHUD dismiss];
+            [CreateBase showInternetFail];
+        }];
+    //[[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
     
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
