@@ -36,12 +36,16 @@ static ViewManager *_myInstance;
     if (self)
     {
 //        DutyViewController *vc = [DutyViewController new];
-        
+        if([AppData shareInstance].token.length != 0)
+        {
+            _navigationController = [[UINavigationController alloc]initWithRootViewController:[MainTabViewController new]];
+        }
+        else
         _navigationController = [[UINavigationController alloc]initWithRootViewController:[LoginViewController new]];
         [[UINavigationBar appearance]setBarStyle:UIBarStyleBlack];//电池条，白色
     }
     _navigationController.navigationBar.hidden = YES;
-    _navigationController.interactivePopGestureRecognizer.enabled = NO;
+    _navigationController.interactivePopGestureRecognizer.enabled = YES;
     
     return self;
 }

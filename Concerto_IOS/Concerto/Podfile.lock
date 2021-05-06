@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - FSScrollContentView (1.0.9)
+  - HcdActionSheet (0.0.5)
   - JSONModel (1.8.0)
   - MJRefresh (3.5.0)
   - SVProgressHUD (2.2.5)
@@ -24,6 +25,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - FSScrollContentView
+  - HcdActionSheet
   - JSONModel
   - MJRefresh
   - SVProgressHUD
@@ -34,6 +36,7 @@ SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
     - FSScrollContentView
+    - HcdActionSheet
     - JSONModel
     - MJRefresh
     - SVProgressHUD
@@ -43,12 +46,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   FSScrollContentView: 2fdda268eb8f1a1d4aefd470bf70702dbc346d50
+  HcdActionSheet: 421856302c499faebe07a2f6b30729685d5bdd8d
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   WHToast: 5da5bb80bdd1fea9455d4215577d9c5be2c506b8
   ZXCountDownView: 486d888558551210c6790855ec24e82853a31d9e
 
-PODFILE CHECKSUM: 5c179db6bb85465e90bb07fb8a840daee09ca99e
+PODFILE CHECKSUM: 809302618be91a703f27885a8face7447deb3efc
 
 COCOAPODS: 1.10.0

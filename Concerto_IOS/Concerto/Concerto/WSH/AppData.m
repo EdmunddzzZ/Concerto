@@ -26,9 +26,13 @@ static AppData* mInstance;
     self = [super init];
     if(self != nil)
     {
-       
+        self.myProject = [NSMutableArray new];
     }
     
     return self;
+}
+-(void)saveData
+{
+    [[NSUserDefaults standardUserDefaults]setValue:[AppData shareInstance].token forKey:@"token"];
 }
 @end

@@ -112,7 +112,10 @@
 {
     self.titleView.selectIndex = endIndex;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self LoadData];
+}
 /*
 #pragma mark - Navigation
 

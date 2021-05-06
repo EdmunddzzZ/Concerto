@@ -1,8 +1,8 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FSScrollContentView" "${PODS_ROOT}/Headers/Public/JSONModel" "${PODS_ROOT}/Headers/Public/MJRefresh" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/WHToast" "${PODS_ROOT}/Headers/Public/ZXCountDownView"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FSScrollContentView" "${PODS_CONFIGURATION_BUILD_DIR}/JSONModel" "${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD" "${PODS_CONFIGURATION_BUILD_DIR}/WHToast" "${PODS_CONFIGURATION_BUILD_DIR}/ZXCountDownView"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FSScrollContentView" -l"JSONModel" -l"MJRefresh" -l"SVProgressHUD" -l"WHToast" -l"ZXCountDownView" -framework "QuartzCore" -framework "UIKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FSScrollContentView" "${PODS_ROOT}/Headers/Public/HcdActionSheet" "${PODS_ROOT}/Headers/Public/JSONModel" "${PODS_ROOT}/Headers/Public/MJRefresh" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/WHToast" "${PODS_ROOT}/Headers/Public/ZXCountDownView"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FSScrollContentView" "${PODS_CONFIGURATION_BUILD_DIR}/HcdActionSheet" "${PODS_CONFIGURATION_BUILD_DIR}/JSONModel" "${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD" "${PODS_CONFIGURATION_BUILD_DIR}/WHToast" "${PODS_CONFIGURATION_BUILD_DIR}/ZXCountDownView"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"FSScrollContentView" -l"HcdActionSheet" -l"JSONModel" -l"MJRefresh" -l"SVProgressHUD" -l"WHToast" -l"ZXCountDownView" -framework "AVFoundation" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

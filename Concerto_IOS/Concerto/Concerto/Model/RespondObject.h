@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RespondObject : JSONModel
 @property(nonatomic,strong)NSString *status;
 @property(nonatomic,strong)NSString *message;
-@property(nonatomic,strong)NSDictionary<Optional> *data;
+@property(nonatomic,strong)NSObject<Optional> *data;
 -(BOOL)isSuccessful;
 @end
 

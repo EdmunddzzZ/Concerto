@@ -42,6 +42,6 @@
 + (NSString *) md5:(NSString *) input;
 + (BOOL) validateUserName:(NSString *)name;
 + (BOOL) validatePassword:(NSString *)passWord;
-
++(void)updateProject;
 @end
 

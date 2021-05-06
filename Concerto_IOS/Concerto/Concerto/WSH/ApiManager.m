@@ -26,10 +26,10 @@ static NSString *TOKEN;
         mInstance = [[ApiManager alloc] init];
         
     }
-    NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    //NSData *deData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     
 //    UserInfo * userInfo = [NSKeyedUnarchiver unarchiveObjectWithData:deData];
-//    TOKEN = userInfo.access_token;
+    TOKEN = [AppData shareInstance].token;
     return mInstance;
 }
 - (void)requestPUTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject))finish enError:(void(^)( id error))enError{
@@ -181,6 +181,7 @@ static NSString *TOKEN;
     Success:(void(^)(id responseObject))success
     Failure:(void(^)(id error))failure
 {
+    NSLog(@"Token:%@",TOKEN);
     NSArray *keys=[parameters allKeys];
     NSString *content = @"";
     if(keys.count>0)

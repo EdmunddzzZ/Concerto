@@ -8,7 +8,7 @@
 #import "RegisteViewController.h"
 #import "CreateBase.h"
 #import "ZXCountDownBtn.h"
-@interface RegisteViewController ()
+@interface RegisteViewController ()<UIGestureRecognizerDelegate>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)UIImageView * icon;
 @property(nonatomic,strong)UIView *inputView;
@@ -30,6 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    __weak typeof(self) weakSelf = self;
+    self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.view.backgroundColor = [CreateBase createColor:252 blue:247 green:234];
     [self.view addSubview:self.topBar];
     //[self.view addSubview:self.icon];
@@ -53,6 +56,10 @@
         return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
     }];
     // Do any additional setup after loading the view.
+}
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
 }
 -(UIButton *)backToLogin
 {
@@ -126,12 +133,12 @@
         UILabel *line4 = [[UILabel alloc]initWithFrame:CGRectMake(0, 195+65, screenwith, 1)];
         line4.backgroundColor = [CreateBase createColor:228];
         [_inputView addSubview:line4];
-        _name = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, 15, _inputView.frame.size.width*0.8, 35)];
+        _name = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.15, 15, _inputView.frame.size.width*0.8, 35)];
         
         _name.placeholder = @"请输入用户名（至少6位）";
         _name.font = [UIFont systemFontOfSize:14];
         [_inputView addSubview:_name];
-        _email = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line1.frame)+15, _inputView.frame.size.width*0.8, 35)];
+        _email = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.15, CGRectGetMaxY(line1.frame)+15, _inputView.frame.size.width*0.8, 35)];
         _email.placeholder = @"请输入邮箱地址";
         _email.font = [UIFont systemFontOfSize:14];
         [_inputView addSubview:_email];
@@ -143,15 +150,15 @@
         [_inputView addSubview:line1];
         [_inputView addSubview:line2];
         [_inputView addSubview:line3];
-        _code = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line2.frame)+15, _inputView.frame.size.width*0.4, 35)];
+        _code = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.15, CGRectGetMaxY(line2.frame)+15, _inputView.frame.size.width*0.4, 35)];
         _code.placeholder = @"请输入邮箱验证码";
         _code.font = [UIFont systemFontOfSize:14];
-        _psw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line3.frame)+15, _inputView.frame.size.width*0.8, 35)];
+        _psw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.15, CGRectGetMaxY(line3.frame)+15, _inputView.frame.size.width*0.8, 35)];
         _psw.font = [UIFont systemFontOfSize:14];
         _psw.placeholder = @"请设置6-20位登录密码(数字、字母)";
         _psw.secureTextEntry = YES;
         
-        _repsw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.2, CGRectGetMaxY(line4.frame)+15, _inputView.frame.size.width*0.8, 35)];
+        _repsw = [[UITextField alloc]initWithFrame:CGRectMake(_inputView.frame.size.width*0.15, CGRectGetMaxY(line4.frame)+15, _inputView.frame.size.width*0.8, 35)];
         _repsw.secureTextEntry = YES;
         _repsw.placeholder = @"请再次确认密码";
         _repsw.font = [UIFont systemFontOfSize:14];
@@ -247,7 +254,7 @@
     [[ApiManager shareInstance]GET:url parameters:nil needsToken:NO Success:^(id responseObject)
         {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
-        NSString *data = (NSString *)[dic objectForKey:@"data"];
+        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
         if(data.length == 0)
         {
             [dictionary setObject:[NSDictionary new] forKey:@"data"];

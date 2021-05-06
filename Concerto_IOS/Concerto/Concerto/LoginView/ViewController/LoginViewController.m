@@ -142,20 +142,24 @@
 }
 -(void)loginClick
 {
-    if(![CreateBase validateUserName:self.account.text])
+    if(![CreateBase validateEmail:self.account.text])
     {
         [CreateBase showMessage:@"请输入正确的用户名"];
+        return;
     }
-    else if(![CreateBase validatePassword:self.psw.text])
-    {
-        [CreateBase showMessage:@"请输入正确的密码"];
-    }
-    [SVProgressHUD showWithStatus:@""];
+//    else if(![CreateBase validatePassword:self.psw.text])
+//    {
+//        [CreateBase showMessage:@"请输入正确的密码"];
+//    }
+    //[SVProgressHUD showWithStatus:@""];
+    [LCProgressHUD showLoading:@""];
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:self.account.text forKey:@"email"];
     [dic setObject:[CreateBase md5:self.psw.text] forKey:@"password"];
+    self.login.enabled = NO;
     [[ApiManager shareInstance]POST:@"/User/Login" parameters:dic needsToken:NO Success:^(id responseObject) {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
+        NSLog(@"%@",dictionary);
         NSString *data = (NSString *)[dictionary objectForKey:@"data"];
         if(data.length == 0)
         {
@@ -164,18 +168,29 @@
         RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
         if([obj isSuccessful])
         {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            NSString *token = (NSString *)obj.data;
+            [AppData shareInstance].token = token;
+            [[AppData shareInstance] saveData];
+            NSLog(@"%@",token);
+            [LCProgressHUD hide];
+            [CreateBase showMessage:@"登录成功"];
+            self.login.enabled = YES;
+            self.account.text = @"";
+            self.psw.text = @"";
             [[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
             //[self.sendMsg startCountDown];
         }
         else
         {
-            [SVProgressHUD dismiss];
+            //[SVProgressHUD dismiss];
+            [LCProgressHUD hide];
+            self.login.enabled = YES;
             [CreateBase showMessage:obj.message];
         }
         } Failure:^(id error) {
-            [SVProgressHUD dismiss];
+            //[SVProgressHUD dismiss];
+            [LCProgressHUD hide];
+            self.login.enabled = YES;
             [CreateBase showInternetFail];
         }];
     //[[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
@@ -184,6 +199,10 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.login.enabled = YES;
 }
 /*
 #pragma mark - Navigation

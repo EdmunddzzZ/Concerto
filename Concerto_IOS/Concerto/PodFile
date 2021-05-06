@@ -11,4 +11,6 @@ pod 'FSScrollContentView'
 pod 'JSONModel'
 pod 'MJRefresh'
 pod 'SVProgressHUD'
+pod 'HcdActionSheet'
+pod 'PGDatePicker'
 end

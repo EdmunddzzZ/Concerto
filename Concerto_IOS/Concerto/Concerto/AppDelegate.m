@@ -16,16 +16,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSDate *data = [[NSUserDefaults standardUserDefaults]objectForKey:@"userInfo"];
+    userInfo *info = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    [AppData shareInstance].user_info = info;
+    [AppData shareInstance].token = [[NSUserDefaults standardUserDefaults]objectForKey:@"token"];
+    if([AppData shareInstance].token.length != 0)
+    {
+        [CreateBase updateUserInfo];
+        [CreateBase updateProject];
+    }
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [ViewManager shareInstance].NavigationController;
     [self.window makeKeyAndVisible];
+    
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [WHToast setShowMask:NO];
     return YES;
 }
 
-
+-(void)applicationWillTerminate:(UIApplication *)application
+{
+    [[AppData shareInstance] saveData];
+}
 #pragma mark - UISceneSession lifecycle
 
 

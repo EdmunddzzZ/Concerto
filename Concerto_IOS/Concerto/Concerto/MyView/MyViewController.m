@@ -6,11 +6,14 @@
 //
 
 #import "MyViewController.h"
+#import "LoginViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)UITableView *table;
 @property(nonatomic,strong)UIView *HeaderView;
+@property(nonatomic,strong)UIView *withoutTab;
+@property(nonatomic,strong)HcdActionSheet *sheet;
 @end
 
 @implementation MyViewController
@@ -19,6 +22,7 @@
     [super viewDidLoad];
     [self.view addSubview:self.topBar];
     [self.view addSubview:self.table];
+    self.withoutTab.hidden = YES;
     if (@available(iOS 11.0, *)) {
            self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
        }else {
@@ -42,13 +46,13 @@
         [head setBackgroundColor:mainColor];
         head.tag = 10001;
         UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(head.frame)+40, 67.5, screenwith, 15)];
-        name.text = @"Sarise";
+        name.text = [AppData shareInstance].user_info.userName;
         name.textColor = [UIColor blackColor];
         name.font = [UIFont systemFontOfSize:20 weight:0.3];
         name.textAlignment = NSTextAlignmentLeft;
         name.tag = 10002;
         UILabel *email = [[UILabel alloc]initWithFrame:CGRectMake(name.frame.origin.x, CGRectGetMaxY(name.frame)+15, screenwith, 20)];
-        email.text = @"1661135388@qq.com";
+        email.text = [AppData shareInstance].user_info.userEmail;
         email.font = [UIFont systemFontOfSize:16 weight:0.3];
         email.textColor = [UIColor grayColor];
         email.tag = 10003;
@@ -69,6 +73,9 @@
         _table.dataSource = self;
         _table.tableHeaderView = self.HeaderView;
         _table.bounces = NO;
+        
+        //self.sheet.hidden = YES;
+       //[self.table addSubview:self.sheet];
     }
     return _table;
 }
@@ -136,7 +143,15 @@
 {
     if(indexPath.section == 2)//退出登录
     {
-        [[ViewManager shareInstance].NavigationController popViewControllerAnimated:YES];
+        self.sheet = [[HcdActionSheet alloc]initWithCancelStr:@"取消" otherButtonTitles:@[@"退出登录"] attachTitle:@"确定退出登录吗？"];
+        [self.sheet changeTitleColor:[UIColor redColor] andIndex:1];
+       self.sheet.seletedButtonIndex = ^(NSInteger index) {
+           [[ViewManager shareInstance].NavigationController pushViewController:[LoginViewController new] animated:YES];
+       };
+        [[UIApplication sharedApplication].keyWindow addSubview:self.sheet];
+        
+        
+        [self.sheet showHcdActionSheet];
     }
 }
 /*

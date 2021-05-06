@@ -225,29 +225,84 @@ return [passWordPredicate evaluateWithObject:passWord];
 }
 +(void)updateUserInfo
 {
-    [[ApiManager shareInstance]GET:@"/User/info" parameters:nil needsToken:YES Success:^(id responseObject) {
+    [[CCFetchTool sharedClient]GET:@"/User/info" parameters:nil Success:^(id responseObject) {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
-        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
-        if(data.length == 0)
-        {
-            [dictionary setObject:[NSDictionary new] forKey:@"data"];
-        }
+//                NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+//                NSLog(@"data:%@",dictionary);
+//                if(data.length == 0)
+//                {
+//                    [dictionary setObject:[NSDictionary new] forKey:@"data"];
+//                }
+                RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+                if([obj isSuccessful])
+                {
+                    obj.data = (NSDictionary *)obj.data;
+                    [AppData shareInstance].user_info = [[userInfo alloc]initWithDictionary:(NSDictionary *)obj.data error:nil];
+                }
+                else
+                {
+                    //[SVProgressHUD dismiss];
+                    [CreateBase showMessage:obj.message];
+                }
+        } Failure:^(id error) {
+            
+        }];
+//    [[ApiManager shareInstance]GET:@"/User/info" parameters:nil needsToken:YES Success:^(id responseObject) {
+//        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
+//        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+//        NSLog(@"data:%@",dictionary);
+//        if(data.length == 0)
+//        {
+//            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+//        }
+//        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+//        if([obj isSuccessful])
+//        {
+//            obj.data = (NSDictionary *)obj.data;
+//            [AppData shareInstance].user_info = [[userInfo alloc]initWithDictionary:dictionary error:nil];
+//        }
+//        else
+//        {
+//            //[SVProgressHUD dismiss];
+//            [CreateBase showMessage:obj.message];
+//        }
+//        } Failure:^(id error) {
+//            [CreateBase showInternetFail];
+//        }];
+    
+}
++(void)updateProject
+{
+    [[ApiManager shareInstance]GET:@"/Project" parameters:nil needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+      //  NSLog(@"%@",dictionary);
+//        NSString *data = [dictionary objectForKey:@"data"];
+//        if(data.length == 0)
+//        {
+//            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+//        }
         RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
         if([obj isSuccessful])
         {
-            [AppData shareInstance].user_info = [[userInfo alloc]initWithDictionary:dictionary error:nil];
+            for (NSDictionary * dic in obj.data)
+            {
+                Project *pj = [[Project alloc]initWithDictionary:dic error:nil];
+                [[AppData shareInstance].myProject addObject:pj];
+            }
+            //[CreateBase showMessage:obj.message];
+            
         }
         else
         {
-            //[SVProgressHUD dismiss];
-            [CreateBase showMessage:obj.message];
+            [CreateBase showMessage:@"获取信息失败"];
         }
+        [LCProgressHUD hide];
         } Failure:^(id error) {
             [CreateBase showInternetFail];
+            
+            //[self.sendMsg setEnabled:YES];
         }];
-    
 }
-
 
 
 
