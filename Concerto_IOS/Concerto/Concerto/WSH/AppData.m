@@ -35,4 +35,11 @@ static AppData* mInstance;
 {
     [[NSUserDefaults standardUserDefaults]setValue:[AppData shareInstance].token forKey:@"token"];
 }
+-(void)cleardata
+{
+    self.token = nil;
+    self.user_info = nil;
+    self.myProject = nil;
+    [self saveData];
+}
 @end

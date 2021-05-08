@@ -55,6 +55,10 @@
 		BA8C73D9263FD4D900C0247D /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8C73D8263FD4D900C0247D /* ProjectDetailViewController.m */; };
 		BA8C73DF263FD65600C0247D /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8C73DE263FD65600C0247D /* Task.m */; };
 		BA8C73E5263FD76700C0247D /* tag.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8C73E4263FD76700C0247D /* tag.m */; };
+		BA8FEE612646A16E003100CC /* ChildProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FEE602646A16E003100CC /* ChildProjectDetailViewController.m */; };
+		BA8FEE672646A6CD003100CC /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FEE662646A6CD003100CC /* DetailViewController.m */; };
+		BA8FEE6D2646C164003100CC /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FEE6C2646C164003100CC /* PersonalViewController.m */; };
+		BA8FEE732646C7E4003100CC /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FEE722646C7E4003100CC /* NewTaskViewController.m */; };
 		BA90523326384E82005CAD03 /* RespondObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA90523226384E82005CAD03 /* RespondObject.m */; };
 		BAA397772631BEDD000C0A34 /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA397752631BEDD000C0A34 /* ViewManager.m */; };
 		BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA3977E2631BFC4000C0A34 /* LoginViewController.m */; };
@@ -209,6 +213,14 @@
 		BA8C73DE263FD65600C0247D /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		BA8C73E3263FD76700C0247D /* tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tag.h; sourceTree = "<group>"; };
 		BA8C73E4263FD76700C0247D /* tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tag.m; sourceTree = "<group>"; };
+		BA8FEE5F2646A16E003100CC /* ChildProjectDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildProjectDetailViewController.h; sourceTree = "<group>"; };
+		BA8FEE602646A16E003100CC /* ChildProjectDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildProjectDetailViewController.m; sourceTree = "<group>"; };
+		BA8FEE652646A6CD003100CC /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		BA8FEE662646A6CD003100CC /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		BA8FEE6B2646C164003100CC /* PersonalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
+		BA8FEE6C2646C164003100CC /* PersonalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		BA8FEE712646C7E4003100CC /* NewTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewTaskViewController.h; sourceTree = "<group>"; };
+		BA8FEE722646C7E4003100CC /* NewTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewTaskViewController.m; sourceTree = "<group>"; };
 		BA90523126384E82005CAD03 /* RespondObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RespondObject.h; sourceTree = "<group>"; };
 		BA90523226384E82005CAD03 /* RespondObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RespondObject.m; sourceTree = "<group>"; };
 		BAA397752631BEDD000C0A34 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
@@ -477,6 +489,14 @@
 			children = (
 				BA8C73D7263FD4D900C0247D /* ProjectDetailViewController.h */,
 				BA8C73D8263FD4D900C0247D /* ProjectDetailViewController.m */,
+				BA8FEE5F2646A16E003100CC /* ChildProjectDetailViewController.h */,
+				BA8FEE602646A16E003100CC /* ChildProjectDetailViewController.m */,
+				BA8FEE652646A6CD003100CC /* DetailViewController.h */,
+				BA8FEE662646A6CD003100CC /* DetailViewController.m */,
+				BA8FEE6B2646C164003100CC /* PersonalViewController.h */,
+				BA8FEE6C2646C164003100CC /* PersonalViewController.m */,
+				BA8FEE712646C7E4003100CC /* NewTaskViewController.h */,
+				BA8FEE722646C7E4003100CC /* NewTaskViewController.m */,
 			);
 			path = ProjextDetail;
 			sourceTree = "<group>";
@@ -890,6 +910,7 @@
 				BAF619ED2631230A004804DA /* AppDelegate.m in Sources */,
 				BA8C73D9263FD4D900C0247D /* ProjectDetailViewController.m in Sources */,
 				BA8922BC26441E530073AEBE /* PGDatePicker+MonthDayHour.m in Sources */,
+				BA8FEE732646C7E4003100CC /* NewTaskViewController.m in Sources */,
 				BAF619FE2631230B004804DA /* main.m in Sources */,
 				BA8922C826441E530073AEBE /* PGDatePicker+TimeAndSecond.m in Sources */,
 				BA89223A2644011A0073AEBE /* participant.m in Sources */,
@@ -919,16 +940,19 @@
 				BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */,
 				BA8922C926441E530073AEBE /* PGDatePicker+DateAndTime.m in Sources */,
 				BAA76B0826329C3C005DC327 /* AFURLSessionManager.m in Sources */,
+				BA8FEE6D2646C164003100CC /* PersonalViewController.m in Sources */,
 				BA8922CC26441E530073AEBE /* PGDatePickManagerHeaderView.m in Sources */,
 				BA8922C326441E530073AEBE /* PGDatePicker+MonthDayHourMinuteSecond.m in Sources */,
 				BA89226626440E2B0073AEBE /* UIView+LSTPV.m in Sources */,
 				BAA76B0626329C3C005DC327 /* AFURLResponseSerialization.m in Sources */,
+				BA8FEE672646A6CD003100CC /* DetailViewController.m in Sources */,
 				BAF61A352631232E004804DA /* AppData.m in Sources */,
 				BA89226726440E2B0073AEBE /* LSTAlert.m in Sources */,
 				BA8C73D2263FCEB300C0247D /* CCFetchTool.m in Sources */,
 				BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */,
 				BA8922DD26441F3E0073AEBE /* PGPickerView.m in Sources */,
 				BA8922DC26441F3E0073AEBE /* PGPickerColumnView.m in Sources */,
+				BA8FEE612646A16E003100CC /* ChildProjectDetailViewController.m in Sources */,
 				BA8922B926441E530073AEBE /* PGDatePicker.m in Sources */,
 				BAA76B0426329C3C005DC327 /* AFAutoPurgingImageCache.m in Sources */,
 				BA8922BD26441E530073AEBE /* PGDatePicker+YearAndMonth.m in Sources */,
@@ -1123,7 +1147,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				DEVELOPMENT_TEAM = L28NG732PD;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Concerto/WSH/PrefixHeader.pch";
 				INFOPLIST_FILE = Concerto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1131,7 +1155,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.Concerto;
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoWSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1144,7 +1168,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2HPL26N6NM;
+				DEVELOPMENT_TEAM = L28NG732PD;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Concerto/WSH/PrefixHeader.pch";
 				INFOPLIST_FILE = Concerto/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1152,7 +1176,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.Concerto;
+				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoWSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

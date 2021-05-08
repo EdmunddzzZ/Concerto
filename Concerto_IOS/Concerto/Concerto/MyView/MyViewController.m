@@ -146,10 +146,11 @@
         self.sheet = [[HcdActionSheet alloc]initWithCancelStr:@"取消" otherButtonTitles:@[@"退出登录"] attachTitle:@"确定退出登录吗？"];
         [self.sheet changeTitleColor:[UIColor redColor] andIndex:1];
        self.sheet.seletedButtonIndex = ^(NSInteger index) {
-           [[ViewManager shareInstance].NavigationController pushViewController:[LoginViewController new] animated:YES];
+           [[ViewManager shareInstance].NavigationController pushViewController:[LoginViewController new] animated:NO];
+           [[AppData shareInstance] cleardata];
+           
        };
         [[UIApplication sharedApplication].keyWindow addSubview:self.sheet];
-        
         
         [self.sheet showHcdActionSheet];
     }

@@ -43,5 +43,6 @@
 + (BOOL) validateUserName:(NSString *)name;
 + (BOOL) validatePassword:(NSString *)passWord;
 +(void)updateProject;
++ (float) heightForString:(UITextView *)textView andWidth:(float)width;
 @end
 

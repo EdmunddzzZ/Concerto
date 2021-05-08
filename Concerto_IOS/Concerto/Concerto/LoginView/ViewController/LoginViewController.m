@@ -35,6 +35,7 @@
     [self.view addSubview:self.login];
     [self.view addSubview:self.registe];
     [self.view addSubview:self.forget];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 -(UIButton *)registe
 {
@@ -160,7 +161,7 @@
     [[ApiManager shareInstance]POST:@"/User/Login" parameters:dic needsToken:NO Success:^(id responseObject) {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
         NSLog(@"%@",dictionary);
-        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
         if(data.length == 0)
         {
             [dictionary setObject:[NSDictionary new] forKey:@"data"];
@@ -177,6 +178,8 @@
             self.login.enabled = YES;
             self.account.text = @"";
             self.psw.text = @"";
+            [CreateBase updateUserInfo];
+            [CreateBase updateProject];
             [[ViewManager shareInstance].NavigationController pushViewController:[MainTabViewController new] animated:YES];
             //[self.sendMsg startCountDown];
         }

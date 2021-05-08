@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString* projectId;
 @property(nonatomic,strong)NSString* projectName;
 @property(nonatomic,strong)NSString* projectStartTime;
+@property(nonatomic,strong)NSDictionary *admin;
 @end
 
 NS_ASSUME_NONNULL_END

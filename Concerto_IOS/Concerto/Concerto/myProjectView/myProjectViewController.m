@@ -10,6 +10,8 @@
 #import "YCMenuView.h"
 #import "LSTPopView.h"
 #import "PGDatePickManager.h"
+#import "MJRefresh.h"
+#import "ProjectDetailViewController.h"
 @interface myProjectViewController ()<UITableViewDelegate,UITableViewDataSource,PGDatePickerDelegate>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)UIButton *addBtn;
@@ -32,6 +34,7 @@
     [self.view setBackgroundColor:mainBackGroundColor];
     [self.view addSubview:self.topBar];
     [self.view addSubview:self.table];
+   // [self LoadData];
    // [CreateBase updateProject];
     //[self.view addSubview:self.popView];
     // Do any additional setup after loading the view.
@@ -53,6 +56,14 @@
         _table.separatorStyle = UITableViewCellSelectionStyleNone;
         _table.delegate = self;
         _table.dataSource = self;
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(LoadData)];
+        [header setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+            // 往下拉的时候文字
+        [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
+            // 松手时候的文字
+        [header setTitle:@"松开刷新" forState:MJRefreshStatePulling];
+        
+        _table.mj_header = header;
     }
     return _table;
 }
@@ -82,9 +93,10 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@",indexPath);
+   // NSLog(@"%@",indexPath);
     UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"cellid1"];
     UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cellid2"];
+    UITapGestureRecognizer *reg = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(RencentProject)];
     if(indexPath.section == 0)
     {
     if(!cell1)
@@ -100,7 +112,13 @@
         view1.tag = 10001;
         [view1 setBackgroundColor:[UIColor whiteColor]];
         UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+        UIButton *btn1 = [[UIButton alloc]initWithFrame:title1.frame];
+        [btn1 addTarget:self action:@selector(RencentProject:) forControlEvents:UIControlEventTouchUpInside];
+        btn1.tag = 30001;
         title1.text = @"+ 点击添加项目";
+        [title1 addGestureRecognizer:reg];
+        title1.userInteractionEnabled = YES;
+        title1.numberOfLines = 0;
         title1 .font = [UIFont systemFontOfSize:20 weight:0.05];
         title1 .textColor = mainColor;
         //title1.font = [UIFont systemFontOfSize:25 weight:0.5];
@@ -108,6 +126,7 @@
         title1.textAlignment = NSTextAlignmentCenter;
         title1.tag = 20001;
         [view1 addSubview:title1];
+        [view1 addSubview:btn1];
         [cell1 addSubview:view1];
         UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(screenwith-view1.frame.size.width-view1.frame.origin.x, view1.frame.origin.y, view1.frame.size.width, view1.frame.size.height)];
         view2.backgroundColor = [UIColor whiteColor];
@@ -116,13 +135,17 @@
         view2.tag = 10002;
         
         UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+        UIButton *btn2 = [[UIButton alloc]initWithFrame:title2.frame];
+        [btn2 addTarget:self action:@selector(RencentProject:) forControlEvents:UIControlEventTouchUpInside];
+        btn2.tag = 30002;
         title2.text = @"+ 点击添加项目";
+        title2.numberOfLines = 0;
         title2 .font = [UIFont systemFontOfSize:20 weight:0.05];
         title2 .textColor = mainColor;
         title2.textAlignment = NSTextAlignmentCenter;
         title2.tag = 20002;
         [view2 addSubview:title2];
-        
+        [view2 addSubview:btn2];
         [cell1 addSubview:view2];
         UIView *view3 = [[UIView alloc]initWithFrame:CGRectMake(view1.frame.origin.x, CGRectGetMaxY(view1.frame)+20, view1.frame.size.width, view1.frame.size.height)];
         view3.layer.cornerRadius = view1.layer.cornerRadius;
@@ -131,13 +154,17 @@
         view3.tag = 10003;
         
         UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+        UIButton *btn3 = [[UIButton alloc]initWithFrame:title3.frame];
+        [btn3 addTarget:self action:@selector(RencentProject:) forControlEvents:UIControlEventTouchUpInside];
+        btn3.tag = 30003;
         title3.text = @"+ 点击添加项目";
         title3 .font = [UIFont systemFontOfSize:20 weight:0.05];
         title3 .textColor = mainColor;
+        title3.numberOfLines = 0;
         title3 .textAlignment = NSTextAlignmentCenter;
         title3 .tag = 20003;
         [view3 addSubview:title3 ];
-        
+        [view3 addSubview:btn3];
         [cell1 addSubview:view3];
         UIView *view4 = [[UIView alloc]initWithFrame:CGRectMake(view2.frame.origin.x, view3.frame.origin.y, view1.frame.size.width, view1.frame.size.height)];
         view4.backgroundColor = [UIColor whiteColor];
@@ -147,26 +174,34 @@
         
         
         UILabel *title4 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+        UIButton *btn4 = [[UIButton alloc]initWithFrame:title4.frame];
+        btn4.tag = 30004;
+        [btn4 addTarget:self action:@selector(RencentProject:) forControlEvents:UIControlEventTouchUpInside];
         title4 .text = @"+ 点击添加项目";
+        title4.numberOfLines = 0;
         title4 .font = [UIFont systemFontOfSize:20 weight:0.05];
         title4 .textColor = mainColor;
         title4 .textAlignment = NSTextAlignmentCenter;
         title4 .tag = 20004;
         [view4 addSubview:title4 ];
-        
+        [view4 addSubview:btn4];
         [cell1 addSubview:view4];
         
         
     }
+        
         for(int i = 0;i < MIN([AppData shareInstance].myProject.count, 4);i++)
         {
             UILabel *lab = [cell1 viewWithTag:20001+i];
+            [lab addGestureRecognizer:reg];
+            lab.userInteractionEnabled = YES;
             Project *pj =[AppData shareInstance].myProject[i];
             lab.text = pj.projectName;
             lab.font = [UIFont systemFontOfSize:25 weight:0.5];
             lab.textColor = [CreateBase createColor:139 blue:120 green:85];
             lab.textAlignment = NSTextAlignmentCenter;
         }
+        cell1.contentView.hidden = YES;
         return cell1;
     }
     else
@@ -219,10 +254,15 @@
         UILabel *dec = [cell2 viewWithTag:20002];
         UILabel *publier = [cell2 viewWithTag:20003];
         UILabel *time = [cell2 viewWithTag:20004];
+        publier.text = [NSString stringWithFormat:@"发布人：%@",[mpj.admin objectForKey:@"userName"]] ;
         title.text = mpj.projectName;
         dec.text = mpj.projectDescription;
+        if(dec.text.length == 0)
+        {
+            dec.text = @"发布人还没有写简介哦～";
+        }
        // publier = mpj.
-        time = mpj.projectEndTime;
+        time.text = mpj.projectStartTime;
     }
     return cell2;
     
@@ -280,7 +320,9 @@
 {
     if(indexPath.section == 1)
     {
-        NSLog(@"点击了%@",indexPath);
+        //跳转
+        ProjectDetailViewController *p = [ProjectDetailViewController new];
+        [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
     }
 }
 -(void)addBtnClick
@@ -290,7 +332,7 @@
         self.popView.backgroundColor = [UIColor whiteColor];
         self.popView.layer.cornerRadius = 20;
         self.popView.layer.masksToBounds = YES;
-        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.1*self.popView.frame.size.height, self.popView.frame.size.width, 15)];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.05*self.popView.frame.size.height, self.popView.frame.size.width, 15)];
         lab.text  = @"新建项目";
         lab.font = [UIFont systemFontOfSize:14 weight:0.3];
         lab.textAlignment = NSTextAlignmentCenter;
@@ -425,6 +467,7 @@
         name.layer.borderWidth = 1;
         name.layer.masksToBounds = YES;
         name.layer.cornerRadius = 5;
+        name.tag = 50001;
         self.code = name;
         name.textAlignment = NSTextAlignmentCenter;
         name.font = [UIFont systemFontOfSize:14 weight:0.3];
@@ -472,7 +515,7 @@
 -(void)compeleteClick2:(UIButton *)sender
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    if(self.code.text.length == 0)
+    if(self.code.text.length < 5)
     {
         [CreateBase showMessage:@"请输入正确的邀请码"];
     }
@@ -482,7 +525,7 @@
         [[ApiManager shareInstance]POST:url parameters:nil needsToken:YES Success:^(id responseObject) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
             NSLog(@"%@",dictionary);
-            NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+            NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];
             if(data.length == 0)
             {
                 [dictionary setObject:[NSDictionary new] forKey:@"data"];
@@ -491,12 +534,20 @@
             if([obj isSuccessful])
             {
                 
-                [CreateBase showMessage:obj.message];
+                [CreateBase showMessage:@"加入成功！"];
+                [CreateBase updateProject];
+                sleep(1);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.view reloadInputViews];
+                    [self.table reloadData];
+                });
                 [self cancelClcik];
             }
             else
             {
-                [CreateBase showMessage:obj.message];
+                [SVProgressHUD setMaximumDismissTimeInterval:1];
+                [SVProgressHUD showErrorWithStatus:@"加入失败，请检查邀请码"];
                 sender.enabled = YES;
             }
             [LCProgressHUD hide];
@@ -508,6 +559,7 @@
             }];
     }
 }
+
 -(void)selectTime:(UIButton *)sender
 {PGDatePickManager *manager = [[PGDatePickManager alloc]init];
     // manager.headerViewBackgroundColor = MainBgColor;
@@ -599,7 +651,7 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
         [[ApiManager shareInstance]POST:@"/Project" parameters:dic needsToken:YES Success:^(id responseObject) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
             NSLog(@"%@",dictionary);
-            NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+            NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
             if(data.length == 0)
             {
                 [dictionary setObject:[NSDictionary new] forKey:@"data"];
@@ -608,12 +660,22 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
             if([obj isSuccessful])
             {
                 
-                //[CreateBase showMessage:obj.message];
+                //[self LoadData];
+                [CreateBase updateProject];
+                sleep(1);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.view reloadInputViews];
+                    [self.table reloadData];
+                });
+                
+                
+                [CreateBase showMessage:@"项目创建成功！"];
                 [self cancelClcik];
             }
             else
             {
-                [CreateBase showMessage:@"加入失败！"];
+                [CreateBase showMessage:@"创建失败！"];
                 sender.enabled = YES;
             }
             [LCProgressHUD hide];
@@ -629,9 +691,157 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
 {
     [self.customView dismiss];
 }
+
+-(void)LoadData
+
+{
+    
+    [self.table.mj_header beginRefreshing];
+   
+            [CreateBase updateProject];
+        [self.view reloadInputViews];
+        [self.table reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.table.mj_header endRefreshing];
+    });
+    
+    NSLog(@"执行了loadData，%@",[NSDate date]);
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [CreateBase updateProject];
+[self.view reloadInputViews];
+[self.table reloadData];
+}
+-(void)RencentProject:(UIButton *)sender
+{
+   // NSLog(@"111");
+    NSLog(@"%ld",sender.tag);
+    if(sender.tag - 30000 <  [AppData shareInstance].myProject.count)
+    {
+        ProjectDetailViewController *p = [ProjectDetailViewController new];
+        [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
+    }
+    else
+    {
+        self.popView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0.7*ScreenWidth, 0.5*screenheight)];
+        self.popView.backgroundColor = [UIColor whiteColor];
+        self.popView.layer.cornerRadius = 20;
+        self.popView.layer.masksToBounds = YES;
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.05*self.popView.frame.size.height, self.popView.frame.size.width, 15)];
+        lab.text  = @"新建项目";
+        lab.font = [UIFont systemFontOfSize:14 weight:0.3];
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.popView addSubview:lab];
+
+
+
+        UILabel *namelab = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(lab.frame)+30, 60, 25)];
+        namelab.textAlignment = NSTextAlignmentLeft;
+        namelab.text = @"项目名";
+        namelab.font = [UIFont systemFontOfSize:14 weight:0.3];
+        [self.popView addSubview:namelab];
+
+        UILabel *startlab = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(namelab.frame)+30, namelab.frame.size.width, namelab.frame.size.height)];
+        startlab.textAlignment = NSTextAlignmentLeft;
+        startlab.text = @"开始时间";
+        startlab.font = [UIFont systemFontOfSize:14 weight:0.3];
+        [self.popView addSubview:startlab];
+
+        UILabel *endlab = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(startlab.frame)+30, namelab.frame.size.width, namelab.frame.size.height)];
+        endlab.textAlignment = NSTextAlignmentLeft;
+        endlab.text = @"结束时间";
+        endlab.font = [UIFont systemFontOfSize:14 weight:0.3];
+        [self.popView addSubview:endlab];
+
+        UILabel *declab = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(endlab.frame)+30, namelab.frame.size.width, namelab.frame.size.height)];
+        declab.textAlignment = NSTextAlignmentLeft;
+        declab.text = @"项目描述";
+        declab.font = [UIFont systemFontOfSize:14 weight:0.3];
+        [self.popView addSubview:declab];
+        UITextField *name = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(namelab.frame)+20, namelab.frame.origin.y-2, 0.5*self.popView.frame.size.width, 30)];
+        name.placeholder = @" 请输入项目名";
+        name.layer.borderColor = [CreateBase createColor:242].CGColor;
+        name.layer.borderWidth = 1;
+        name.layer.masksToBounds = YES;
+        name.layer.cornerRadius = 5;
+        self.PJname = name;
+        name.textAlignment = NSTextAlignmentCenter;
+        name.font = [UIFont systemFontOfSize:14 weight:0.3];
+        [self.popView addSubview:name];
+
+        UITextField *start = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(namelab.frame)+20, CGRectGetMaxY(name.frame)+25, 0.5*self.popView.frame.size.width, 30)];
+        start.placeholder = @" 请选择项目开始时间";
+        start.layer.borderColor = [CreateBase createColor:242].CGColor;
+        start.layer.borderWidth = 1;
+        start.layer.masksToBounds = YES;
+        start.layer.cornerRadius = 5;
+        start.textAlignment = NSTextAlignmentCenter;
+        start.font = [UIFont systemFontOfSize:14 weight:0.3];
+        start.enabled = NO;
+        self.starttime = start;
+        UIButton *startbtn = [[UIButton alloc]initWithFrame:start.frame];
+        startbtn.tag = 3001;
+        [self.popView addSubview:startbtn];
+        [startbtn addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
+        [self.popView addSubview:start];
+
+        UITextField *end = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(namelab.frame)+20, CGRectGetMaxY(start.frame)+25, 0.5*self.popView.frame.size.width, 30)];
+        end.placeholder = @" 请选择项目结束时间";
+        end.layer.borderColor = [CreateBase createColor:242].CGColor;
+        end.layer.borderWidth = 1;
+        end.textAlignment = NSTextAlignmentCenter;
+        end.layer.masksToBounds = YES;
+        end.enabled = NO;
+        end.layer.cornerRadius = 5;
+        self.endtime = end;
+        UIButton *endbtn = [[UIButton alloc]initWithFrame:end.frame];
+        endbtn.tag = 3002;
+        [endbtn addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
+        [self.popView addSubview:endbtn];
+        UITextView *dec = [[UITextView alloc]initWithFrame:CGRectMake(namelab.frame.origin.x,CGRectGetMaxY(declab.frame)+10, self.popView.frame.size.width-2*namelab.frame.origin.x, 0.2*self.popView.frame.size.height)];
+        dec.layer.borderWidth = 1;
+        dec.layer.borderColor = [UIColor grayColor].CGColor;
+        dec.layer.masksToBounds = YES;
+        dec.layer.cornerRadius = 10;
+        [self.popView addSubview:dec];
+        self.dec = dec;
+        UIButton *compelete = [[UIButton alloc]initWithFrame:CGRectMake(dec.frame.origin.x+10, CGRectGetMaxY(dec.frame)+20, 0.3*self.popView.frame.size.width, 30)];
+        [compelete setBackgroundColor:mainColor];
+        compelete.layer.cornerRadius = 10;
+        compelete.layer.masksToBounds = YES;
+        [compelete setTitle:@"确认" forState:UIControlStateNormal];
+        [compelete addTarget:self action:@selector(compeleteClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.popView addSubview:compelete];
+
+
+        UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(self.popView.frame.size.width-compelete.frame.origin.x-0.3*self.popView.frame.size.width, CGRectGetMaxY(dec.frame)+20, 0.3*self.popView.frame.size.width, 30)];
+        [cancel setBackgroundColor:[CreateBase createColor:255 blue:194 green:123]];
+        cancel.layer.cornerRadius = 10;
+        cancel.layer.masksToBounds = YES;
+        [cancel setTitle:@"取消" forState:UIControlStateNormal];
+        [cancel addTarget:self action:@selector(cancelClcik) forControlEvents:UIControlEventTouchUpInside];
+        [self.popView addSubview:cancel];
+
+
+
+        end.font = [UIFont systemFontOfSize:14 weight:0.3];
+        //[end addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
+        [self.popView addSubview:end];
+
+
+        LSTPopView *cusView = [LSTPopView initWithCustomView:self.popView parentView:[UIApplication sharedApplication].keyWindow popStyle:LSTPopStyleFade dismissStyle:LSTDismissStyleFade];
+        cusView.hemStyle = LSTHemStyleCenter;
+        LSTPopViewWK(cusView);
+        cusView.bgClickBlock = ^{
+            [wk_cusView dismiss];
+        };
+        self.customView = cusView;
+        [cusView pop];
+    
+    }
+
+
 }
 /*
 #pragma mark - Navigation

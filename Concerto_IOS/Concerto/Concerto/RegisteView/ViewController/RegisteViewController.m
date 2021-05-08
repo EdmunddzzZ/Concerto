@@ -254,7 +254,7 @@
     [[ApiManager shareInstance]GET:url parameters:nil needsToken:NO Success:^(id responseObject)
         {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
-        NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];
         if(data.length == 0)
         {
             [dictionary setObject:[NSDictionary new] forKey:@"data"];
@@ -318,7 +318,7 @@
         NSLog(@"%@",dic);
         [[ApiManager shareInstance]POST:@"/User/Register" parameters:dic needsToken:NO Success:^(id responseObject) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
-            NSString *data = (NSString *)[dictionary objectForKey:@"data"];
+            NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];
             if(data.length == 0)
             {
                 [dictionary setObject:[NSDictionary new] forKey:@"data"];

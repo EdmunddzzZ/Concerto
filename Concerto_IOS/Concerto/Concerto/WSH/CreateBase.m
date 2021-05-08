@@ -275,17 +275,19 @@ return [passWordPredicate evaluateWithObject:passWord];
 {
     [[ApiManager shareInstance]GET:@"/Project" parameters:nil needsToken:YES Success:^(id responseObject) {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
-      //  NSLog(@"%@",dictionary);
-//        NSString *data = [dictionary objectForKey:@"data"];
-//        if(data.length == 0)
-//        {
-//            [dictionary setObject:[NSDictionary new] forKey:@"data"];
-//        }
+        NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
         RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
         if([obj isSuccessful])
         {
+            [AppData shareInstance].myProject = [NSMutableArray new];
             for (NSDictionary * dic in obj.data)
             {
+                
                 Project *pj = [[Project alloc]initWithDictionary:dic error:nil];
                 [[AppData shareInstance].myProject addObject:pj];
             }
@@ -303,7 +305,10 @@ return [passWordPredicate evaluateWithObject:passWord];
             //[self.sendMsg setEnabled:YES];
         }];
 }
-
++ (float) heightForString:(UITextView *)textView andWidth:(float)width{
+    CGSize sizeToFit = [textView sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    return sizeToFit.height;
+}
 
 
 

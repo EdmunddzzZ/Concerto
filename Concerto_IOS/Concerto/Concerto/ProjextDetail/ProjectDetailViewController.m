@@ -8,11 +8,18 @@
 #import "ProjectDetailViewController.h"
 #import "FSScrollContentView.h"
 #import "ChildViewController.h"
-@interface ProjectDetailViewController ()<UITableViewDelegate,UITableViewDataSource,FSPageContentViewDelegate,FSSegmentTitleViewDelegate>
+#import "ChildProjectDetailViewController.h"
+#import "DetailViewController.h"
+#import "PersonalViewController.h"
+#import "LSTPopView.h"
+@interface ProjectDetailViewController ()<FSPageContentViewDelegate,FSSegmentTitleViewDelegate>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)FSSegmentTitleView *titleView;
 @property(nonatomic,strong)FSPageContentView *pageContentView;
 @property(nonatomic,strong)UIButton *sortBtn;
+@property(nonatomic,strong)UIButton *addBtn;
+@property(nonatomic,weak)LSTPopView *customView;
+@property(nonatomic,strong)UIView *popView;
 @end
 
 @implementation ProjectDetailViewController
@@ -24,7 +31,62 @@
     //[self.view addSubview:self.plan];
     [self.view addSubview:self.titleView];
     [self.view addSubview:self.pageContentView];
+    [self.view addSubview:self.addBtn];
     // Do any additional setup after loading the view.
+}
+-(UIButton *)addBtn
+{
+    if(!_addBtn)
+    {
+        _addBtn = [[UIButton alloc]initWithFrame:CGRectMake(screenwith-100, screenheight-self.tabBarController.tabBar.frame.size.height-200, 64, 64)];
+        [_addBtn setBackgroundImage:[UIImage imageNamed:@"addBtn"] forState:UIControlStateNormal];
+        [_addBtn addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _addBtn;
+}
+-(void)addClick
+{
+    self.popView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0.5*ScreenWidth, 200)];
+    [self.popView setBackgroundColor:[UIColor whiteColor]];
+    self.popView.layer.cornerRadius = 10;
+    self.popView.layer.masksToBounds = YES;
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, self.popView.frame.size.width, 15)];
+    lab.text = @"请选择任务类型";
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.font = [UIFont systemFontOfSize:14 weight:0.4];
+    [self.popView addSubview:lab];
+    UIButton *normal = [[UIButton alloc]initWithFrame:CGRectMake(0.15*self.popView.frame.size.width, CGRectGetMaxY(lab.frame)+30, 0.7*self.popView.frame.size.width, 30)];
+    [normal setTitle:@"普通任务" forState:UIControlStateNormal];
+    [normal setBackgroundColor:mainColor];
+    normal.layer.cornerRadius = 5;
+    normal.layer.masksToBounds = YES;
+    [normal addTarget:self action:@selector(normalClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.popView addSubview:normal];
+    
+    UIButton *lichengbei = [[UIButton alloc]initWithFrame:CGRectMake(0.15*self.popView.frame.size.width, CGRectGetMaxY(normal.frame)+30, 0.7*self.popView.frame.size.width, 30)];
+    [lichengbei setTitle:@"里程碑" forState:UIControlStateNormal];
+    [lichengbei setBackgroundColor:[CreateBase createColor:245 blue:128 green:140]];
+    lichengbei.layer.cornerRadius = 5;
+    lichengbei.layer.masksToBounds = YES;
+    [lichengbei addTarget:self action:@selector(lichengbeiClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.popView addSubview:lichengbei];
+    LSTPopView *cusView = [LSTPopView initWithCustomView:self.popView parentView:[UIApplication sharedApplication].keyWindow popStyle:LSTPopStyleScale dismissStyle:LSTDismissStyleFade];
+    cusView.hemStyle = LSTHemStyleCenter;
+    LSTPopViewWK(cusView);
+    cusView.bgClickBlock = ^{
+        [wk_cusView dismiss];
+    };
+    self.customView = cusView;
+    [cusView pop];
+}
+
+-(void)normalClick
+{
+    //
+}
+-(void)lichengbeiClick
+{
+    //
 }
 -(void)LoadData
 {
@@ -35,9 +97,11 @@
     if(!_pageContentView)
     {
         NSMutableArray *array = [NSMutableArray new];
-        for(int i = 0;i < 4 ;i++)
+        DetailViewController *detail = [DetailViewController new];
+        PersonalViewController *person = [PersonalViewController new];
+        for(int i = 0;i < 2 ;i++)
         {
-            ChildViewController *c = [ChildViewController new];
+            ChildProjectDetailViewController *c = [ChildProjectDetailViewController new];
             NSMutableArray *arr = [NSMutableArray new];
             for(int j = 0;j < i; j = j+1)
             {
@@ -46,6 +110,8 @@
             c.planArrays = arr;
             [array addObject:c];
         }
+        [array addObject:detail];
+        [array addObject:person];
         
         _pageContentView = [[FSPageContentView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.titleView.frame), screenwith, screenheight) childVCs:array parentVC:self delegate:self];
         
@@ -72,11 +138,16 @@
         _topBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenwith, 50+Safearea)];
         _topBar.backgroundColor = [UIColor whiteColor];
        
-        UILabel *login = [[UILabel alloc]initWithFrame:CGRectMake(35,_topBar.frame.size.height-25, screenwith, 20)];
-        login.text = @"个人日程";
+        UILabel *login = [[UILabel alloc]initWithFrame:CGRectMake(0,_topBar.frame.size.height-25, screenwith, 20)];
+        login.text = @"xx项目";
         login.font = [UIFont systemFontOfSize:20 weight:1.0];
         login.textColor = [UIColor blackColor];
-        login.textAlignment = NSTextAlignmentLeft;
+        login.textAlignment = NSTextAlignmentCenter;
+        UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, _topBar.frame.size.height-30, 20, 20)];
+        [backBtn addTarget:self action:@selector(backToPreView) forControlEvents:UIControlEventTouchUpInside];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        backBtn.adjustsImageWhenHighlighted = NO;
+        [_topBar addSubview:backBtn];
         //UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, _topBar.frame.size.height, screenwith, 1)];
         //line.backgroundColor = [CreateBase createColor:228];
         //[_topBar addSubview:line];
@@ -88,27 +159,35 @@
     }
     return _topBar;
 }
+-(void)backToPreView
+{
+    [CreateBase backToPreView];
+}
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 0;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [UITableViewCell new];
-}
 -(void)FSSegmentTitleView:(FSSegmentTitleView *)titleView startIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex
 {
     self.pageContentView.contentViewCurrentIndex = endIndex;
+    if(endIndex > 1)
+    {
+        self.addBtn.hidden = YES;
+    }
+    else
+    {
+        self.addBtn.hidden = NO;
+    }
     //self.title = self.alltitle;
 }
 -(void)FSContenViewDidEndDecelerating:(FSPageContentView *)contentView startIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex
 {
     self.titleView.selectIndex = endIndex;
+    if(endIndex > 1)
+    {
+        self.addBtn.hidden = YES;
+    }
+    else
+    {
+        self.addBtn.hidden = NO;
+    }
 }
 
 /*
