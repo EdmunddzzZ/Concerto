@@ -12,6 +12,7 @@
 #import "DetailViewController.h"
 #import "PersonalViewController.h"
 #import "LSTPopView.h"
+#import "NewTaskViewController.h"
 @interface ProjectDetailViewController ()<FSPageContentViewDelegate,FSSegmentTitleViewDelegate>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)FSSegmentTitleView *titleView;
@@ -20,6 +21,7 @@
 @property(nonatomic,strong)UIButton *addBtn;
 @property(nonatomic,weak)LSTPopView *customView;
 @property(nonatomic,strong)UIView *popView;
+@property(nonatomic,strong)NSMutableArray *parts;
 @end
 
 @implementation ProjectDetailViewController
@@ -38,7 +40,7 @@
 {
     if(!_addBtn)
     {
-        _addBtn = [[UIButton alloc]initWithFrame:CGRectMake(screenwith-100, screenheight-self.tabBarController.tabBar.frame.size.height-200, 64, 64)];
+        _addBtn = [[UIButton alloc]initWithFrame:CGRectMake(screenwith-100, 0.8*screenheight, 64, 64)];
         [_addBtn setBackgroundImage:[UIImage imageNamed:@"addBtn"] forState:UIControlStateNormal];
         [_addBtn addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -83,6 +85,11 @@
 -(void)normalClick
 {
     //
+    NewTaskViewController *task = [NewTaskViewController new];
+    task.partispants = self.parts;
+    task.projectID = self.pj.projectId;
+    [[ViewManager shareInstance].NavigationController pushViewController:task animated:YES];
+    [self.customView dismiss];
 }
 -(void)lichengbeiClick
 {
@@ -98,6 +105,7 @@
     {
         NSMutableArray *array = [NSMutableArray new];
         DetailViewController *detail = [DetailViewController new];
+        detail.pj = self.pj;
         PersonalViewController *person = [PersonalViewController new];
         for(int i = 0;i < 2 ;i++)
         {
@@ -189,7 +197,42 @@
         self.addBtn.hidden = NO;
     }
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:self.pj.projectId forKey:@"projectId"];
+    [[ApiManager shareInstance]GET:@"/project/member" parameters: dic needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            self.parts = [NSMutableArray new];
+            for (NSDictionary *dic in obj.data)
+            {
+                participant *p = [[participant alloc]initWithDictionary:dic error:nil];
+                [self.parts addObject:p];
+            }
+        }
+        else
+        {
+            [CreateBase showMessage:@"获取信息失败"];
+        }
+        [LCProgressHUD hide];
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
 
+            //[self.sendMsg setEnabled:YES];
+        }];
+    
+   
+}
 /*
 #pragma mark - Navigation
 

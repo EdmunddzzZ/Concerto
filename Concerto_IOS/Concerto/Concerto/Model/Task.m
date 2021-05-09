@@ -8,5 +8,7 @@
 #import "Task.h"
 
 @implementation Task
-
++(BOOL)propertyIsOptional:(NSString *)propertyName{
+        return  YES;
+}
 @end

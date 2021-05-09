@@ -122,7 +122,7 @@
     if(!_decBack)
     {
         self.dec = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, screenwith - 2*20, 1)];
-        self.dec.text = @"12345678987654321`123456789876543212345678987654321`23456789";
+        self.dec.text = self.pj.projectDescription;
         self.dec.font = [UIFont systemFontOfSize:14 weight:0.5];
         self.dec.delegate = self;
         self.dec.returnKeyType = UIReturnKeyDone;
@@ -189,6 +189,7 @@
         [_baseView addSubview:invite];
         
         self.pjtitle = [[UITextField alloc]initWithFrame:CGRectMake(100, name.frame.origin.y-5, _baseView.frame.size.width-150, 25)];
+        self.pjtitle.text = self.pj.projectName;
         [self.pjtitle setPlaceholder:@"请在此输入项目名称"];
         self.pjtitle.returnKeyType = UIReturnKeyDone;
         self.pjtitle.delegate = self;
@@ -232,6 +233,10 @@
         [cpBtn.layer setCornerRadius:10];
         [cpBtn.layer setMasksToBounds:YES];
         [_baseView addSubview:cpBtn];
+        self.startTime.text = self.pj.projectStartTime;
+        self.endTime.text = self.pj.projectEndTime;
+        self.Code.text = self.pj.projectId;
+        
     }
     return _baseView;
 }

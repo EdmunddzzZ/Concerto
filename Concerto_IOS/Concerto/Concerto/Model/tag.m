@@ -8,5 +8,7 @@
 #import "tag.h"
 
 @implementation tag
-
++(BOOL)propertyIsOptional:(NSString *)propertyName{
+        return  YES;
+}
 @end

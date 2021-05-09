@@ -320,8 +320,10 @@
 {
     if(indexPath.section == 1)
     {
-        //跳转
+        Project *pj = (Project *)[AppData shareInstance].myProject[indexPath.row];
+        
         ProjectDetailViewController *p = [ProjectDetailViewController new];
+        p.pj = pj;
         [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
     }
 }
@@ -426,7 +428,11 @@
         [cancel setTitle:@"取消" forState:UIControlStateNormal];
         [cancel addTarget:self action:@selector(cancelClcik) forControlEvents:UIControlEventTouchUpInside];
         [self.popView addSubview:cancel];
-        
+        if(CGRectGetMaxY(cancel.frame) > self.popView.frame.size
+           .height)
+        {
+            self.popView.frame = CGRectMake(0, 0, self.popView.frame.size.width, CGRectGetMaxY(cancel.frame)+5);
+        }
         
         
         end.font = [UIFont systemFontOfSize:14 weight:0.3];
@@ -490,7 +496,11 @@
         [cancel setTitle:@"取消" forState:UIControlStateNormal];
         [cancel addTarget:self action:@selector(cancelClcik) forControlEvents:UIControlEventTouchUpInside];
         [self.popView addSubview:cancel];
-        
+        if(CGRectGetMaxY(cancel.frame) > self.popView.frame.size
+           .height)
+        {
+            self.popView.frame = CGRectMake(0, 0, self.popView.frame.size.width, CGRectGetMaxY(cancel.frame)+5);
+        }
         
         LSTPopView *cusView = [LSTPopView initWithCustomView:self.popView parentView:[UIApplication sharedApplication].keyWindow popStyle:LSTPopStyleFade dismissStyle:LSTDismissStyleFade];
         cusView.hemStyle = LSTHemStyleCenter;
@@ -515,7 +525,7 @@
 -(void)compeleteClick2:(UIButton *)sender
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    if(self.code.text.length < 5)
+    if(self.code.text.length == 0)
     {
         [CreateBase showMessage:@"请输入正确的邀请码"];
     }
@@ -719,8 +729,14 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
     NSLog(@"%ld",sender.tag);
     if(sender.tag - 30000 <  [AppData shareInstance].myProject.count)
     {
+        
+        
+        Project *pj = (Project *)[AppData shareInstance].myProject[sender.tag - 30000];
+        
         ProjectDetailViewController *p = [ProjectDetailViewController new];
+        p.pj = pj;
         [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
+        
     }
     else
     {
@@ -822,7 +838,11 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
         [cancel setTitle:@"取消" forState:UIControlStateNormal];
         [cancel addTarget:self action:@selector(cancelClcik) forControlEvents:UIControlEventTouchUpInside];
         [self.popView addSubview:cancel];
-
+        if(CGRectGetMaxY(cancel.frame) > self.popView.frame.size
+           .height)
+        {
+            self.popView.frame = CGRectMake(0, 0, self.popView.frame.size.width, CGRectGetMaxY(cancel.frame)+5);
+        }
 
 
         end.font = [UIFont systemFontOfSize:14 weight:0.3];

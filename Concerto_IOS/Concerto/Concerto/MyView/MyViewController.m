@@ -66,13 +66,14 @@
 {
     if(!_table)
     {
-        _table = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBar.frame), screenwith, screenheight) style:UITableViewStylePlain];
+        _table = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topBar.frame), screenwith, screenheight-self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
         [_table setBackgroundColor:mainBackGroundColor];
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
         _table.delegate = self;
         _table.dataSource = self;
         _table.tableHeaderView = self.HeaderView;
         _table.bounces = NO;
+        _table.showsVerticalScrollIndicator = NO;
         
         //self.sheet.hidden = YES;
        //[self.table addSubview:self.sheet];
@@ -146,9 +147,11 @@
         self.sheet = [[HcdActionSheet alloc]initWithCancelStr:@"取消" otherButtonTitles:@[@"退出登录"] attachTitle:@"确定退出登录吗？"];
         [self.sheet changeTitleColor:[UIColor redColor] andIndex:1];
        self.sheet.seletedButtonIndex = ^(NSInteger index) {
+           if(index == 1)
+           {
            [[ViewManager shareInstance].NavigationController pushViewController:[LoginViewController new] animated:NO];
            [[AppData shareInstance] cleardata];
-           
+           }
        };
         [[UIApplication sharedApplication].keyWindow addSubview:self.sheet];
         

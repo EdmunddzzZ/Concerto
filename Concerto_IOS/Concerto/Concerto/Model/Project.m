@@ -8,5 +8,7 @@
 #import "Project.h"
 
 @implementation Project
-
++(BOOL)propertyIsOptional:(NSString *)propertyName{
+        return  YES;
+}
 @end

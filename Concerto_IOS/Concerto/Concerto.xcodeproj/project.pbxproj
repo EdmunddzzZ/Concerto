@@ -81,6 +81,8 @@
 		BAA76B0A26329C3C005DC327 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76AF726329C3C005DC327 /* AFNetworkReachabilityManager.m */; };
 		BAA76B0B26329C3C005DC327 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76AF826329C3C005DC327 /* AFSecurityPolicy.m */; };
 		BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76B1B2632B4CF005DC327 /* RegisteViewController.m */; };
+		BAC52C8E264813B100BFA69E /* WSHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC52C8C264813B100BFA69E /* WSHPickerView.m */; };
+		BAC52C942648168300BFA69E /* selectPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC52C932648168300BFA69E /* selectPersonViewController.m */; };
 		BAF619ED2631230A004804DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619EC2631230A004804DA /* AppDelegate.m */; };
 		BAF619F32631230A004804DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619F22631230A004804DA /* ViewController.m */; };
 		BAF619F62631230A004804DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F42631230A004804DA /* Main.storyboard */; };
@@ -267,6 +269,10 @@
 		BAA76AFA26329C3C005DC327 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		BAA76B1A2632B4CF005DC327 /* RegisteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisteViewController.h; sourceTree = "<group>"; };
 		BAA76B1B2632B4CF005DC327 /* RegisteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisteViewController.m; sourceTree = "<group>"; };
+		BAC52C8C264813B100BFA69E /* WSHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSHPickerView.m; path = "../../../../../校友通四期/SchoolFriendGather/WSH/WSHPickerView.m"; sourceTree = "<group>"; };
+		BAC52C8D264813B100BFA69E /* WSHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSHPickerView.h; path = "../../../../../校友通四期/SchoolFriendGather/WSH/WSHPickerView.h"; sourceTree = "<group>"; };
+		BAC52C922648168300BFA69E /* selectPersonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = selectPersonViewController.h; sourceTree = "<group>"; };
+		BAC52C932648168300BFA69E /* selectPersonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = selectPersonViewController.m; sourceTree = "<group>"; };
 		BAF619E82631230A004804DA /* Concerto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concerto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF619EB2631230A004804DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BAF619EC2631230A004804DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -497,6 +503,8 @@
 				BA8FEE6C2646C164003100CC /* PersonalViewController.m */,
 				BA8FEE712646C7E4003100CC /* NewTaskViewController.h */,
 				BA8FEE722646C7E4003100CC /* NewTaskViewController.m */,
+				BAC52C922648168300BFA69E /* selectPersonViewController.h */,
+				BAC52C932648168300BFA69E /* selectPersonViewController.m */,
 			);
 			path = ProjextDetail;
 			sourceTree = "<group>";
@@ -700,6 +708,8 @@
 		BAF61A232631232E004804DA /* WSH */ = {
 			isa = PBXGroup;
 			children = (
+				BAC52C8D264813B100BFA69E /* WSHPickerView.h */,
+				BAC52C8C264813B100BFA69E /* WSHPickerView.m */,
 				BA8C73CF263FCEB300C0247D /* CCAFNetworking */,
 				BA395972263FB411002C0D19 /* SizeHeader.h */,
 				BAA397762631BEDD000C0A34 /* ViewManager.h */,
@@ -925,6 +935,7 @@
 				BAA76AFF26329C3C005DC327 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				BAA76B0726329C3C005DC327 /* AFHTTPSessionManager.m in Sources */,
 				BA8922BF26441E530073AEBE /* PGDatePickManager.m in Sources */,
+				BAC52C942648168300BFA69E /* selectPersonViewController.m in Sources */,
 				BA8C73DF263FD65600C0247D /* Task.m in Sources */,
 				BA8922DE26441F3E0073AEBE /* PGPickerTableView.m in Sources */,
 				BA1843EC2634362C009ACFC8 /* MainViewController.m in Sources */,
@@ -969,6 +980,7 @@
 				BA8922DB26441F3E0073AEBE /* PGPickerColumnCell.m in Sources */,
 				BAA76B0226329C3C005DC327 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				BAA76B0A26329C3C005DC327 /* AFNetworkReachabilityManager.m in Sources */,
+				BAC52C8E264813B100BFA69E /* WSHPickerView.m in Sources */,
 				BA8922BA26441E530073AEBE /* UIColor+PGHex.m in Sources */,
 				BAF61A372631232E004804DA /* NullSafe.m in Sources */,
 				BA8922ED26442AC50073AEBE /* MBProgressHUD.m in Sources */,
@@ -1155,6 +1167,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoWSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1176,6 +1189,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ConcertoTeam.ConcertoWSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

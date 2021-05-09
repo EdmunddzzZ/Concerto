@@ -8,5 +8,7 @@
 #import "subTask.h"
 
 @implementation subTask
-
++(BOOL)propertyIsOptional:(NSString *)propertyName{
+        return  YES;
+}
 @end

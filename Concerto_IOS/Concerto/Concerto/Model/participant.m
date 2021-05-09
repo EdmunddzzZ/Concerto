@@ -8,5 +8,7 @@
 #import "participant.h"
 
 @implementation participant
-
++(BOOL)propertyIsOptional:(NSString *)propertyName{
+        return  YES;
+}
 @end
