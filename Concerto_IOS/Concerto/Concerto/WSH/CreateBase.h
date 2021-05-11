@@ -44,5 +44,8 @@
 + (BOOL) validatePassword:(NSString *)passWord;
 +(void)updateProject;
 + (float) heightForString:(UITextView *)textView andWidth:(float)width;
++(NSDate *)stringToDate:(NSString *)str;
++ (UIColor *)colorWithHexString:(NSString *)stringToConvert;
++ (NSString *) hexFromUIColor: (UIColor*) color;
 @end
 

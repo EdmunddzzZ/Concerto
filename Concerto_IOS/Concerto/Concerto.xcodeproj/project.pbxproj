@@ -13,6 +13,7 @@
 		BA1843F62634363D009ACFC8 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843F52634363D009ACFC8 /* MyViewController.m */; };
 		BA1843FF263437E2009ACFC8 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843FE263437E2009ACFC8 /* MainTabViewController.m */; };
 		BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA184404263443D2009ACFC8 /* ChildViewController.m */; };
+		BA4B400F2649808B000C0129 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4B400E2649808B000C0129 /* SuggestViewController.m */; };
 		BA89223A2644011A0073AEBE /* participant.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8922392644011A0073AEBE /* participant.m */; };
 		BA8922402644016F0073AEBE /* subTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BA89223F2644016F0073AEBE /* subTask.m */; };
 		BA892253264404E00073AEBE /* YCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA892252264404E00073AEBE /* YCMenuView.m */; };
@@ -83,6 +84,7 @@
 		BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76B1B2632B4CF005DC327 /* RegisteViewController.m */; };
 		BAC52C8E264813B100BFA69E /* WSHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC52C8C264813B100BFA69E /* WSHPickerView.m */; };
 		BAC52C942648168300BFA69E /* selectPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC52C932648168300BFA69E /* selectPersonViewController.m */; };
+		BAE92187264A15B6009AA1D8 /* DCColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE92186264A15B6009AA1D8 /* DCColorPicker.m */; };
 		BAF619ED2631230A004804DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619EC2631230A004804DA /* AppDelegate.m */; };
 		BAF619F32631230A004804DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF619F22631230A004804DA /* ViewController.m */; };
 		BAF619F62631230A004804DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF619F42631230A004804DA /* Main.storyboard */; };
@@ -129,6 +131,8 @@
 		BA184403263443D2009ACFC8 /* ChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
 		BA184404263443D2009ACFC8 /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		BA395972263FB411002C0D19 /* SizeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
+		BA4B400D2649808B000C0129 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
+		BA4B400E2649808B000C0129 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
 		BA8922382644011A0073AEBE /* participant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = participant.h; sourceTree = "<group>"; };
 		BA8922392644011A0073AEBE /* participant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = participant.m; sourceTree = "<group>"; };
 		BA89223E2644016F0073AEBE /* subTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subTask.h; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 		BAC52C8D264813B100BFA69E /* WSHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSHPickerView.h; path = "../../../../../校友通四期/SchoolFriendGather/WSH/WSHPickerView.h"; sourceTree = "<group>"; };
 		BAC52C922648168300BFA69E /* selectPersonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = selectPersonViewController.h; sourceTree = "<group>"; };
 		BAC52C932648168300BFA69E /* selectPersonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = selectPersonViewController.m; sourceTree = "<group>"; };
+		BAE92185264A15B6009AA1D8 /* DCColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCColorPicker.h; sourceTree = "<group>"; };
+		BAE92186264A15B6009AA1D8 /* DCColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCColorPicker.m; sourceTree = "<group>"; };
 		BAF619E82631230A004804DA /* Concerto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concerto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF619EB2631230A004804DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BAF619EC2631230A004804DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -379,6 +385,8 @@
 		BA1843F326343634009ACFC8 /* MyView */ = {
 			isa = PBXGroup;
 			children = (
+				BA4B400D2649808B000C0129 /* SuggestViewController.h */,
+				BA4B400E2649808B000C0129 /* SuggestViewController.m */,
 				BA1843F42634363D009ACFC8 /* MyViewController.h */,
 				BA1843F52634363D009ACFC8 /* MyViewController.m */,
 			);
@@ -550,6 +558,8 @@
 		BAA3978B2631C8E8000C0A34 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				BAE92185264A15B6009AA1D8 /* DCColorPicker.h */,
+				BAE92186264A15B6009AA1D8 /* DCColorPicker.m */,
 				BA8922EC26442AC50073AEBE /* MBProgressHUD.h */,
 				BA8922EB26442AC40073AEBE /* MBProgressHUD.m */,
 				BA8922E626442A470073AEBE /* LCProgressHUD.h */,
@@ -939,6 +949,7 @@
 				BA8C73DF263FD65600C0247D /* Task.m in Sources */,
 				BA8922DE26441F3E0073AEBE /* PGPickerTableView.m in Sources */,
 				BA1843EC2634362C009ACFC8 /* MainViewController.m in Sources */,
+				BA4B400F2649808B000C0129 /* SuggestViewController.m in Sources */,
 				BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */,
 				BA8922C426441E530073AEBE /* PGDatePicker+DateHourMinute.m in Sources */,
 				BAA76B0526329C3C005DC327 /* AFImageDownloader.m in Sources */,
@@ -957,6 +968,7 @@
 				BA89226626440E2B0073AEBE /* UIView+LSTPV.m in Sources */,
 				BAA76B0626329C3C005DC327 /* AFURLResponseSerialization.m in Sources */,
 				BA8FEE672646A6CD003100CC /* DetailViewController.m in Sources */,
+				BAE92187264A15B6009AA1D8 /* DCColorPicker.m in Sources */,
 				BAF61A352631232E004804DA /* AppData.m in Sources */,
 				BA89226726440E2B0073AEBE /* LSTAlert.m in Sources */,
 				BA8C73D2263FCEB300C0247D /* CCFetchTool.m in Sources */,

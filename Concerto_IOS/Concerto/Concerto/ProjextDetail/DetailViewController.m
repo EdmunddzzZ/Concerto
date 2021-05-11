@@ -6,8 +6,8 @@
 //
 
 #import "DetailViewController.h"
-
-@interface DetailViewController ()<UITextViewDelegate,UITextFieldDelegate>
+#import "PGDatePickManager.h"
+@interface DetailViewController ()<UITextViewDelegate,UITextFieldDelegate,PGDatePickerDelegate>
 @property(nonatomic,strong)UILabel *title1;
 @property(nonatomic,strong)UILabel *title2;
 @property(nonatomic,strong)UIView *baseView;
@@ -23,12 +23,16 @@
 @property(nonatomic,strong)UIButton *change;
 @property(nonatomic,strong)UIButton *cancel;
 @property(nonatomic,strong)UIButton *certain;
+@property(nonatomic,strong)NSDate *Timestart;
+@property(nonatomic,strong)NSDate *TimeEnd;
+
 @end
 
 @implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.view setBackgroundColor:mainBackGroundColor];
     [self.view addSubview:self.title1];
     [self.view addSubview:self.baseView];
@@ -37,6 +41,8 @@
     [self.view addSubview:self.change];
     [self.view addSubview:self.cancel];
     [self.view addSubview:self.certain];
+    self.Timestart = [CreateBase stringToDate:self.startTime.text];
+    self.TimeEnd = [CreateBase stringToDate:self.endTime.text];
     // Do any additional setup after loading the view.
 }
 -(UIButton *)change
@@ -82,8 +88,130 @@
     }
     return _certain;
 }
+-(void)certainClick
+{
+    if(self.pjtitle.text.length == 0)
+    {
+        [CreateBase showMessage:@"请输入正确的项目名！"];
+        return;
+    }
+    else if(self.Timestart > self.TimeEnd)
+    {
+        [CreateBase showMessage:@"请选择正确的项目时间！"];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:self.pjtitle.text forKey:@"projectName"];
+    [dic setObject:self.startTime.text forKey:@"projectStartTime"];
+    [dic setObject:self.endTime.text forKey:@"projectEndTime"];
+    [dic setObject:self.dec.text forKey:@"projectDescription"];
+    [dic setObject:self.pj.projectId forKey:@"projectId"];
+    [LCProgressHUD showLoading:nil];
+    [[ApiManager shareInstance]requestPUTWithURLStr:@"/project" paramDic:dic finish:^(id responseObject)
+     {
+     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+     NSLog(@"%@",dictionary);
+     NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+     if(data.length == 0)
+     {
+         [dictionary setObject:[NSDictionary new] forKey:@"data"];
+     }
+     RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+     if([obj isSuccessful])
+     {
+         
+         [CreateBase updateProject];
+         sleep(1);
+         [LCProgressHUD hide];
+         [CreateBase showMessage:@"修改成功！"];
+         NSString * str = self.pj.projectId;
+         for (Project *p in [AppData shareInstance].myProject)
+         {
+             if([p.projectId isEqual:str])
+             {
+                 self.pj = p;
+                 break;
+             }
+         }
+         self.pjtitle.enabled = NO;
+         self.startBtn.enabled = NO;
+         self.endBtn.enabled = NO;
+         self.change.hidden = NO;
+         [self.dec setEditable:NO];
+         [UIView animateWithDuration:0.5 animations:^{
+             self.change.alpha = 1;
+             self.certain.alpha = 0;
+             self.cancel.alpha = 0;
+         } completion:^(BOOL finished) {
+             
+             self.certain.hidden = YES;
+             self.cancel.hidden = YES;
+             
+         }];
+     }
+     else
+     {
+         [LCProgressHUD hide];
+         [CreateBase showMessage:@"修改失败"];
+     }
+     [LCProgressHUD hide];
+     } enError:^(id error) {
+         [LCProgressHUD hide];
+         [CreateBase showInternetFail];
+         
+         //[self.sendMsg setEnabled:YES];
+     }];
+ 
+}
++(void)updateProject
+{
+ [[ApiManager shareInstance]GET:@"/Project" parameters:nil needsToken:YES Success:^(id responseObject) {
+     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+     NSLog(@"%@",dictionary);
+     NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+     if(data.length == 0)
+     {
+         [dictionary setObject:[NSDictionary new] forKey:@"data"];
+     }
+     RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+     if([obj isSuccessful])
+     {
+         [AppData shareInstance].myProject = [NSMutableArray new];
+         for (NSDictionary * dic in obj.data)
+         {
+             
+             Project *pj = [[Project alloc]initWithDictionary:dic error:nil];
+             [[AppData shareInstance].myProject addObject:pj];
+         }
+         
+         //[CreateBase showMessage:obj.message];
+         
+     }
+     else
+     {
+         [CreateBase showMessage:@"获取信息失败"];
+     }
+     [LCProgressHUD hide];
+     } Failure:^(id error) {
+         [CreateBase showInternetFail];
+         
+         //[self.sendMsg setEnabled:YES];
+     }];
+    
+//    self.pjtitle.enabled = NO;
+//    self.startBtn.enabled = NO;
+//    self.endBtn.enabled = NO;
+//    self.change.hidden = NO;
+//    [self.dec setEditable:NO];
+    
+}
 -(void)cancelClick
 {
+    self.startTime.text = self.pj.projectStartTime;
+    self.endTime.text = self.pj.projectEndTime;
+    self.Code.text = self.pj.projectId;
+    self.pjtitle.text = self.pj.projectName;
+    self.dec.text = self.pj.projectDescription;
     self.pjtitle.enabled = NO;
     self.startBtn.enabled = NO;
     self.endBtn.enabled = NO;
@@ -203,24 +331,27 @@
         self.startTime.font = [UIFont systemFontOfSize:13 weight:0.3];
         self.startBtn = [[UIButton alloc]initWithFrame:self.startTime.frame];
         self.startBtn.tag = 10001;
+        self.startBtn.enabled = NO;
         [self.startBtn addTarget:self action:@selector(selectedTime:) forControlEvents:UIControlEventTouchUpInside];
        // [self.startTime setBackgroundColor:[UIColor greenColor]];
         self.startTime.textColor = [UIColor grayColor];
         [self.startTime setText:@"2000-11-01"];
         [_baseView addSubview:self.startTime];
+        [_baseView addSubview:self.startBtn];
         
         
         
         self.endTime = [[UILabel alloc]initWithFrame:CGRectMake(240.0/350 *_baseView.frame.size.width, start.frame.origin.y-5, 0.25*_baseView.frame.size.width, 25)];
         self.endBtn = [[UIButton alloc]initWithFrame:self.endTime.frame];
         self.endBtn.tag = 10002;
+        self.endBtn.enabled = NO;;
         self.endTime.font = [UIFont systemFontOfSize:13 weight:0.3];
         [self.endBtn addTarget:self action:@selector(selectedTime:) forControlEvents:UIControlEventTouchUpInside];
         //[self.endTime setBackgroundColor:[UIColor greenColor]];
         self.endTime.textColor = [UIColor grayColor];
         [self.endTime setText:@"2000-11-01"];
         [_baseView addSubview:self.endTime];
-        
+        [_baseView addSubview:self.endBtn];
         self.Code = [[UILabel alloc]initWithFrame:CGRectMake(self.startTime.frame.origin.x, invite.frame.origin.y-5, _baseView.frame.size.width-2*self.startTime.frame.origin.x, 25)];
         self.Code.font = [UIFont systemFontOfSize:14 weight:0.5];
         self.Code.textAlignment = NSTextAlignmentLeft;
@@ -239,6 +370,58 @@
         
     }
     return _baseView;
+}
+-(void)selectedTime:(UIButton *)sender
+{
+    PGDatePickManager *manager = [[PGDatePickManager alloc]init];
+        // manager.headerViewBackgroundColor = MainBgColor;
+         manager.confirmButtonTextColor = [CreateBase createColor:0 blue:149 green:247];
+         PGDatePicker *picker = manager.datePicker;
+         picker.datePickerMode = PGDatePickerModeDate ;
+         picker.language = @"zh-Hans";
+         picker.delegate = self;
+        if(sender.tag == 10001)
+        {
+            picker.minimumDate =[NSDate date];
+            picker.tag = 30001;
+        }
+        else if(self.startTime.text.length == 0)
+        {
+            [CreateBase showMessage:@"请先选择开始日期"];
+            return;
+        }
+        else
+        {
+            picker.minimumDate = self.Timestart;
+            picker.tag = 30002;
+        }
+        
+        [self presentViewController:manager animated:YES completion:^{
+        }];
+}
+-(void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents
+{
+    NSString *date;
+    date = [NSString stringWithFormat:@"%d-%02d-%02d",dateComponents.year,dateComponents.month,dateComponents.day];
+    if(datePicker.tag == 30001)
+    {
+        self.startTime.text = date;
+        self.Timestart = [NSDate dateFromComponents:dateComponents];
+        if(self.TimeEnd)
+        {
+        self.endTime.text = @"点击选择时间";
+        self.endTime.textColor = [CreateBase createColor:204];
+        }
+        self.TimeEnd = nil;
+        
+        self.startTime.textColor = [UIColor blackColor];
+    }
+    else
+    {
+        self.endTime.textColor = [UIColor blackColor];
+        self.endTime.text = date;
+        self.TimeEnd = [NSDate dateFromComponents:dateComponents];
+    }
 }
 -(UILabel *)title1
 {

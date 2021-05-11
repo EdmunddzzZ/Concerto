@@ -34,29 +34,74 @@ static NSString *TOKEN;
 }
 - (void)requestPUTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject))finish enError:(void(^)( id error))enError{
     NSString *str = TOKEN;
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",@"text/javascript",@"text/json",@"text/plain", nil];
+    
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",@"text/javascript",@"text/json",@"text/plain", nil];
     
     // 设置请求头
     urlStr = [NSString stringWithFormat:@"%@%@",BaseURLString,urlStr];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    //[manager.requestSerializer setValue:api_key forHTTPHeaderField:@"api_key"];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSLog(@"%@",urlStr);
+    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:paramDic];
+    NSLog(@"body:%@",body);
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
-    [manager.requestSerializer setValue:str forHTTPHeaderField:@"Authorization"];
-    [manager PUT:urlStr parameters:paramDic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *errcode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"errcode"]];
+    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"PUT" URLString:urlStr parameters:nil error:nil];
+    //NSString *str = TOKEN;
+    
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body options:0 error:&error];
+
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    
+    
+    [req setTimeoutInterval:5];
+    
+    [req setValue:str forHTTPHeaderField:@"token"];//添加token
+    
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         
-        if ([errcode isEqualToString:@"0"]) {
-            
+        if (!error)
+        {
+            //做是否需要重新登录的判断，其实就是验证token有效性
+            if (![responseObject[@"result"][@"success"] boolValue] && [responseObject[@"result"][@"code"] intValue]== 909) {
+                NSNotification *notification =[NSNotification notificationWithName:@"relogin" object:nil userInfo:nil];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                return ;
+            }
             finish(responseObject);
-            
-        }else{
-            NSString *errmsg = [responseObject objectForKey:@"errmsg"];
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        enError(error);
-    }];
+        else
+        {
+            enError(responseObject);
+        }
+    }] resume];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    //[manager.requestSerializer setValue:api_key forHTTPHeaderField:@"api_key"];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//
+//    [manager.requestSerializer setValue:str forHTTPHeaderField:@"Authorization"];
+//    [manager PUT:urlStr parameters:paramDic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSString *errcode = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"errcode"]];
+//
+//        if ([errcode isEqualToString:@"0"]) {
+//
+//            finish(responseObject);
+//
+//        }else{
+//            NSString *errmsg = [responseObject objectForKey:@"errmsg"];
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        enError(error);
+//    }];
 }
 
 

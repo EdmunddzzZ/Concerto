@@ -531,6 +531,7 @@
     }
     else
     {
+        [LCProgressHUD showLoading:nil];
         NSString *url = [NSString stringWithFormat:@"/Project/Join/%@",self.code.text];
         [[ApiManager shareInstance]POST:url parameters:nil needsToken:YES Success:^(id responseObject) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];;
@@ -543,7 +544,7 @@
             RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
             if([obj isSuccessful])
             {
-                
+                [LCProgressHUD hide];
                 [CreateBase showMessage:@"加入成功！"];
                 [CreateBase updateProject];
                 sleep(1);
@@ -556,12 +557,14 @@
             }
             else
             {
+                [LCProgressHUD hide];
                 [SVProgressHUD setMaximumDismissTimeInterval:1];
-                [SVProgressHUD showErrorWithStatus:@"加入失败，请检查邀请码"];
+                [SVProgressHUD showErrorWithStatus:obj.message];
                 sender.enabled = YES;
             }
             [LCProgressHUD hide];
             } Failure:^(id error) {
+                [LCProgressHUD hide];
                 [LCProgressHUD hide];
                 [CreateBase showInternetFail];
                 sender.enabled = YES;
@@ -731,7 +734,7 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
     {
         
         
-        Project *pj = (Project *)[AppData shareInstance].myProject[sender.tag - 30000];
+        Project *pj = (Project *)[AppData shareInstance].myProject[sender.tag - 30001];
         
         ProjectDetailViewController *p = [ProjectDetailViewController new];
         p.pj = pj;

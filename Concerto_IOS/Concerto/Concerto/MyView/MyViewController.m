@@ -7,7 +7,7 @@
 
 #import "MyViewController.h"
 #import "LoginViewController.h"
-
+#import "SuggestViewController.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)UITableView *table;
@@ -156,6 +156,24 @@
         [[UIApplication sharedApplication].keyWindow addSubview:self.sheet];
         
         [self.sheet showHcdActionSheet];
+    }
+    else if(indexPath.section == 0)
+    {
+        if(indexPath.row == 1)//意见反馈
+        {
+            SuggestViewController *s = [SuggestViewController new];
+            [[ViewManager shareInstance].NavigationController pushViewController:s animated:YES];
+        }
+    }
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    if(self.HeaderView)
+    {
+    UILabel *name = [self.HeaderView viewWithTag:10002];
+    UILabel *email = [self.HeaderView viewWithTag:10003];
+        name.text = [AppData shareInstance].user_info.userName;
+        email.text = [AppData shareInstance].user_info.userEmail;
     }
 }
 /*

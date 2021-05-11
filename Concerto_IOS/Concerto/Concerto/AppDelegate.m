@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSDate *data = [[NSUserDefaults standardUserDefaults]objectForKey:@"userInfo"];
+    NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:@"userInfo"];
     userInfo *info = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     [AppData shareInstance].user_info = info;
     [AppData shareInstance].token = [[NSUserDefaults standardUserDefaults]objectForKey:@"token"];

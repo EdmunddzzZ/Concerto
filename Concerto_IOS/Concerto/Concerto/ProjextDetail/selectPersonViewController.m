@@ -77,7 +77,7 @@
     UIImageView *img = [cell viewWithTag:10002];
     if(self.selected)
     {
-        for (participant *p in self.parts)
+        for (participant *p in self.selected)
         {
             if([name.text isEqual:p.userName])
             {
@@ -138,6 +138,10 @@
         
     }
     return _topBar;
+}
+-(void)backToPreView
+{
+    [CreateBase backToPreView];
 }
 -(void)completeClick
 {
