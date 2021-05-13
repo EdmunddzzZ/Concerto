@@ -129,11 +129,30 @@
         [LCProgressHUD showMessage:@"字数不少于10个字,请填写详细意见"];
         return;
     }
-    NSLog(@"意见:%@",self.suggestInput.text);
-    if(self.suggestInput.text.length > 0) {
-//        
-            
-    }
+    NSString *url  = @"/User/Advice?content=";
+    url = [NSString stringWithFormat:@"%@%@",url,_suggestInput.text];
+    //NSLog(@"意见:%@",self.suggestInput.text);
+    [[ApiManager shareInstance]requestPUTWithURLStr:url paramDic:nil finish:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            [CreateBase showMessage:@"意见提交成功！"];
+            [[ViewManager shareInstance].NavigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [CreateBase showMessage:obj.message];
+        }
+        } enError:^(id error) {
+            [CreateBase showInternetFail];
+        }];
 }
 
 // 计算剩余可输入字数 超出最大可输入字数，就禁止输入

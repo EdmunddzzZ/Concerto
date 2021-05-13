@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *token;
 @property(nonatomic,strong)NSMutableArray *identities;
 @property(nonatomic,strong)NSMutableArray *myProject;
+@property(nonatomic,strong)NSMutableArray *Recommond;
+@property(nonatomic,strong)NSMutableArray *week;
+@property(nonatomic,strong)NSMutableArray *Month;
+@property(nonatomic,strong)NSMutableArray *day;
 @end
 
 NS_ASSUME_NONNULL_END

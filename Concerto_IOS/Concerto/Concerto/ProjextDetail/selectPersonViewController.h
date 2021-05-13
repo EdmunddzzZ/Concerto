@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface selectPersonViewController : ViewController
-@property(nonatomic,strong)NSArray *parts;
+@property(nonatomic,strong)NSMutableArray *parts;
 @property(nonatomic,strong)NSMutableArray *selected;
 @end
 

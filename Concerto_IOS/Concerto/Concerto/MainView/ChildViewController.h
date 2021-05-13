@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChildViewController : ViewController
+@property(nonatomic,assign)NSInteger status;
 @property(nonatomic,strong)NSArray *planArrays;
 @end
 

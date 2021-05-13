@@ -329,5 +329,72 @@ static NSString *TOKEN;
          failure(error);
      }];
 }
+- (void)POST3:(NSString *)url
+  parameters:(NSDictionary *)parameters
+  needsToken:(BOOL)needtoken
+     Success:(void(^)(id responseObject))success
+     Failure:(void(^)(id error))failure
+{
+    
+//    NSString *fullUrl = [NSString stringWithFormat:@"%@%@",BaseURLString,url];
+//    NSLog(@"请求url = %@",fullUrl);
+//    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:parameters];
+//    NSLog(@"body:%@",body);
+//    NSString *str = TOKEN;
+    NSArray *keys=[parameters allKeys];
+    NSString *content = @"";
+    if(keys.count>0)
+        content = [NSString stringWithFormat:@"%@=%@",keys[0],[parameters objectForKey:keys[0]]];
+    if(keys.count>1)
+        for(int i=1;i<keys.count;i++)
+        {
+            content =[NSString stringWithFormat:@"%@&%@=%@",content,keys[i],[parameters objectForKey:keys[i]]];
+        }
+    
+    NSString *fullUrl = [NSString stringWithFormat:@"%@%@",BaseURLString,url];
+    if(![content isEqualToString:@""])
+    fullUrl = [NSString stringWithFormat:@"%@?%@",fullUrl,content];
+    NSLog(@"请求url = %@",fullUrl);
+    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:parameters];
+    NSLog(@"body:%@",body);
+    NSString *str = TOKEN;
+//
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body options:0 error:&error];
 
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *req = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:fullUrl parameters:nil error:nil];
+    
+    [req setTimeoutInterval:5];
+    
+    [req setValue:str forHTTPHeaderField:@"token"];//添加token
+    
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    //[req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        if (!error)
+        {
+            //做是否需要重新登录的判断，其实就是验证token有效性
+            if (![responseObject[@"result"][@"success"] boolValue] && [responseObject[@"result"][@"code"] intValue]== 909) {
+                NSNotification *notification =[NSNotification notificationWithName:@"relogin" object:nil userInfo:nil];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                return ;
+            }
+            success(responseObject);
+        }
+        else
+        {
+            failure(responseObject);
+        }
+    }] resume];
+}
 @end

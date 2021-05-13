@@ -43,8 +43,9 @@
         UIImageView *head = [[UIImageView alloc]initWithFrame:CGRectMake(30, 35, 105, 105)];
         head.layer.cornerRadius = 52.5;
         head.layer.masksToBounds = YES;
-        [head setBackgroundColor:mainColor];
+        //[head setBackgroundColor:mainColor];
         head.tag = 10001;
+        [head setImage:[UIImage imageNamed:@"默认头像"]];
         UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(head.frame)+40, 67.5, screenwith, 15)];
         name.text = [AppData shareInstance].user_info.userName;
         name.textColor = [UIColor blackColor];

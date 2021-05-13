@@ -320,11 +320,22 @@
 {
     if(indexPath.section == 1)
     {
-        Project *pj = (Project *)[AppData shareInstance].myProject[indexPath.row];
+       __block Project *pj = (Project *)[AppData shareInstance].myProject[indexPath.row];
+        [LCProgressHUD showLoading:nil];
+        [CreateBase updateProjectAtIndex:pj.projectId finish:^{
+            pj = [AppData shareInstance].myProject[indexPath.row];
+            [LCProgressHUD hide];
+            
+            ProjectDetailViewController *p = [ProjectDetailViewController new];
+            p.pj = pj;
+            [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
+        }];
+       // [CreateBase updateProjectAtIndex:pj.projectId];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [CreateBase updateProjectAtIndex:pj.projectId];
+//
+//        });
         
-        ProjectDetailViewController *p = [ProjectDetailViewController new];
-        p.pj = pj;
-        [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
     }
 }
 -(void)addBtnClick
@@ -545,7 +556,7 @@
             if([obj isSuccessful])
             {
                 [LCProgressHUD hide];
-                [CreateBase showMessage:@"加入成功！"];
+                [CreateBase showMessage:@"申请加入成功！"];
                 [CreateBase updateProject];
                 sleep(1);
                 
@@ -593,9 +604,10 @@
     }
     else
     {
-        picker.minimumDate = self.startDate;
+        picker.minimumDate = [NSDate dateWithTimeInterval:86400 sinceDate:self.startDate];
         picker.tag = 30002;
     }
+    
     
     [self presentViewController:manager animated:YES completion:^{
             
@@ -730,15 +742,20 @@ if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>
 {
    // NSLog(@"111");
     NSLog(@"%ld",sender.tag);
-    if(sender.tag - 30000 <  [AppData shareInstance].myProject.count)
+    if(sender.tag - 30000 <=  [AppData shareInstance].myProject.count)
     {
+        __block Project *pj = (Project *)[AppData shareInstance].myProject[sender.tag - 30001];
+         [LCProgressHUD showLoading:nil];
+         [CreateBase updateProjectAtIndex:pj.projectId finish:^{
+             pj = [AppData shareInstance].myProject[sender.tag - 30001];
+             [LCProgressHUD hide];
+             
+             ProjectDetailViewController *p = [ProjectDetailViewController new];
+             p.pj = pj;
+             [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
+         }];
         
-        
-        Project *pj = (Project *)[AppData shareInstance].myProject[sender.tag - 30001];
-        
-        ProjectDetailViewController *p = [ProjectDetailViewController new];
-        p.pj = pj;
-        [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
+
         
     }
     else

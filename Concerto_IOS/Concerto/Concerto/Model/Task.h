@@ -18,12 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *taskTitle;
 @property(nonatomic,strong)NSNumber *taskType;
 @property(nonatomic,strong)NSNumber *taskPriority;
-@property(nonatomic,strong)NSString *tastStartTime;
+@property(nonatomic,strong)NSString *taskStartTime;
 @property(nonatomic,strong)NSString *taskEndTime;
 @property(nonatomic,strong)NSNumber *subTaskNum;
 @property(nonatomic,strong)NSNumber *subTaskCompletedNum;
 @property(nonatomic,strong)NSNumber *taskDays;
 @property(nonatomic,strong)NSArray *tags;
+@property(nonatomic,strong)NSArray *participants;
+@property(nonatomic,strong)NSNumber *remainingDays;
 
 @end
 

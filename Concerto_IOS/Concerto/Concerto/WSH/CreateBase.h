@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Project.h"
+
 #define screenwith [UIScreen mainScreen].bounds.size.width
 #define screenheight [UIScreen mainScreen].bounds.size.height
 #define sw_(a) a/414.0*screenwith
@@ -47,5 +49,8 @@
 +(NSDate *)stringToDate:(NSString *)str;
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert;
 + (NSString *) hexFromUIColor: (UIColor*) color;
++ (void)updateProjectAtIndex:(NSString *)projectId finish:(void(^)(void))finish;
++ (Project *)searchProject:(NSString *)projectid;
++(void)updateMyTask:(void(^)(void))finish;
 @end
 

@@ -6,6 +6,7 @@
 //
 
 #import "PersonalViewController.h"
+#import "MJRefresh.h"
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *table;
@@ -29,6 +30,14 @@
         _table.separatorStyle = UITableViewCellSelectionStyleNone;
         _table.delegate = self;
         _table.dataSource = self;
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+        [header setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+            // 往下拉的时候文字
+        [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
+            // 松手时候的文字
+        [header setTitle:@"松开刷新" forState:MJRefreshStatePulling];
+        
+        _table.mj_header = header;
     }
     return _table;
 }
@@ -38,7 +47,9 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if(section == 0)
+        return self.shenqingren.count;
+    return self.members.count;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -121,6 +132,13 @@
             [refuse addTarget:self action:@selector(refuseClick:) forControlEvents:UIControlEventTouchUpInside];
             [backView addSubview:refuse];
         }
+        UILabel *name = [cell1 viewWithTag:20001];
+        UILabel *email = [cell1 viewWithTag:20002];
+        
+        participant *p = self.shenqingren[indexPath.row];
+        name.text = [NSString stringWithFormat:@"用户名： %@",p.userName];
+        email.text = [NSString stringWithFormat:@"邮箱： %@",p.userEmail];
+        
         return cell1;
     }
     else
@@ -152,20 +170,125 @@
             email.textColor = [UIColor blackColor];
             [backView addSubview:email];
         }
+        UILabel *name = [cell2 viewWithTag:20001];
+        UILabel *email = [cell2 viewWithTag:20002];
+        
+        participant *p = self.members[indexPath.row];
+        name.text = [NSString stringWithFormat:@"用户名： %@",p.userName];
+        email.text = [NSString stringWithFormat:@"邮箱： %@",p.userEmail];
         return cell2;
     }
+}
+-(void)refreshData
+{
+    
+    [self.table.mj_header beginRefreshing];
+    [CreateBase updateProjectAtIndex:self.pjid finish:^{
+        Project * p =[CreateBase searchProject:self.pjid];
+        self.members = p.members;
+        self.shenqingren = p.shenqing;
+        [self.table reloadData];
+        [self.table.mj_header endRefreshing];
+    }];
 }
 -(void)agreeClick:(UIButton *)sender
 {
     NSLog(@"%ld",sender.tag);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否同意人员申请？" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [LCProgressHUD showLoading:nil];
+        participant *p = self.shenqingren[sender.tag-30000];
+        NSDictionary *dic = @{@"projectId":[NSNumber numberWithInt:[self.pjid intValue]],@"userId":[NSNumber numberWithInt:[p.userId intValue]],@"operation":@"true"};
+        [[ApiManager shareInstance]POST3:@"/project/applicant/auth" parameters:dic needsToken:YES Success:^(id responseObject) {
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+            NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+            if(data.length == 0)
+            {
+                [dictionary setObject:[NSDictionary new] forKey:@"data"];
+            }
+            RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+            if([obj isSuccessful])
+            {
+                [LCProgressHUD hide];
+                [CreateBase showMessage:@"操作成功!"];
+                [self.shenqingren removeObject:p];
+                [CreateBase updateProjectAtIndex:self.pjid finish:^{
+                    Project * p =[CreateBase searchProject:self.pjid];
+                    self.members = p.members;
+                    self.shenqingren = p.shenqing;
+                    [self.table reloadData];
+                }];
+            }
+            else
+            {
+                [LCProgressHUD hide];
+                [CreateBase showMessage:obj.message];
+            }
+                } Failure:^(id error) {
+                    [LCProgressHUD hide];
+                    [CreateBase showInternetFail];
+                }];
+    }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        
+    [self presentViewController:alert animated:YES completion:^{
+            
+    }];
 }
 -(void)refuseClick:(UIButton *)sender
 {
     NSLog(@"%ld",sender.tag);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否拒绝人员申请？" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [LCProgressHUD showLoading:nil];
+        participant *p = self.shenqingren[sender.tag-40000];
+        NSDictionary *dic = @{@"projectId":[NSNumber numberWithInt:[self.pjid intValue]],@"userId":[NSNumber numberWithInt:[p.userId intValue]],@"operation":@"false"};
+        [[ApiManager shareInstance]POST3:@"/project/applicant/auth" parameters:dic needsToken:YES Success:^(id responseObject) {
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+            NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+            if(data.length == 0)
+            {
+                [dictionary setObject:[NSDictionary new] forKey:@"data"];
+            }
+            RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+            if([obj isSuccessful])
+            {
+                [LCProgressHUD hide];
+                [CreateBase showMessage:@"操作成功!"];
+                [self.shenqingren removeObject:p];
+                [CreateBase updateProjectAtIndex:self.pjid finish:^{
+                    Project * p =[CreateBase searchProject:self.pjid];
+                    self.members = p.members;
+                    self.shenqingren = p.shenqing;
+                    [self.table reloadData];
+                }];
+            }
+            else
+            {
+                [LCProgressHUD hide];
+                [CreateBase showMessage:obj.message];
+            }
+                } Failure:^(id error) {
+                    [LCProgressHUD hide];
+                    [CreateBase showInternetFail];
+                }];
+    }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        
+    [self presentViewController:alert animated:YES completion:^{
+            
+    }];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    Project *j = [CreateBase searchProject:self.pjid];
+    self.members = j.members;
+    self.shenqingren = j.shenqing;
+    [self.table reloadData];
 }
 /*
 #pragma mark - Navigation

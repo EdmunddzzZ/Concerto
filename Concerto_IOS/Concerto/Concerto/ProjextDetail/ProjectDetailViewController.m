@@ -13,6 +13,7 @@
 #import "PersonalViewController.h"
 #import "LSTPopView.h"
 #import "NewTaskViewController.h"
+#import "ChildProject2ViewController.h"
 @interface ProjectDetailViewController ()<FSPageContentViewDelegate,FSSegmentTitleViewDelegate>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)FSSegmentTitleView *titleView;
@@ -32,7 +33,10 @@
     [self.view addSubview:self.topBar];
     //[self.view addSubview:self.plan];
     [self.view addSubview:self.titleView];
-    [self.view addSubview:self.pageContentView];
+    //[CreateBase updateProjectAtIndex:self.pj.projectId finish:^{
+        [self.view addSubview:self.pageContentView];
+    //}];
+    
     [self.view addSubview:self.addBtn];
     // Do any additional setup after loading the view.
 }
@@ -86,7 +90,8 @@
 {
     //
     NewTaskViewController *task = [NewTaskViewController new];
-    task.partispants = self.parts;
+    task.pj = self.pj;
+    task.partispants = self.pj.members;
     task.projectID = self.pj.projectId;
     [[ViewManager shareInstance].NavigationController pushViewController:task animated:YES];
     [self.customView dismiss];
@@ -107,17 +112,30 @@
         DetailViewController *detail = [DetailViewController new];
         detail.pj = self.pj;
         PersonalViewController *person = [PersonalViewController new];
-        for(int i = 0;i < 2 ;i++)
-        {
-            ChildProjectDetailViewController *c = [ChildProjectDetailViewController new];
-            NSMutableArray *arr = [NSMutableArray new];
-            for(int j = 0;j < i; j = j+1)
-            {
-                [arr addObject:[NSNumber numberWithInt:j]];
-            }
-            c.planArrays = arr;
-            [array addObject:c];
-        }
+        person.pjid = self.pj.projectId;
+        ChildProjectDetailViewController *week = [ChildProjectDetailViewController new];
+        week.pjid = self.pj.projectId;
+        week.pj = self.pj;
+        week.planArrays = self.pj.week_tasks;
+        week.leixing = 0;
+        ChildProject2ViewController *all = [ChildProject2ViewController new];
+        all.planArrays = self.pj.all_tasks;
+        all.pjid = self.pj.projectId;
+        all.leixing = 1;
+        all.pj = self.pj;
+//        for(int i = 0;i < 2 ;i++)
+//        {
+//            ChildProjectDetailViewController *c = [ChildProjectDetailViewController new];
+//            NSMutableArray *arr = [NSMutableArray new];
+//            for(int j = 0;j < i; j = j+1)
+//            {
+//                [arr addObject:[NSNumber numberWithInt:j]];
+//            }
+//            c.planArrays = arr;
+//            [array addObject:c];
+//        }
+        [array addObject:week];
+        [array addObject:all];
         [array addObject:detail];
         [array addObject:person];
         
@@ -147,7 +165,7 @@
         _topBar.backgroundColor = [UIColor whiteColor];
        
         UILabel *login = [[UILabel alloc]initWithFrame:CGRectMake(0,_topBar.frame.size.height-25, screenwith, 20)];
-        login.text = @"xx项目";
+        login.text = self.pj.projectName;
         login.font = [UIFont systemFontOfSize:20 weight:1.0];
         login.textColor = [UIColor blackColor];
         login.textAlignment = NSTextAlignmentCenter;
@@ -178,10 +196,12 @@
     if(endIndex > 1)
     {
         self.addBtn.hidden = YES;
+        self.sortBtn.hidden = YES;
     }
     else
     {
         self.addBtn.hidden = NO;
+        self.sortBtn.hidden = NO;
     }
     //self.title = self.alltitle;
 }
@@ -199,39 +219,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-    NSMutableDictionary *dic = [NSMutableDictionary new];
-    [dic setObject:self.pj.projectId forKey:@"projectId"];
-    [[ApiManager shareInstance]GET:@"/project/member" parameters: dic needsToken:YES Success:^(id responseObject) {
-        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
-        NSLog(@"%@",dictionary);
-        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
-        if(data.length == 0)
-        {
-            [dictionary setObject:[NSDictionary new] forKey:@"data"];
-        }
-        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
-        if([obj isSuccessful])
-        {
-            self.parts = [NSMutableArray new];
-            for (NSDictionary *dic in obj.data)
-            {
-                participant *p = [[participant alloc]initWithDictionary:dic error:nil];
-                [self.parts addObject:p];
-            }
-        }
-        else
-        {
-            [CreateBase showMessage:@"获取信息失败"];
-        }
-        [LCProgressHUD hide];
-        } Failure:^(id error) {
-            [CreateBase showInternetFail];
-
-            //[self.sendMsg setEnabled:YES];
-        }];
-    
-   
+//    [CreateBase updateProjectAtIndex:self.pj.projectId finish:^{
+//    }];
 }
 /*
 #pragma mark - Navigation

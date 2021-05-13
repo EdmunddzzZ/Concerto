@@ -61,6 +61,7 @@
 		BA8FEE6D2646C164003100CC /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FEE6C2646C164003100CC /* PersonalViewController.m */; };
 		BA8FEE732646C7E4003100CC /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FEE722646C7E4003100CC /* NewTaskViewController.m */; };
 		BA90523326384E82005CAD03 /* RespondObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA90523226384E82005CAD03 /* RespondObject.m */; };
+		BA9118B9264BFC49005B31AB /* ChildProject2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9118B8264BFC49005B31AB /* ChildProject2ViewController.m */; };
 		BAA397772631BEDD000C0A34 /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA397752631BEDD000C0A34 /* ViewManager.m */; };
 		BAA3977F2631BFC4000C0A34 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA3977E2631BFC4000C0A34 /* LoginViewController.m */; };
 		BAA6E2E52638FF4400A63F83 /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA6E2E42638FF4400A63F83 /* userInfo.m */; };
@@ -82,6 +83,7 @@
 		BAA76B0A26329C3C005DC327 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76AF726329C3C005DC327 /* AFNetworkReachabilityManager.m */; };
 		BAA76B0B26329C3C005DC327 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76AF826329C3C005DC327 /* AFSecurityPolicy.m */; };
 		BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA76B1B2632B4CF005DC327 /* RegisteViewController.m */; };
+		BAA84C69264D0C2A00E26AC4 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA84C68264D0C2A00E26AC4 /* TaskDetailViewController.m */; };
 		BAC52C8E264813B100BFA69E /* WSHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC52C8C264813B100BFA69E /* WSHPickerView.m */; };
 		BAC52C942648168300BFA69E /* selectPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC52C932648168300BFA69E /* selectPersonViewController.m */; };
 		BAE92187264A15B6009AA1D8 /* DCColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE92186264A15B6009AA1D8 /* DCColorPicker.m */; };
@@ -229,6 +231,8 @@
 		BA8FEE722646C7E4003100CC /* NewTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewTaskViewController.m; sourceTree = "<group>"; };
 		BA90523126384E82005CAD03 /* RespondObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RespondObject.h; sourceTree = "<group>"; };
 		BA90523226384E82005CAD03 /* RespondObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RespondObject.m; sourceTree = "<group>"; };
+		BA9118B7264BFC49005B31AB /* ChildProject2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildProject2ViewController.h; sourceTree = "<group>"; };
+		BA9118B8264BFC49005B31AB /* ChildProject2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildProject2ViewController.m; sourceTree = "<group>"; };
 		BAA397752631BEDD000C0A34 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
 		BAA397762631BEDD000C0A34 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
 		BAA3977D2631BFC4000C0A34 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 		BAA76AFA26329C3C005DC327 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		BAA76B1A2632B4CF005DC327 /* RegisteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisteViewController.h; sourceTree = "<group>"; };
 		BAA76B1B2632B4CF005DC327 /* RegisteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisteViewController.m; sourceTree = "<group>"; };
+		BAA84C67264D0C2A00E26AC4 /* TaskDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskDetailViewController.h; sourceTree = "<group>"; };
+		BAA84C68264D0C2A00E26AC4 /* TaskDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
 		BAC52C8C264813B100BFA69E /* WSHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSHPickerView.m; path = "../../../../../校友通四期/SchoolFriendGather/WSH/WSHPickerView.m"; sourceTree = "<group>"; };
 		BAC52C8D264813B100BFA69E /* WSHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSHPickerView.h; path = "../../../../../校友通四期/SchoolFriendGather/WSH/WSHPickerView.h"; sourceTree = "<group>"; };
 		BAC52C922648168300BFA69E /* selectPersonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = selectPersonViewController.h; sourceTree = "<group>"; };
@@ -305,7 +311,7 @@
 		BAF61A302631232E004804DA /* UnitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitCell.m; sourceTree = "<group>"; };
 		BAF61A312631232E004804DA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BAF61A322631232E004804DA /* AppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppData.h; sourceTree = "<group>"; };
-		BAF61A332631232E004804DA /* CreateBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBase.m; sourceTree = "<group>"; };
+		BAF61A332631232E004804DA /* CreateBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBase.m; sourceTree = "<group>"; wrapsLines = 0; };
 		BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Concerto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5DDFF519C94FB76A5717B29 /* Pods-Concerto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concerto.release.xcconfig"; path = "Target Support Files/Pods-Concerto/Pods-Concerto.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -378,6 +384,8 @@
 				BA1843EB2634362C009ACFC8 /* MainViewController.m */,
 				BA184403263443D2009ACFC8 /* ChildViewController.h */,
 				BA184404263443D2009ACFC8 /* ChildViewController.m */,
+				BAA84C67264D0C2A00E26AC4 /* TaskDetailViewController.h */,
+				BAA84C68264D0C2A00E26AC4 /* TaskDetailViewController.m */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -505,6 +513,8 @@
 				BA8C73D8263FD4D900C0247D /* ProjectDetailViewController.m */,
 				BA8FEE5F2646A16E003100CC /* ChildProjectDetailViewController.h */,
 				BA8FEE602646A16E003100CC /* ChildProjectDetailViewController.m */,
+				BA9118B7264BFC49005B31AB /* ChildProject2ViewController.h */,
+				BA9118B8264BFC49005B31AB /* ChildProject2ViewController.m */,
 				BA8FEE652646A6CD003100CC /* DetailViewController.h */,
 				BA8FEE662646A6CD003100CC /* DetailViewController.m */,
 				BA8FEE6B2646C164003100CC /* PersonalViewController.h */,
@@ -726,7 +736,6 @@
 				BAA397752631BEDD000C0A34 /* ViewManager.m */,
 				BAF61A252631232E004804DA /* UnitCell.h */,
 				BAF61A262631232E004804DA /* ApiManager.h */,
-				BAF61A272631232E004804DA /* CreateBase.h */,
 				BAF61A282631232E004804DA /* AppData.m */,
 				BAF61A292631232E004804DA /* Readme */,
 				BAF61A2B2631232E004804DA /* NullSafe.m */,
@@ -734,6 +743,7 @@
 				BAF61A302631232E004804DA /* UnitCell.m */,
 				BAF61A312631232E004804DA /* PrefixHeader.pch */,
 				BAF61A322631232E004804DA /* AppData.h */,
+				BAF61A272631232E004804DA /* CreateBase.h */,
 				BAF61A332631232E004804DA /* CreateBase.m */,
 			);
 			path = WSH;
@@ -926,6 +936,7 @@
 				BAF61A392631232E004804DA /* ApiManager.m in Sources */,
 				BAA76B0026329C3C005DC327 /* UIImageView+AFNetworking.m in Sources */,
 				BAA76B0B26329C3C005DC327 /* AFSecurityPolicy.m in Sources */,
+				BAA84C69264D0C2A00E26AC4 /* TaskDetailViewController.m in Sources */,
 				BA8922C226441E530073AEBE /* PGDatePicker+MonthDayHourMinute.m in Sources */,
 				BAF619ED2631230A004804DA /* AppDelegate.m in Sources */,
 				BA8C73D9263FD4D900C0247D /* ProjectDetailViewController.m in Sources */,
@@ -953,6 +964,7 @@
 				BAA76B1C2632B4CF005DC327 /* RegisteViewController.m in Sources */,
 				BA8922C426441E530073AEBE /* PGDatePicker+DateHourMinute.m in Sources */,
 				BAA76B0526329C3C005DC327 /* AFImageDownloader.m in Sources */,
+				BA9118B9264BFC49005B31AB /* ChildProject2ViewController.m in Sources */,
 				BA89226526440E2B0073AEBE /* LSTPopView.m in Sources */,
 				BA8922BB26441E530073AEBE /* PGDatePickerView.m in Sources */,
 				BAA76B0126329C3C005DC327 /* UIButton+AFNetworking.m in Sources */,
@@ -1170,6 +1182,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L28NG732PD;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Concerto/WSH/PrefixHeader.pch";
@@ -1192,6 +1205,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L28NG732PD;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Concerto/WSH/PrefixHeader.pch";

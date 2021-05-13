@@ -276,7 +276,7 @@ return [passWordPredicate evaluateWithObject:passWord];
 {
     [[ApiManager shareInstance]GET:@"/Project" parameters:nil needsToken:YES Success:^(id responseObject) {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
-        NSLog(@"%@",dictionary);
+       // NSLog(@"%@",dictionary);
         NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
         if(data.length == 0)
         {
@@ -386,7 +386,243 @@ return [passWordPredicate evaluateWithObject:passWord];
                  lroundf(b * 255)];
 }
 
-
-
-
++(void)updateProjectAtIndex:(NSString *)projectId finish:(void(^)(void))finish
+{
+    Project *pj = nil;
+    for (Project *p  in [AppData shareInstance].myProject)
+    {
+        if([p.projectId isEqual:projectId])
+        {
+            pj = p;
+            break;
+        }
+    }
+    if(!pj)
+    {
+        return ;
+    }
+    pj.members = [NSMutableArray new];
+    pj.shenqing = [NSMutableArray new];
+    pj.week_tasks = [NSMutableArray new];
+    pj.all_tasks = [NSMutableArray new];
+    dispatch_group_t downloadGroup = dispatch_group_create();
+    NSDictionary *dic = @{@"projectId":pj.projectId};
+    dispatch_group_enter(downloadGroup);
+    //NSLog(@"请求1开始");
+    
+    [[ApiManager shareInstance]GET:@"/project/member" parameters:dic needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                participant *p = [[participant alloc]initWithDictionary:dic error:nil];
+                [pj.members addObject:p];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_enter(downloadGroup);
+    //NSLog(@"请求2开始");
+    [[ApiManager shareInstance]GET:@"/project/applicant" parameters:dic needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            NSLog(@"请求2完成");
+            for (NSDictionary *dic in obj.data)
+            {
+                participant *p = [[participant alloc]initWithDictionary:dic error:nil];
+                
+                [pj.shenqing addObject:p];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_enter(downloadGroup);
+    [[ApiManager shareInstance]GET:@"/project/task/all" parameters:dic needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                Task *p = [[Task alloc]initWithDictionary:dic error:nil];
+                [pj.all_tasks addObject:p];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_enter(downloadGroup);
+    [[ApiManager shareInstance]GET:@"/project/task/week" parameters:dic needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                Task *p = [[Task alloc]initWithDictionary:dic error:nil];
+                [pj.week_tasks addObject:p];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_notify(downloadGroup, dispatch_get_main_queue(), ^{
+        finish();
+    });
+}
++(Project *)searchProject:(NSString *)projectid
+{
+    Project *p = nil;
+    for (Project *j in [AppData shareInstance].myProject)
+    {
+        if([projectid isEqual:j.projectId])
+        {
+            p = j;
+            return p;
+        }
+    }
+    return p;
+}
++(void)updateMyTask:(void(^)(void))finish
+{
+    [AppData shareInstance].day = [NSMutableArray new];
+    [AppData shareInstance].Recommond = [NSMutableArray new];
+    [AppData shareInstance].Month = [NSMutableArray new];
+    [AppData shareInstance].week = [NSMutableArray new];
+    dispatch_group_t downloadGroup = dispatch_group_create();
+    dispatch_group_enter(downloadGroup);
+    [[ApiManager shareInstance]GET:@"/User/Schedule/Recommend" parameters:nil needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                Task *t = [[Task alloc]initWithDictionary:dic error:nil];
+                [[AppData shareInstance].Recommond addObject:t];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_enter(downloadGroup);
+    [[ApiManager shareInstance]GET:@"/User/Schedule/Day" parameters:nil needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                Task *t = [[Task alloc]initWithDictionary:dic error:nil];
+                [[AppData shareInstance].day addObject:t];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_enter(downloadGroup);
+    [[ApiManager shareInstance]GET:@"/User/Schedule/Week" parameters:nil needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                Task *t = [[Task alloc]initWithDictionary:dic error:nil];
+                [[AppData shareInstance].week addObject:t];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_enter(downloadGroup);
+    [[ApiManager shareInstance]GET:@"/User/Schedule/Month" parameters:nil needsToken:YES Success:^(id responseObject) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
+        //NSLog(@"%@",dictionary);
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"data"]];;
+        if(data.length == 0)
+        {
+            [dictionary setObject:[NSDictionary new] forKey:@"data"];
+        }
+        RespondObject *obj = [[RespondObject alloc]initWithDictionary:dictionary error:nil];
+        if([obj isSuccessful])
+        {
+            for (NSDictionary *dic in obj.data)
+            {
+                Task *t = [[Task alloc]initWithDictionary:dic error:nil];
+                [[AppData shareInstance].Month addObject:t];
+            }
+        }
+        dispatch_group_leave(downloadGroup);
+        } Failure:^(id error) {
+            [CreateBase showInternetFail];
+            dispatch_group_leave(downloadGroup);
+        }];
+    dispatch_group_notify(downloadGroup, dispatch_get_main_queue(), ^{
+        finish();
+    });
+    
+}
 @end

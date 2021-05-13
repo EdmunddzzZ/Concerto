@@ -5,26 +5,35 @@
 //  Created by EdmunddzzZ on 2021/4/24.
 //
 
-#import "ChildViewController.h"
+#import "ChildProject2ViewController.h"
 #import "CreateBase.h"
 #import "MJRefresh.h"
-#import "TaskDetailViewController.h"
-@interface ChildViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ChildProject2ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *isEmpty;
+@property(nonatomic,strong)NSMutableArray *weiwancheng;
+@property(nonatomic,strong)NSMutableArray *yiwancheng;
 @property(nonatomic,strong)NSMutableArray *btns;
 @end
 
-@implementation ChildViewController
+@implementation ChildProject2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.btns = [NSMutableArray new];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.isEmpty];
+    
     [self.view setBackgroundColor:mainBackGroundColor];
     
-   
+    if(self.planArrays.count == 0)
+    {
+        //self.tableView.hidden = YES;
+    }
+    else
+    {
+        self.isEmpty.hidden = YES;
+    }
     // Do any additional setup after loading the view.
 }
 -(UILabel *)isEmpty
@@ -43,7 +52,7 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 1, screenwith,    MAX(130*_planArrays.count, screenheight-self.tabBarController.tabBar.frame.size.height)) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 1, screenwith,    MAX(130*_planArrays.count, screenheight-90-Safearea)) style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = mainBackGroundColor;
         _tableView.delegate = self;
@@ -62,13 +71,16 @@
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return self.planArrays.count;
+    if(section == 0)
+    return self.weiwancheng.count;
+    else
+        return self.yiwancheng.count;
+        return 0;
 }
 //-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 //{
@@ -96,8 +108,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid1"];
     UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cellid2"];
-    Task *task = self.planArrays[indexPath.row];
-    if([task.taskStatus isEqual:[NSNumber numberWithInt:0]])
+    if(indexPath.section == 0)
     {
     if(!cell)
     {
@@ -106,7 +117,7 @@
         cell.contentView.hidden = YES;
         cell.backgroundColor = mainBackGroundColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(25, 15, screenwith-50, 130-15)];
+        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(25, 15, screenwith-50, 180-15)];
         contentView.backgroundColor = [UIColor whiteColor];
         contentView.layer.cornerRadius = 8;
         contentView.layer.masksToBounds = YES;
@@ -190,24 +201,48 @@
         [tag3 addSubview:taglab3];
         [contentView addSubview:tag3];
         
-        UIView *dayline = [[UIView alloc]initWithFrame:CGRectMake(sonComplete.frame.origin.x+20, CGRectGetMaxY(sonComplete.frame)+15, 2, 20)];
+        UIView *dayline = [[UIView alloc]initWithFrame:CGRectMake(sonComplete.frame.origin.x+20, CGRectGetMaxY(sonComplete.frame)+35, 2, 20)];
         dayline.tag = 1004;
         [dayline setBackgroundColor:mainColor];
         [contentView addSubview:dayline];
         
-        UILabel *leftDay = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dayline.frame)+10, dayline.frame.origin.y+2, 30, 15)];
+        UILabel *leftDay = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dayline.frame)+10, dayline.frame.origin.y+2, 70, 15)];
         leftDay.tag = 1005;
+        leftDay.font = [UIFont systemFontOfSize:11 weight:0.3];
         leftDay.text = @"3天";
-        leftDay.font = [UIFont systemFontOfSize:14 weight:0.2];
+        //leftDay.font = [UIFont systemFontOfSize:14 weight:0.2];
         [contentView addSubview:leftDay];
-    
-        UILabel *people = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(leftDay.frame)+20, leftDay.frame.origin.y, screenwith-CGRectGetMaxX(leftDay.frame)-100, 15)];
+        UIView *dayline2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(leftDay.frame)+10, CGRectGetMaxY(sonComplete.frame)+35, 2, 20)];
+        dayline2.backgroundColor = [CreateBase createColor:98 blue:169 green:221];
+        [contentView addSubview:dayline2];
+        UILabel *leftday2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(dayline2.frame)+10, dayline.frame.origin.y+2, 70, 15)];
+        leftday2.tag = 1009;
+        leftday2.font = leftDay.font;
+        //leftday2.font = [UIFont systemFontOfSize:14 weight:0.2];
+        [contentView addSubview:leftday2];
+        UILabel *people = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(leftDay.frame)+20, CGRectGetMaxY(sonComplete.frame)+15, screenwith-CGRectGetMaxX(leftDay.frame)-100, 15)];
         people.text = @"saries saries2 saries3";
         people.textAlignment = NSTextAlignmentRight;
         people.font = [UIFont systemFontOfSize:14 weight:0.2];
         people.textColor = [CreateBase createColor:127];
         people.tag  = 1006;
         [contentView addSubview:people];
+        UIView *progressView = [[UIView alloc]initWithFrame:CGRectMake(dayline.frame.origin.x, CGRectGetMaxY(dayline.frame)+10, contentView.frame.size.width-dayline.frame.origin.x-20, 20)];
+        progressView.tag = 5000;
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, progressView.frame.size.height, progressView.frame.size.width, 1)];
+        line.backgroundColor = [CreateBase createColor:218 blue:152 green:51];
+        [progressView addSubview:line];
+        
+        UIView *taskAtPj = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+        
+        taskAtPj.tag = 5001;
+        UIView *subtask = [[UIView alloc]initWithFrame:CGRectMake(0,0 , 0, 0)];
+        subtask.tag = 5002;
+        [contentView addSubview:progressView];
+        [progressView addSubview:taskAtPj];
+        [progressView addSubview:subtask];
+        
+        
         
         
         //UILabel * line = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, screenwith, 1)];
@@ -215,7 +250,7 @@
         
         //[cell addSubview:line];
     }
-    
+        Task *task = self.weiwancheng[indexPath.row];
         UIView *leftline = [cell viewWithTag:1001];
         UILabel *sonc = [cell viewWithTag:1007];
         UIButton *compelete = [cell viewWithTag:1002];
@@ -229,6 +264,7 @@
         UIView *dayline = [cell viewWithTag:1004];
         UILabel *leftday = [cell viewWithTag:1005];
         UILabel *people = [cell viewWithTag:1006];
+        UILabel *leftday2 = [cell viewWithTag:1009];
         UIColor *statusColor = mainColor;
         tag1.hidden = YES;
         tag2.hidden = YES;
@@ -271,8 +307,26 @@
             view.hidden = NO;
             
         }
-        leftday.text = [NSString stringWithFormat:@"%@天",task.taskDays];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *projectStart = [formatter dateFromString:self.pj.projectStartTime];
+        NSDate *projectEnd = [formatter dateFromString:self.pj.projectEndTime];
+        NSDate *taskStart = [formatter dateFromString:task.taskStartTime];
+        NSDate *taskend = [formatter dateFromString:task.taskEndTime];
+        UIView *conten = [cell viewWithTag:5000];
+        UIView *taskAtPj = [conten viewWithTag:5001];
+        UIView *subtask = [conten viewWithTag:5002];
+        taskAtPj.backgroundColor = statusColor;
         
+        subtask.backgroundColor = [CreateBase createColor:0 blue:169 green:238];
+        NSInteger intervalall = [projectEnd timeIntervalSinceDate:projectStart];
+        NSInteger intervalstart = [taskStart timeIntervalSinceDate:projectStart];
+        NSInteger intervaltask = [taskend timeIntervalSinceDate:taskStart];
+        taskAtPj.frame = CGRectMake(conten.frame.size.width * ((1.0*intervalstart)/intervalall), 0, conten.frame.size.width * ((1.0*intervaltask)/intervalall), 20);
+        
+        
+        leftday.text = task.taskStartTime;
+        leftday2.text = task.taskEndTime;
         people.text = @"";
         for (NSDictionary *dic in task.participants)
         {
@@ -392,7 +446,7 @@
             people.tag  = 1006;
             [contentView addSubview:people];
         }
-        //
+        Task *task = self.yiwancheng[indexPath.row];
             UIView *leftline = [cell2 viewWithTag:1001];
             UILabel *sonc = [cell2 viewWithTag:1007];
             UIButton *compelete = [cell2 viewWithTag:1002];
@@ -448,100 +502,8 @@
                 people.text  = [NSString stringWithFormat:@"%@ %@",people.text,p.userName];
             }
         return cell2;
-        
     }
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 130.0;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"点击了%@",indexPath);
-    Task *t = self.planArrays[indexPath.row];
-    
-    TaskDetailViewController *detail = [TaskDetailViewController new];
-    detail.projectID = [NSString stringWithFormat: @"%@",t.projectId];
-    detail.task = t;
-    [[ViewManager shareInstance].NavigationController pushViewController:detail animated:YES];
-    
-}
--(void)resetArray
-{
-    [CreateBase updateMyTask:^{
-        switch (self.status)
-        {
-            case 0:
-            {
-                self.planArrays = [AppData shareInstance].Recommond;
-                break;
-            }
-            case 1:
-            {
-                self.planArrays = [AppData shareInstance].day;
-                break;
-            }
-            case 2:
-            {
-                self.planArrays = [AppData shareInstance].week;
-                break;
-            }
-            case 3:
-            {
-                self.planArrays = [AppData shareInstance].Month;
-                break;
-            }
-            default:
-                break;
-        }
-        [self.tableView reloadData];
-        if(self.planArrays.count == 0)
-        {
-            self.tableView.hidden = YES;
-            self.isEmpty.hidden = NO;
-        }
-        else
-        {
-            self.isEmpty.hidden = YES;
-            self.isEmpty.hidden = YES;
-        }
-       
-    }];
-    
-}
--(void)refreshData
-{
-    [self.tableView.mj_header beginRefreshing];
-    [CreateBase updateMyTask:^{
-        switch (self.status)
-        {
-            case 0:
-            {
-                self.planArrays = [AppData shareInstance].Recommond;
-                break;
-            }
-            case 1:
-            {
-                self.planArrays = [AppData shareInstance].day;
-                break;
-            }
-            case 2:
-            {
-                self.planArrays = [AppData shareInstance].week;
-                break;
-            }
-            case 3:
-            {
-                self.planArrays = [AppData shareInstance].Month;
-                break;
-            }
-            default:
-                break;
-        }
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-    }];
-    [self.tableView.mj_header endRefreshing];
+    return  cell;
 }
 -(void)completeClick:(UIButton *)sender
 {
@@ -550,7 +512,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [LCProgressHUD showLoading:nil];
         
-        Task *t = self.planArrays[index];
+        Task *t = self.weiwancheng[index];
         [[ApiManager shareInstance]POST:[NSString stringWithFormat:@"/task/status/%@",t.taskId] parameters:nil needsToken:YES Success:^(id responseObject) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:(NSDictionary *)responseObject];
             NSLog(@"%@",dictionary);
@@ -573,7 +535,8 @@
                     [LCProgressHUD hide];
                     [CreateBase showInternetFail];
                 }];
-        
+        [self.weiwancheng removeObject:t];
+        [self.yiwancheng addObject:t];
         
         
     }]];
@@ -584,34 +547,81 @@
     }];
    
 }
--(void)viewWillAppear:(BOOL)animated
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0)
+    return 180.0;
+    else
+        return 130;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"点击了%@",indexPath);
+}
+-(void)refreshData
 {
     
-    switch (self.status)
+    [self.tableView.mj_header beginRefreshing];
+    [CreateBase updateProjectAtIndex:self.pjid finish:^{
+        Project * p =[CreateBase searchProject:self.pjid];
+        if(self.leixing == 0)
+        {
+            self.planArrays = p.week_tasks;
+        }
+        else
+        {
+            self.planArrays = p.all_tasks;
+        }
+        [self resetArray];
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+    }];
+
+    
+    
+//    if(_planArrays.count == 0)
+//    {
+//        //self.tableView.hidden = YES;
+//    }
+//    else
+//    {
+//        self.isEmpty.hidden = YES;
+//    }
+}
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
+{
+    if(section == 1)
+    return 30;
+    return  0;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenwith, 30)];
+    view.backgroundColor = mainBackGroundColor;
+    if(section == 0)
     {
-        case 0:
-        {
-            self.planArrays = [AppData shareInstance].Recommond;
-            break;
-        }
-        case 1:
-        {
-            self.planArrays = [AppData shareInstance].day;
-            break;
-        }
-        case 2:
-        {
-            self.planArrays = [AppData shareInstance].week;
-            break;
-        }
-        case 3:
-        {
-            self.planArrays = [AppData shareInstance].Month;
-            break;
-        }
-        default:
-            break;
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(35, 10, screenwith, 15)];
+        lab.textAlignment = NSTextAlignmentLeft;
+        lab.text = @"未完成";
+        lab.font = [UIFont systemFontOfSize:14 weight:0.5];
+        [view addSubview:lab];
+        return nil;
     }
+    else
+    {
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(35, 10, screenwith, 15)];
+        lab.textAlignment = NSTextAlignmentLeft;
+        lab.text = @"已完成";
+        lab.font = [UIFont systemFontOfSize:14 weight:0.5];
+        [view addSubview:lab];
+    }
+    
+    return view;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"执行ViewwillAppear");
     if(self.planArrays.count == 0)
     {
         self.tableView.hidden = YES;
@@ -622,7 +632,43 @@
         self.isEmpty.hidden = YES;
         self.isEmpty.hidden = YES;
     }
-    [self.tableView reloadData];
+//    self.weiwancheng = [NSMutableArray new];
+//    self.yiwancheng = [NSMutableArray new];
+    [LCProgressHUD showLoading:nil];
+//    [CreateBase updateProjectAtIndex:self.pjid finish:^{
+        Project * p =[CreateBase searchProject:self.pjid];
+//
+            self.planArrays = p.all_tasks;
+//
+        [self resetArray];
+        [self.tableView reloadData];
+        [LCProgressHUD hide];
+        //[self.tableView.mj_header endRefreshing];
+   // }];
+}
+-(void)resetArray
+{
+    if(self.planArrays.count == 0)
+    {
+        //self.tableView.hidden = YES;
+    }
+    else
+    {
+        self.isEmpty.hidden = YES;
+    }
+    self.weiwancheng = [NSMutableArray new];
+    self.yiwancheng = [NSMutableArray new];
+    for (Task *t in self.planArrays)
+    {
+        if([t.taskStatus isEqual:[NSNumber numberWithInt:0]])
+        {
+            [self.weiwancheng addObject:t];
+        }
+        else
+        {
+            [self.yiwancheng addObject:t];
+        }
+    }
 }
 /*
  

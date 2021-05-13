@@ -1,15 +1,15 @@
 //
-//  ChildProjectDetailViewController.h
+//  ChildProject2ViewController.h
 //  Concerto
 //
-//  Created by EdmunddzzZ on 2021/5/8.
+//  Created by EdmunddzzZ on 2021/5/12.
 //
 
 #import "ViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ChildProjectDetailViewController : ViewController
+@interface ChildProject2ViewController : ViewController
 @property(nonatomic,assign)NSInteger leixing;
 @property(nonatomic,strong)NSString *pjid;
 @property(nonatomic,strong)Project *pj;

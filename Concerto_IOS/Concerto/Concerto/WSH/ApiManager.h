@@ -36,4 +36,9 @@ imageArray:(NSMutableArray *)fileDataArray
      Success:(void(^)(id responseObject))success
       Failure:(void(^)(id error))failure;
 
+- (void)POST3:(NSString *)url
+  parameters:(NSDictionary *)parameters
+  needsToken:(BOOL)needtoken
+     Success:(void(^)(id responseObject))success
+      Failure:(void(^)(id error))failure;
 @end

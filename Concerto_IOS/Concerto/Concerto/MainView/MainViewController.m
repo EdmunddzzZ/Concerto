@@ -25,7 +25,14 @@
     [self.view addSubview:self.topBar];
     //[self.view addSubview:self.plan];
     [self.view addSubview:self.titleView];
-    [self.view addSubview:self.pageContentView];
+    
+    //[LCProgressHUD showLoading:nil];
+    [CreateBase updateMyTask:^{
+        [self.view addSubview:self.pageContentView];
+        [LCProgressHUD hide];
+    }];
+    
+    
     // Do any additional setup after loading the view.
 }
 -(void)LoadData
@@ -40,12 +47,7 @@
         for(int i = 0;i < 4 ;i++)
         {
             ChildViewController *c = [ChildViewController new];
-            NSMutableArray *arr = [NSMutableArray new];
-            for(int j = 0;j < i; j = j+1)
-            {
-                [arr addObject:[NSNumber numberWithInt:j]];
-            }
-            c.planArrays = arr;
+            c.status = i;
             [array addObject:c];
         }
         
