@@ -8,6 +8,7 @@
 #import "ChildProject2ViewController.h"
 #import "CreateBase.h"
 #import "MJRefresh.h"
+#import "TaskDetailViewController.h"
 @interface ChildProject2ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *isEmpty;
@@ -316,13 +317,16 @@
         UIView *conten = [cell viewWithTag:5000];
         UIView *taskAtPj = [conten viewWithTag:5001];
         UIView *subtask = [conten viewWithTag:5002];
-        taskAtPj.backgroundColor = statusColor;
+        if(task.taskDays >= 0)
+        taskAtPj.backgroundColor = mainColor;
+        else
+            taskAtPj.backgroundColor =[CreateBase createColor:245 blue:128 green:140];
         
         subtask.backgroundColor = [CreateBase createColor:0 blue:169 green:238];
         NSInteger intervalall = [projectEnd timeIntervalSinceDate:projectStart];
         NSInteger intervalstart = [taskStart timeIntervalSinceDate:projectStart];
         NSInteger intervaltask = [taskend timeIntervalSinceDate:taskStart];
-        taskAtPj.frame = CGRectMake(conten.frame.size.width * ((1.0*intervalstart)/intervalall), 0, conten.frame.size.width * ((1.0*intervaltask)/intervalall), 20);
+        taskAtPj.frame = CGRectMake(conten.frame.size.width * ((1.0*intervalstart)/intervalall), 10, conten.frame.size.width * ((1.0*intervaltask)/intervalall), 10);
         
         
         leftday.text = task.taskStartTime;
@@ -557,6 +561,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击了%@",indexPath);
+    TaskDetailViewController *p = [TaskDetailViewController new];
+    if(indexPath.section == 0)
+    {
+        Task *t = self.weiwancheng[indexPath.row];
+        p.projectID = self.pjid;
+        p.task = t;
+    }
+    else
+    {
+        Task *t = self.yiwancheng[indexPath.row];
+        p.projectID = self.pjid;
+        p.task = t;
+    }
+    [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
 }
 -(void)refreshData
 {
@@ -624,7 +642,7 @@
     NSLog(@"执行ViewwillAppear");
     if(self.planArrays.count == 0)
     {
-        self.tableView.hidden = YES;
+     //   self.tableView.hidden = YES;
         self.isEmpty.hidden = NO;
     }
     else

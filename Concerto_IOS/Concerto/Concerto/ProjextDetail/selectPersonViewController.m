@@ -7,6 +7,7 @@
 
 #import "selectPersonViewController.h"
 #import "NewTaskViewController.h"
+#import "TaskDetailViewController.h"
 @interface selectPersonViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIView *topBar;
 @property(nonatomic,strong)UIButton *complete;
@@ -99,12 +100,20 @@
     if(image.hidden == YES)
     {
         image.hidden = NO;
+        
         [self.selected addObject:p];
     }
     else
     {
         image.hidden = YES;
-        [self.selected removeObject:p];
+        for (participant *p1 in self.selected)
+        {
+            if([p1.userId isEqual:p.userId])
+            {
+                [self.selected removeObject:p1];
+                break;
+            }
+        }
     }
 }
 -(UIView *)topBar
@@ -148,11 +157,18 @@
     NSArray *array = [ViewManager shareInstance].NavigationController.viewControllers;
     for(int i = 0;i < array.count;i++)
     {
-        if([array[i] isKindOfClass:NewTaskViewController.class])
+        if([array[i] isKindOfClass:NewTaskViewController.class] )
         {
             NewTaskViewController *task = array[i];
             task.selectParts = self.selected;
             break;
+        }
+        else if([array[i] isKindOfClass:TaskDetailViewController.class])
+        {
+            TaskDetailViewController *task = array[i];
+            task.selectParts = self.selected;
+            NSLog(@"%@",task.selectParts);
+            break;;
         }
     }
     [[ViewManager shareInstance].NavigationController popViewControllerAnimated:YES];

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSNumber *taskPriority;
 @property(nonatomic,strong)NSString *taskStartTime;
 @property(nonatomic,strong)NSString *taskEndTime;
+@property(nonatomic,strong)NSArray *subTasks;
 @property(nonatomic,strong)NSNumber *subTaskNum;
 @property(nonatomic,strong)NSNumber *subTaskCompletedNum;
 @property(nonatomic,strong)NSNumber *taskDays;

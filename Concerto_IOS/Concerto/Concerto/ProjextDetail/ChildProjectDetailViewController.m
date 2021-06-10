@@ -8,6 +8,7 @@
 #import "ChildProjectDetailViewController.h"
 #import "CreateBase.h"
 #import "MJRefresh.h"
+#import "TaskDetailViewController.h"
 @interface ChildProjectDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UILabel *isEmpty;
@@ -27,7 +28,7 @@
     
     if(self.planArrays.count == 0)
     {
-        self.tableView.hidden = YES;
+        //self.tableView.hidden = YES;
         self.isEmpty.hidden = NO;
     }
     else
@@ -494,6 +495,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击了%@",indexPath);
+    TaskDetailViewController *p = [TaskDetailViewController new];
+    if(indexPath.section == 0)
+    {
+        Task *t = self.weiwancheng[indexPath.row];
+        p.projectID = self.pjid;
+        p.task = t;
+    }
+    else
+    {
+        Task *t = self.yiwancheng[indexPath.row];
+        p.projectID = self.pjid;
+        p.task = t;
+    }
+    [[ViewManager shareInstance].NavigationController pushViewController:p animated:YES];
 }
 -(void)refreshData
 {
@@ -560,7 +575,7 @@
 {
     if(self.planArrays.count == 0)
     {
-        self.tableView.hidden = YES;
+       // self.tableView.hidden = YES;
         self.isEmpty.hidden = NO;
     }
     else

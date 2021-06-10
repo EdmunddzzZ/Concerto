@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self LoadData];
+    //[self LoadData];
     [self.view setBackgroundColor:mainBackGroundColor];
     [self.view addSubview:self.topBar];
     //[self.view addSubview:self.plan];
@@ -31,6 +31,7 @@
         [self.view addSubview:self.pageContentView];
         [LCProgressHUD hide];
     }];
+    //[self.view addSubview:self.pageContentView];
     
     
     // Do any additional setup after loading the view.
@@ -38,6 +39,7 @@
 -(void)LoadData
 {
     [CreateBase updateUserInfo];
+    
 }
 -(FSPageContentView *)pageContentView
 {
