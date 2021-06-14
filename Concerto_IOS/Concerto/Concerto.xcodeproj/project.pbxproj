@@ -14,7 +14,6 @@
 		BA1843FF263437E2009ACFC8 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1843FE263437E2009ACFC8 /* MainTabViewController.m */; };
 		BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA184404263443D2009ACFC8 /* ChildViewController.m */; };
 		BA4B400F2649808B000C0129 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4B400E2649808B000C0129 /* SuggestViewController.m */; };
-		BA647D072674FA0600846BBE /* NewElectronicCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA647D062674FA0600846BBE /* NewElectronicCardViewController.m */; };
 		BA89223A2644011A0073AEBE /* participant.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8922392644011A0073AEBE /* participant.m */; };
 		BA8922402644016F0073AEBE /* subTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BA89223F2644016F0073AEBE /* subTask.m */; };
 		BA892253264404E00073AEBE /* YCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA892252264404E00073AEBE /* YCMenuView.m */; };
@@ -113,6 +112,7 @@
 		BAF61A392631232E004804DA /* ApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A2F2631232E004804DA /* ApiManager.m */; };
 		BAF61A3A2631232E004804DA /* UnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A302631232E004804DA /* UnitCell.m */; };
 		BAF61A3B2631232E004804DA /* CreateBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF61A332631232E004804DA /* CreateBase.m */; };
+		BAF6989D2677830600288E56 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF6989C2677830600288E56 /* SettingTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,8 +147,6 @@
 		BA395972263FB411002C0D19 /* SizeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
 		BA4B400D2649808B000C0129 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		BA4B400E2649808B000C0129 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
-		BA647D052674FA0600846BBE /* NewElectronicCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewElectronicCardViewController.h; sourceTree = "<group>"; };
-		BA647D062674FA0600846BBE /* NewElectronicCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewElectronicCardViewController.m; sourceTree = "<group>"; };
 		BA8922382644011A0073AEBE /* participant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = participant.h; sourceTree = "<group>"; };
 		BA8922392644011A0073AEBE /* participant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = participant.m; sourceTree = "<group>"; };
 		BA89223E2644016F0073AEBE /* subTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subTask.h; sourceTree = "<group>"; };
@@ -353,6 +351,8 @@
 		BAF61A312631232E004804DA /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BAF61A322631232E004804DA /* AppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppData.h; sourceTree = "<group>"; };
 		BAF61A332631232E004804DA /* CreateBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateBase.m; sourceTree = "<group>"; wrapsLines = 0; };
+		BAF6989B2677830600288E56 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
+		BAF6989C2677830600288E56 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		BBFD88E08EB3E11214EFF83C /* libPods-Concerto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Concerto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5DDFF519C94FB76A5717B29 /* Pods-Concerto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concerto.release.xcconfig"; path = "Target Support Files/Pods-Concerto/Pods-Concerto.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -421,8 +421,8 @@
 		BA1843E92634361E009ACFC8 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				BA647D052674FA0600846BBE /* NewElectronicCardViewController.h */,
-				BA647D062674FA0600846BBE /* NewElectronicCardViewController.m */,
+				BAF6989B2677830600288E56 /* SettingTableViewCell.h */,
+				BAF6989C2677830600288E56 /* SettingTableViewCell.m */,
 				BA1843EA2634362C009ACFC8 /* MainViewController.h */,
 				BA1843EB2634362C009ACFC8 /* MainViewController.m */,
 				BA184403263443D2009ACFC8 /* ChildViewController.h */,
@@ -1033,7 +1033,6 @@
 				BAF619FE2631230B004804DA /* main.m in Sources */,
 				BA8922C826441E530073AEBE /* PGDatePicker+TimeAndSecond.m in Sources */,
 				BA89223A2644011A0073AEBE /* participant.m in Sources */,
-				BA647D072674FA0600846BBE /* NewElectronicCardViewController.m in Sources */,
 				BA8922C626441E530073AEBE /* PGDatePicker+DateHour.m in Sources */,
 				BAF61A3A2631232E004804DA /* UnitCell.m in Sources */,
 				BA8922F3264433150073AEBE /* Project.m in Sources */,
@@ -1063,6 +1062,7 @@
 				BAADD940264E67CD00782D78 /* MASConstraintMaker.m in Sources */,
 				BA8C73E5263FD76700C0247D /* tag.m in Sources */,
 				BA8922CE26441E530073AEBE /* PGDatePicker+DateHourMinuteSecond.m in Sources */,
+				BAF6989D2677830600288E56 /* SettingTableViewCell.m in Sources */,
 				BA184405263443D2009ACFC8 /* ChildViewController.m in Sources */,
 				BAADD944264E67CD00782D78 /* MASConstraint.m in Sources */,
 				BA8922C926441E530073AEBE /* PGDatePicker+DateAndTime.m in Sources */,
