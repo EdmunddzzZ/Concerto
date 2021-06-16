@@ -53,6 +53,7 @@
     self.TimeEnd = [format dateFromString:self.task.taskEndTime];
     self.selectParts = [NSMutableArray new];
     self.priorityNum = [self.task.taskPriority integerValue];
+    self.sub = [NSMutableArray new];
     self.addSub = [NSMutableArray new];
     for (NSDictionary *dic in self.task.subTasks)
     {
@@ -112,7 +113,7 @@
     {
         return 250;
     }
-    return 100;
+    return 120;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -290,7 +291,7 @@
         }
         else
         {
-            for (subTask *sub in self.task.subTasks) {
+            for (subTask *sub in self.sub) {
                 title.text = sub.taskTitle;
                 for (NSDictionary *dic2 in self.task.participants)
                 {

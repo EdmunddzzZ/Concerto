@@ -34,6 +34,7 @@
 @property(nonatomic,weak) LSTPopView *cusView;
 @property(nonatomic,strong)UIView *popView;
 @property(nonatomic,assign)NSInteger priorityNum;
+@property(nonatomic,strong)NSMutableArray *subtasks;
 
 @end
 
@@ -45,6 +46,7 @@
     [self.view addSubview:self.topBar];
     [self.view addSubview:self.table
      ];
+    self.subtasks = [NSMutableArray new];
     [self.view addSubview:self.identityPick];
     self.identityPick.hidden
     = YES;
@@ -79,6 +81,8 @@
 {
     if(section == 0)
         return 1;
+    else
+        return self.subtasks.count;
     return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,7 +91,7 @@
     {
         return 250;
     }
-    return 100;
+    return 120;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -220,6 +224,44 @@
             cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid2"];
             [cell2 setBackgroundColor:mainBackGroundColor];
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+            UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(25, 0, screenwith-50, 100)];
+            contentView.backgroundColor = [UIColor whiteColor];
+            contentView.layer.cornerRadius = 8;
+            contentView.layer.masksToBounds = YES;
+            [cell2 addSubview:contentView];
+            UIButton *complete = [[UIButton alloc]initWithFrame:CGRectMake(20, 10, 25, 20)];
+            complete.tag = 1002;
+            //[self.btns addObject:complete];
+            [complete addTarget:self action:@selector(sonTask) forControlEvents:UIControlEventTouchUpInside];
+            [complete.layer setBorderWidth:2];
+            [complete.layer setBorderColor:mainColor.CGColor];
+            complete.layer.cornerRadius = 10;
+            complete.layer.masksToBounds = YES;
+            [contentView addSubview:complete];
+            UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(complete.frame)+10, 10, screenwith-50-55-20, 20)];
+            title.tag = 1003;
+            title.text = @"标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题";
+           // title.textAlignment = NSTextAlignmentCenter;
+            title.font = [UIFont systemFontOfSize:15 weight:0.2];
+            [contentView addSubview:title];
+            UILabel *partlab = [[UILabel alloc]initWithFrame:CGRectMake(complete.frame.origin.x, CGRectGetMaxY(complete.frame)+30, 70, 20)];
+            partlab.text  = @"参与人员:";
+            partlab.font = [UIFont systemFontOfSize:15 weight:0.4];
+            [contentView addSubview:partlab];
+            UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(partlab.frame)+20, partlab.frame.origin.y, contentView.frame.size.width-CGRectGetMaxX(partlab.frame)-20, 20)];
+            lab.textColor = [CreateBase createColor:127];
+            lab.tag = 1004;
+            [contentView addSubview:lab];
+        }
+        UILabel *title = [cell2 viewWithTag:1003];
+        UILabel *lab = [cell2 viewWithTag:1004];
+        subTask *task = self.subtasks[indexPath.row];
+        title.text = task.taskTitle;
+        lab.text = @"";
+        for (participant *p in task.participants)
+        {
+            //participant *p = [[participant alloc]initWithDictionary:dic error:nil];
+            lab.text = [NSString stringWithFormat:@"%@ %@",lab.text,p.userName];
         }
         return cell2;
     }
@@ -751,7 +793,25 @@
             [tags addObject:dic];
         }
         [dic setObject:tags forKey:@"tags"];
-        
+        NSMutableArray * subtask = [NSMutableArray new];
+        for (subTask *s in self.subtasks)
+        {
+            NSMutableDictionary *dic = [NSMutableDictionary new];
+            [dic setObject:s.taskTitle forKey:@"taskTitle"];
+            NSMutableArray *parts = [NSMutableArray new];
+            for (participant *p in s.participants)
+            {
+                NSMutableDictionary *dics = [NSMutableDictionary new];
+                [dics setObject:p.userId forKey:@"userId"];
+                [parts addObject:dics];
+            }
+            [dic setObject:parts forKey:@"participants"];
+            [subtask addObject:dic];
+        }
+        if(subtask.count >= 1)
+        {
+            [dic setObject:subtask forKey:@"subTasks"];
+        }
         NSLog(@"%@",dic);
         [LCProgressHUD showLoading:nil];
         [[ApiManager shareInstance]requestPUTWithURLStr:@"/task" paramDic:dic finish:^(id responseObject) {
@@ -824,6 +884,112 @@
     }
     self.prioritylab.text = self.identityPick.currentSelect;
 }
+-(void)addTask
+{
+    if(self.subtasks.count == 3)
+    {
+        [CreateBase showMessage:@"最多只能有三个字任务"];
+        return;
+    }
+    self.popView = [[UIView alloc]initWithFrame:CGRectMake(0,0, 0.8*screenwith, 0.2*ScreenHeight)];
+    self.popView.layer.cornerRadius = 10;
+    self.popView.layer.masksToBounds = YES;
+    [self.popView setBackgroundColor:[UIColor whiteColor]];
+    
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0.05*self.popView.frame.size.height, self.popView.frame.size.width, 15)];
+    lab.text  = @"添加子任务";
+    lab.font = [UIFont systemFontOfSize:15 weight:0.3];
+    lab.textAlignment = NSTextAlignmentCenter;
+    [self.popView addSubview:lab];
+    
+    UILabel *namelab = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(lab.frame)+30, 60, 25)];
+    namelab.textAlignment = NSTextAlignmentLeft;
+    namelab.text = @"标题:";
+    namelab.tag = 20001;
+    namelab.font = [UIFont systemFontOfSize:14 weight:0.3];
+    [self.popView addSubview:namelab];
+    
+    
+    
+    UITextField *name = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(namelab.frame)+15, namelab.frame.origin.y-2, 0.5*self.popView.frame.size.width, 30)];
+    name.placeholder = @" 请输入子任务标题";
+    name.tag = 10005;
+    name.layer.borderColor = [CreateBase createColor:242].CGColor;
+    name.layer.borderWidth = 1;
+    name.layer.masksToBounds = YES;
+    name.layer.cornerRadius = 5;
+    name.textAlignment = NSTextAlignmentCenter;
+    name.font = [UIFont systemFontOfSize:13 weight:0.3];
+    [self.popView addSubview:name];
+    
+    UILabel *startlab = [[UILabel alloc]initWithFrame:CGRectMake(30, CGRectGetMaxY(namelab.frame)+30, namelab.frame.size.width, namelab.frame.size.height)];
+    startlab.textAlignment = NSTextAlignmentLeft;
+    startlab.text = @"参与人员:";
+    startlab.font = [UIFont systemFontOfSize:13 weight:0.3];
+    [self.popView addSubview:startlab];
+    
+    TTTagView *ttag = [[TTTagView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(namelab.frame)+20, CGRectGetMaxY(name.frame)+10, 0.5*self.popView.frame.size.width, 80)];
+    //ttag.layer.borderWidth =1;
+    ttag.numberOfLines = 2;
+    ttag.tagSelectedTextColor = mainColor;
+    ttag.allowsMultipleSelection = YES;
+    ttag.tag = 5001;
+    NSMutableArray *data = [NSMutableArray
+                            new];
+    for (participant *p in self.partispants)
+    {
+        [data addObject:p.userName];
+    }
+    ttag.tagsArray = data;
+    [self.popView addSubview:ttag];
+    UIButton *startbtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(namelab.frame)+20, CGRectGetMaxY(name.frame)+25, 0.5*self.popView.frame.size.width, 30)];
+    [startbtn setTitle:@"+ 点击选择颜色" forState:UIControlStateNormal];
+    [startbtn setTitleColor:mainColor forState:UIControlStateNormal];
+    [startbtn.titleLabel setFont:[UIFont systemFontOfSize:14 weight:0.5]];
+    startbtn.layer.borderWidth = 1;
+    startbtn.layer.borderColor = mainColor.CGColor;
+    startbtn.layer.cornerRadius = 3;
+    startbtn.layer.masksToBounds = YES;
+    startbtn.tag = 3001;
+   // [self.popView addSubview:startbtn];
+    
+    UIButton *compelete = [[UIButton alloc]initWithFrame:CGRectMake(startlab.frame.origin.x+10, CGRectGetMaxY(ttag.frame)+40, 0.3*self.popView.frame.size.width, 30)];
+    [compelete setBackgroundColor:mainColor];
+    compelete.layer.cornerRadius = 10;
+    compelete.layer.masksToBounds = YES;
+    compelete.tag = 40001;
+    [compelete setTitle:@"确认" forState:UIControlStateNormal];
+    [compelete addTarget:self action:@selector(sonTask) forControlEvents:UIControlEventTouchUpInside];
+    [self.popView addSubview:compelete];
+    
+    
+    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(self.popView.frame.size.width-compelete.frame.origin.x-0.3*self.popView.frame.size.width, CGRectGetMaxY(ttag.frame)+40, 0.3*self.popView.frame.size.width, 30)];
+    [cancel setBackgroundColor:[CreateBase createColor:255 blue:194 green:123]];
+    cancel.layer.cornerRadius = 10;
+    cancel.layer.masksToBounds = YES;
+    cancel.tag = 40002;
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel addTarget:self action:@selector(cancelClcik) forControlEvents:UIControlEventTouchUpInside];
+    [self.popView addSubview:cancel];
+    if(CGRectGetMaxY(cancel.frame) > self.popView.frame.size
+       .height)
+    {
+        self.popView.frame = CGRectMake(0, 0, self.popView.frame.size.width, CGRectGetMaxY(cancel.frame)+5);
+    }
+    if(CGRectGetMaxY(ttag.frame) > self.popView.frame.size.height)
+    {
+        self.popView.frame = CGRectMake(0, 0, self.popView.frame.size.width, CGRectGetMaxY(ttag.frame)+5);
+    }
+    
+    LSTPopView *cusView = [LSTPopView initWithCustomView:self.popView parentView:[UIApplication sharedApplication].keyWindow popStyle:LSTPopStyleScale dismissStyle:LSTDismissStyleFade];
+    cusView.hemStyle = LSTHemStyleCenter;
+    LSTPopViewWK(cusView);
+    cusView.bgClickBlock = ^{
+        [wk_cusView dismiss];
+    };
+    self.cusView = cusView;
+    [cusView pop];
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     if(self.selectParts.count != 0)
@@ -843,7 +1009,35 @@
 //            sender.text = [sender.text substringToIndex:5];
 //        }
     }
+-(void)sonTask
+{
+    UITextField *text = [self.popView viewWithTag:10005];
+    TTTagView *tttag = [self.popView viewWithTag:5001];
+    NSArray *array  = tttag.selectTags;
+    subTask *task = [subTask new];
+    task.participants = [NSMutableArray new];
+    task.taskTitle = text.text;
+    if(tttag.selectTags.count == 0)
+    {
+        [CreateBase showMessage:@"请选择参与人员"];
+        return;
+    }
+    for (NSString *str in array)
+    {
+        for (participant *p in self.partispants)
+        {
+            if([p.userName isEqual:str])
+            {
+                [task.participants addObject:p];
+            }
+        }
+    }
+    [self.subtasks addObject:task];
+    [self.cusView dismiss];
+    [self.table reloadData];
+}
 /*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

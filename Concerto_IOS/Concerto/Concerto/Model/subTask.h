@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSNumber *taskId;
 @property(nonatomic,strong)NSString *taskTitle;
 @property(nonatomic,strong)NSNumber *taskStatus;
-@property(nonatomic,strong)NSArray *participants;
+@property(nonatomic,strong)NSMutableArray *participants;
 @end
 
 NS_ASSUME_NONNULL_END
